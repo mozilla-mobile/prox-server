@@ -16,3 +16,10 @@ Add the path to the Firebase credentials json file to `config.py`, and then run
     python firebase-test.py
 
 You can view real-time changes to the database on the console.
+
+## Testing
+Testing is done via [pytest](pytest.org):
+
+    pytest
+
+All tests should pass before landing on `master`.

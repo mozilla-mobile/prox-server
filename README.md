@@ -13,6 +13,13 @@ and `deactivate` to leave the virtualenv.
 ## Firebase
 Add the path to the Firebase credentials json file to `config.py`, and then run
 
-    python firebase-test.py
+    python -m samples.firebase-test
 
 You can view real-time changes to the database on the console.
+
+## Testing
+Testing is done via [pytest](pytest.org):
+
+    pytest
+
+All tests should pass before landing on `master`.

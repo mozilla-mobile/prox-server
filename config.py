@@ -1,5 +1,5 @@
 # Paths to key files
-FIREBASE_KEY_PATH="/Users/liuche/moz/service-keys/prox-server-c1.json"
+FIREBASE_KEY_PATH="firebase.local.json"
 
 # Firebase config for prox-server
 # These are public-facing and can be found in the console under Auth > Web Setup (in the top-right corner)

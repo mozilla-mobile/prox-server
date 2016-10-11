@@ -1,1 +1,4 @@
+factual-api
+flask
 pyrebase
+pytest

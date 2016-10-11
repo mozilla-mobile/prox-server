@@ -1,16 +1,23 @@
 import json
-from pprint import pprint
-
 from factual import Factual
 
 def getCredentials():
     json_data = open("keys.local.json")
     return json.load(json_data)
 
-def fetchData(lat, lon):
-    creds = getCredentials()
-    factual = Factual(creds["FACTUAL_KEY"], creds["FACTUAL_SECRET"])
-    places = factual.table("places")
-    pprint(places.schema())
+creds = getCredentials()
+factual = Factual(creds["FACTUAL_KEY"], creds["FACTUAL_SECRET"])
 
-fetchData(0, 0)
+def fetchData(lat, lon):
+    from factual.utils import circle
+    places = factual.table("places")
+    data = places.search("beach").geo(circle(lat, lon, 1000)).data()
+    print(json.dumps(data))
+    return data
+
+def fetchCrosswalk(factualIDs):
+    oneOfFilter = [{ "name": {"$eq": f}} for f in factualIDs]
+    print(json.dumps(oneOfFilter))
+
+fetchData(19.915403, -155.887403)
+#fetchCrosswalk([1,2,3])

@@ -1,4 +1,4 @@
-from config import CONFIG
+from config import FIREBASE_CONFIG
 import pyrebase
 
 from pprint import pprint

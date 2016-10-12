@@ -1,16 +1,24 @@
 import json
-from pprint import pprint
-
-from factual import Factual
-
-def getCredentials():
-    json_data = open("keys.local.json")
-    return json.load(json_data)
+from app.clients import factualClient
 
 def fetchData(lat, lon):
-    creds = getCredentials()
-    factual = Factual(creds["FACTUAL_KEY"], creds["FACTUAL_SECRET"])
-    places = factual.table("places")
-    pprint(places.schema())
+    from factual.utils import circle
+    places = factualClient.table("places")
+    data = places.search("bar").geo(circle(lat, lon, 1000)).data()
+    return data
 
-fetchData(0, 0)
+def fetchCrosswalk(factualIDs):
+    namespaces = ["yelp", "tripadvisor", "wikipedia", "instagram_places"]
+    oneOfFilter = [{ "factual_id": {"$eq": f}} for f in factualIDs]
+    idFilter = { "$or": oneOfFilter }
+    oneOfFilter = [ { "namespace": {"$eq": ns }} for ns in namespaces]
+    namespaceFilter = { "$or": oneOfFilter }
+    totalFilter = { "$and": [idFilter, namespaceFilter]}
+    return factualClient.crosswalk().filters(totalFilter).data()
+
+
+factualPlaces = fetchData(19.915403, -155.887403)
+factualIDs = [ p["factual_id"] for p in factualPlaces ]
+idArray = fetchCrosswalk(factualIDs)
+print(json.dumps(idArray, indent=4))
+#fetchCrosswalk([1,2,3])

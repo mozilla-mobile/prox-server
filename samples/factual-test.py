@@ -1,18 +1,9 @@
 import json
-from factual import Factual
-
-def getCredentials():
-    json_data = open("keys.local.json")
-    return json.load(json_data)
-
-
-creds = getCredentials()
-factualCreds = creds["factual"]
-factual = Factual(factualCreds["key"], factualCreds["secret"])
+from app.clients import factualClient
 
 def fetchData(lat, lon):
     from factual.utils import circle
-    places = factual.table("places")
+    places = factualClient.table("places")
     data = places.search("bar").geo(circle(lat, lon, 1000)).data()
     return data
 
@@ -23,7 +14,7 @@ def fetchCrosswalk(factualIDs):
     oneOfFilter = [ { "namespace": {"$eq": ns }} for ns in namespaces]
     namespaceFilter = { "$or": oneOfFilter }
     totalFilter = { "$and": [idFilter, namespaceFilter]}
-    return factual.crosswalk().filters(totalFilter).data()
+    return factualClient.crosswalk().filters(totalFilter).data()
 
 
 factualPlaces = fetchData(19.915403, -155.887403)

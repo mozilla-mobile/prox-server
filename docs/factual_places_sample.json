@@ -1,0 +1,553 @@
+[{
+	"website": "http://www.waikoloabeachresort.com/hawaii-golf",
+	"category_labels": [
+		["Sports and Recreation", "Golf", "Golf Courses"]
+	],
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Waikoloa Beach GC - Beach Course",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"hours_display": "Open Daily 6:30 AM-6:00 PM",
+	"longitude": -155.887984,
+	"category_ids": [451],
+	"hours": {
+		"monday": [
+			["6:30", "18:00"]
+		],
+		"tuesday": [
+			["6:30", "18:00"]
+		],
+		"friday": [
+			["6:30", "18:00"]
+		],
+		"wednesday": [
+			["6:30", "18:00"]
+		],
+		"thursday": [
+			["6:30", "18:00"]
+		],
+		"sunday": [
+			["6:30", "18:00"]
+		],
+		"saturday": [
+			["6:30", "18:00"]
+		]
+	},
+	"$distance": 214.59781,
+	"postcode": "96738",
+	"factual_id": "1d23d9ab-fd21-4265-b082-1191edec04ea",
+	"address": "69-600 Waikoloa Beach Dr",
+	"latitude": 19.913552,
+	"tel": "(808) 886-7888",
+	"email": "golf@waikoloaland.com"
+}, {
+	"website": "http://www.waikoloabeachresort.com/beach_course.php",
+	"category_labels": [
+		["Sports and Recreation", "Golf", "Golf Courses"]
+	],
+	"fax": "(808) 886-6546",
+	"tel": "(808) 886-6060",
+	"name": "Beach Course at Waikoloa Beach Golf Club",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.88608,
+	"category_ids": [451],
+	"$distance": 632.11633,
+	"postcode": "96738",
+	"factual_id": "17f9574e-2dcf-4b4f-8baf-b0060bdfa200",
+	"address": "69-1020 Keana Pl",
+	"latitude": 19.92095,
+	"email": "dpritchett@waikoloaland.com"
+}, {
+	"website": "http://www.waikoloavacationrentals.com/kolea-rentals/",
+	"category_labels": [
+		["Travel", "Lodging", "Hotels and Motels"],
+		["Travel", "Lodging", "Lodges and Vacation Rentals"],
+		["Travel", "Lodging", "Resorts"]
+	],
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Kolea at Waikoloa Beach Resort",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.887353,
+	"category_ids": [436, 437, 438],
+	"$distance": 346.18973,
+	"postcode": "96738",
+	"factual_id": "082addc9-141c-4a20-8b86-6465f4ba5ddd",
+	"address": "69-1000 Kolea Kai Cir",
+	"latitude": 19.918516,
+	"tel": "(808) 987-4519"
+}, {
+	"website": "http://www.marriott.com",
+	"category_labels": [
+		["Travel", "Lodging", "Hotels and Motels"]
+	],
+	"name": "Waikoloa Beach Marriott Resort & Spa",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.887373,
+	"category_ids": [436],
+	"$distance": 330.26428,
+	"postcode": "96738",
+	"factual_id": "56e511b2-f86a-42e5-aa66-929fbb4c9ffe",
+	"address": "69-275 Waikoloa Beach Dr",
+	"latitude": 19.918373
+}, {
+	"website": "http://www.sunsetluau.com",
+	"category_labels": [
+		["Social", "Food and Dining", "Restaurants"],
+		["Social", "Entertainment", "Music and Show Venues"]
+	],
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Waikoloa Beach Marriott Sunset Luau",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"hours_display": "Wed 5:00 AM-8:15 AM; Sat 5:00 AM-8:15 AM",
+	"longitude": -155.883949,
+	"category_ids": [347, 333],
+	"hours": {
+		"saturday": [
+			["5:00", "8:15"]
+		],
+		"wednesday": [
+			["5:00", "8:15"]
+		]
+	},
+	"$distance": 388.9154,
+	"postcode": "96738",
+	"factual_id": "1c95b1a1-8b40-44fa-877d-17c55dd8b668",
+	"address": "69-275 Waikoloa Beach Dr",
+	"latitude": 19.916702,
+	"tel": "(808) 886-6789",
+	"email": "waikoloadiningreservations@marriott.com"
+}, {
+	"category_labels": [
+		["Social", "Food and Dining", "Restaurants"]
+	],
+	"tel": "(808) 886-6789",
+	"name": "Marriott Waikola Beach, Big Island Hawaii, Hawaii",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.88454,
+	"category_ids": [347],
+	"$distance": 321.07608,
+	"postcode": "96738",
+	"factual_id": "0026892c-df1e-434d-9407-b5412022d9e2",
+	"address": "69-275 Waikoloa Beach Dr",
+	"latitude": 19.916448
+}, {
+	"category_labels": [
+		["Travel", "Lodging", "Hotels and Motels"]
+	],
+	"tel": "(800) 666-2691",
+	"name": "Kolea at Waikoloa Beach Resort",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.888014,
+	"category_ids": [436],
+	"$distance": 409.42996,
+	"postcode": "96738",
+	"factual_id": "4008cdce-8e5c-48ca-862e-1b2c615c101c",
+	"address": "69-1000 Waikoloa Beach Dr",
+	"latitude": 19.91904
+}, {
+	"category_labels": [
+		["Travel", "Lodging", "Hotels and Motels"]
+	],
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Castle Kolea Beach Villas at Waikoloa",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.887132,
+	"category_ids": [436],
+	"$distance": 378.6798,
+	"postcode": "96738",
+	"factual_id": "b2136319-bdd8-4275-933d-43bea65a389c",
+	"address": "69-1000 Waikoloa Beach Dr",
+	"latitude": 19.918799
+}, {
+	"website": "http://www.bikeworkshawaii.com/",
+	"category_labels": [
+		["Retail", "Bicycles"]
+	],
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Bike Works Beach and Sports",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"hours_display": "Mon-Sat 9:00 AM-6:00 PM; Sun 10:00 AM-4:00 PM",
+	"longitude": -155.880585,
+	"category_ids": [129],
+	"hours": {
+		"monday": [
+			["9:00", "18:00"]
+		],
+		"tuesday": [
+			["9:00", "18:00"]
+		],
+		"friday": [
+			["9:00", "18:00"]
+		],
+		"wednesday": [
+			["9:00", "18:00"]
+		],
+		"thursday": [
+			["9:00", "18:00"]
+		],
+		"sunday": [
+			["10:00", "16:00"]
+		],
+		"saturday": [
+			["9:00", "18:00"]
+		]
+	},
+	"$distance": 746.3506,
+	"postcode": "96738",
+	"factual_id": "6e68062a-8d89-4139-8df0-54b5b550f124",
+	"address": "69-201 Waikoloa Beach Dr",
+	"latitude": 19.913413,
+	"tel": "(808) 886-5000",
+	"email": "bikereservations@bikeworkshawaii.com"
+}, {
+	"website": "http://www.vrbo.com/190313",
+	"category_labels": [
+		["Travel", "Lodging", "Resorts"],
+		["Travel", "Lodging", "Hotels and Motels"]
+	],
+	"tel": "(808) 886-1221",
+	"name": "Waikoloa Beach Villas",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.878904,
+	"category_ids": [438, 436],
+	"latitude": 19.915557,
+	"$distance": 888.6945,
+	"postcode": "96738",
+	"factual_id": "0e9611aa-7d6d-4289-adef-fe5e01cbe4c2",
+	"address": "69-180 Waikoloa Beach Dr",
+	"address_extended": "Ste J33"
+}, {
+	"website": "http://www.waikoloabeachresort.com/",
+	"category_labels": [
+		["Social", "Food and Dining", "Restaurants", "Seafood"],
+		["Social", "Food and Dining", "Restaurants", "American"],
+		["Social", "Food and Dining", "Restaurants", "Steakhouses"]
+	],
+	"fax": "(808) 886-1128",
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Waikoloa Beach Grill",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"hours_display": "Open Daily 11:00 AM-4:00 PM, 5:00 PM-9:00 PM",
+	"longitude": -155.885367,
+	"category_ids": [364, 348, 365],
+	"hours": {
+		"monday": [
+			["11:00", "16:00"],
+			["17:00", "21:00"]
+		],
+		"tuesday": [
+			["11:00", "16:00"],
+			["17:00", "21:00"]
+		],
+		"friday": [
+			["11:00", "16:00"],
+			["17:00", "21:00"]
+		],
+		"wednesday": [
+			["11:00", "16:00"],
+			["17:00", "21:00"]
+		],
+		"thursday": [
+			["11:00", "16:00"],
+			["17:00", "21:00"]
+		],
+		"sunday": [
+			["11:00", "16:00"],
+			["17:00", "21:00"]
+		],
+		"saturday": [
+			["11:00", "16:00"],
+			["17:00", "21:00"]
+		]
+	},
+	"$distance": 667.2275,
+	"postcode": "96738",
+	"factual_id": "d4b207ea-6037-43c0-879d-1c8471b2e0da",
+	"address": "69-1022 Keana Pl",
+	"latitude": 19.92109,
+	"tel": "(808) 886-6131",
+	"email": "waikoloab001@hawaii.rr.com"
+}, {
+	"tel": "(808) 886-5001",
+	"name": "Waikoloa Beach Resort",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.886217,
+	"$distance": 653.5754,
+	"postcode": "96738",
+	"factual_id": "159e2f0f-b3cf-40d2-9426-79f99adb23a2",
+	"address": "69-1020 Keana Pl",
+	"latitude": 19.921174
+}, {
+	"website": "http://waikoloabeachgolf.com/clubhouse/kings-grille/",
+	"category_labels": [
+		["Social", "Food and Dining", "Restaurants"]
+	],
+	"fax": "(808) 886-6546",
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Waikoloa Beach Grill & Kings",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.885895,
+	"category_ids": [347],
+	"$distance": 646.2207,
+	"postcode": "96738",
+	"factual_id": "b9dc3b6c-fdca-47fc-a42c-172f052e6636",
+	"address": "69-1022 Keana Pl",
+	"latitude": 19.921039,
+	"tel": "(808) 886-6131",
+	"email": "rbirch@waikoloaland.com"
+}, {
+	"website": "http://www.marriott.com/hotels/travel/koamc-waikoloa-beach-marriott-resort-and-spa/",
+	"category_labels": [
+		["Travel", "Lodging", "Hotels and Motels"]
+	],
+	"fax": "(808) 886-3601",
+	"tel": "(808) 886-6789",
+	"name": "Marriott Hotels & Resorts",
+	"hours_display": "Open Daily 12:00 AM-11:59 PM",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"address": "69-275 Waikoloa Beach Dr",
+	"chain_id": "c4a6ee4c-28f5-4cea-972e-37b57852cd5f",
+	"longitude": -155.884578,
+	"category_ids": [436],
+	"hours": {
+		"monday": [
+			["00:00", "23:59"]
+		],
+		"tuesday": [
+			["00:00", "23:59"]
+		],
+		"friday": [
+			["00:00", "23:59"]
+		],
+		"wednesday": [
+			["00:00", "23:59"]
+		],
+		"thursday": [
+			["00:00", "23:59"]
+		],
+		"sunday": [
+			["00:00", "23:59"]
+		],
+		"saturday": [
+			["00:00", "23:59"]
+		]
+	},
+	"$distance": 320.47998,
+	"postcode": "96738",
+	"factual_id": "a13abe4d-12f1-49c2-b699-4684095f4afa",
+	"chain_name": "Marriott Hotels & Resorts",
+	"latitude": 19.916522,
+	"email": "koamc.reservations@marriott.com"
+}, {
+	"website": "http://www.mandaraspa.com/",
+	"category_labels": [
+		["Businesses and Services", "Personal Care", "Spas"]
+	],
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Mandara Spa",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"hours_display": "Open Daily 8:00 AM-9:00 PM",
+	"longitude": -155.884484,
+	"category_ids": [285],
+	"hours": {
+		"monday": [
+			["8:00", "21:00"]
+		],
+		"tuesday": [
+			["8:00", "21:00"]
+		],
+		"friday": [
+			["8:00", "21:00"]
+		],
+		"wednesday": [
+			["8:00", "21:00"]
+		],
+		"thursday": [
+			["8:00", "21:00"]
+		],
+		"sunday": [
+			["8:00", "21:00"]
+		],
+		"saturday": [
+			["8:00", "21:00"]
+		]
+	},
+	"$distance": 337.24454,
+	"postcode": "96738",
+	"factual_id": "5b87469d-b0d6-4d2c-933e-461793f79d60",
+	"address": "69-275 Waikoloa Beach Dr",
+	"latitude": 19.916694,
+	"tel": "(808) 886-8191",
+	"email": "portofino@mandaraspa.com"
+}, {
+	"category_labels": [
+		["Travel", "Lodging", "Hotels and Motels"]
+	],
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Kolea at Waikoloa",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.887122,
+	"category_ids": [436],
+	"$distance": 443.08658,
+	"postcode": "96738",
+	"factual_id": "3f4a4607-75ad-4f2a-af3c-0f3f153435d4",
+	"address": "69-289 Waikoloa Beach Dr",
+	"latitude": 19.919379,
+	"tel": "(808) 886-0036"
+}, {
+	"website": "http://www.koleasbest.com",
+	"category_labels": [
+		["Community and Government"]
+	],
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Kolea",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.887647,
+	"category_ids": [20],
+	"$distance": 365.27808,
+	"postcode": "96738",
+	"factual_id": "0dbd347e-8288-4618-b2be-855be8f04554",
+	"address": "69-1045 Kolea Kai Cir",
+	"latitude": 19.91868,
+	"tel": "(808) 886-2760",
+	"email": "kolea16a@gmail.com"
+}, {
+	"website": "http://www.kingsshops.com",
+	"category_labels": [
+		["Retail", "Supermarkets and Groceries"]
+	],
+	"fax": "(808) 886-8812",
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Kings' Shops",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"hours_display": "Open Daily 9:30 AM-9:30 PM",
+	"longitude": -155.882286,
+	"category_ids": [171],
+	"hours": {
+		"monday": [
+			["9:30", "21:30"]
+		],
+		"tuesday": [
+			["9:30", "21:30"]
+		],
+		"friday": [
+			["9:30", "21:30"]
+		],
+		"wednesday": [
+			["9:30", "21:30"]
+		],
+		"thursday": [
+			["9:30", "21:30"]
+		],
+		"sunday": [
+			["9:30", "21:30"]
+		],
+		"saturday": [
+			["9:30", "21:30"]
+		]
+	},
+	"latitude": 19.916384,
+	"$distance": 545.9645,
+	"postcode": "96738",
+	"factual_id": "e410126c-f465-4f61-91d9-403453c26fc3",
+	"address": "69-250 Waikoloa Beach Dr",
+	"address_extended": "Ste A5",
+	"tel": "(808) 886-8811",
+	"email": "info@kingsshops.com"
+}, {
+	"website": "http://www.outrigger.com/hotels-resorts/hawaiian-islands/hawaii-big-island/kolea",
+	"category_labels": [
+		["Travel", "Lodging", "Hotels and Motels"]
+	],
+	"neighborhood": ["Anaehoomalu Ahupua`a"],
+	"name": "Outrigger Kolea Villas Waikoloa",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"longitude": -155.888382,
+	"category_ids": [436],
+	"$distance": 408.65634,
+	"postcode": "96738",
+	"factual_id": "b521d1ac-d6fe-4453-859d-6723a5a14ee3",
+	"address": "69-289 Waikoloa Beach Dr",
+	"latitude": 19.918961,
+	"tel": "(888) 271-2681"
+}, {
+	"website": "http://www.waikoloabeachrental.com/",
+	"category_labels": [
+		["Travel", "Lodging", "Hotels and Motels"],
+		["Travel", "Lodging", "Resorts"]
+	],
+	"tel": "(808) 886-1171",
+	"name": "Waikoloa Fairway Villas by South Kohala Management",
+	"locality": "Waikoloa",
+	"country": "us",
+	"region": "HI",
+	"hours_display": "Open Daily 12:00 AM-11:59 PM",
+	"longitude": -155.881523,
+	"category_ids": [436, 438],
+	"hours": {
+		"monday": [
+			["00:00", "23:59"]
+		],
+		"tuesday": [
+			["00:00", "23:59"]
+		],
+		"friday": [
+			["00:00", "23:59"]
+		],
+		"wednesday": [
+			["00:00", "23:59"]
+		],
+		"thursday": [
+			["00:00", "23:59"]
+		],
+		"sunday": [
+			["00:00", "23:59"]
+		],
+		"saturday": [
+			["00:00", "23:59"]
+		]
+	},
+	"$distance": 702.9835,
+	"postcode": "96738",
+	"factual_id": "81c553d3-4927-432a-b47e-85d84a8edf8a",
+	"address": "69-200 Pohakulana Pl",
+	"latitude": 19.91847,
+	"email": "joinus@waikoloabeachresort.com"
+}]

@@ -1,0 +1,115 @@
+[
+    {
+        "url": "http://www.yelp.com/biz/clipper-lounge-waikoloa", 
+        "namespace": "yelp", 
+        "factual_id": "1b5a13e0-d022-4a66-b7cd-9f48801f1196"
+    }, 
+    {
+        "url": "http://www.tripadvisor.com/Attraction_Review-g60608-d154312-Reviews-Clipper_Lounge-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+        "namespace_id": "d154312", 
+        "namespace": "tripadvisor", 
+        "factual_id": "1b5a13e0-d022-4a66-b7cd-9f48801f1196"
+    }, 
+    {
+        "url": "http://www.yelp.com/biz/tropics-ale-house-waikoloa-beach", 
+        "namespace": "yelp", 
+        "factual_id": "8017ecb5-a7e5-4db4-a535-aba05fd12d59"
+    }, 
+    {
+        "url": "http://www.yelp.com/biz/sansei-seafood-and-sushi-bar-waikoloa", 
+        "namespace": "yelp", 
+        "factual_id": "3ce0d8b7-1edb-434f-8ecc-0c85469c48d6"
+    }, 
+    {
+        "url": "http://www.tripadvisor.com/Restaurant_Review-g60608-d1126957-Reviews-Sansei_Seafood_Restaurant_Sushi_Bar-Waikoloa_Kohala_Coast_Island_of_Hawaii_H.html", 
+        "namespace_id": "d1126957", 
+        "namespace": "tripadvisor", 
+        "factual_id": "3ce0d8b7-1edb-434f-8ecc-0c85469c48d6"
+    }, 
+    {
+        "url": "http://www.tripadvisor.com/Restaurant_Review-g60608-d1126957-Reviews-Sansei_Seafood_Restaurant_Sushi_Bar-Waikoloa_Kohala_Coast_Island_of_Hawaii_Ha.html", 
+        "namespace_id": "d1126957", 
+        "namespace": "tripadvisor", 
+        "factual_id": "3ce0d8b7-1edb-434f-8ecc-0c85469c48d6"
+    }, 
+    {
+        "url": "http://www.tripadvisor.com/Restaurant_Review-g60608-d1126957-Reviews-Sansei_Seafood_Restaurant_Sushi_Bar-Waikoloa_Island_of_Hawaii_Hawaii.html", 
+        "namespace_id": "d1126957", 
+        "namespace": "tripadvisor", 
+        "factual_id": "3ce0d8b7-1edb-434f-8ecc-0c85469c48d6"
+    }, 
+    {
+        "url": "https://www.tripadvisor.com/Restaurant_Review-g60608-d1126957-Reviews-Sansei_Seafood_Restaurant_Sushi_Bar-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+        "namespace_id": "d1126957", 
+        "namespace": "tripadvisor", 
+        "factual_id": "3ce0d8b7-1edb-434f-8ecc-0c85469c48d6"
+    }, 
+    {
+        "url": "http://www.tripadvisor.com/Restaurant_Review-g60608-d1126957-Reviews-Sansei_Seafood_Restaurant_Sushi_Bar-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+        "namespace_id": "d1126957", 
+        "namespace": "tripadvisor", 
+        "factual_id": "3ce0d8b7-1edb-434f-8ecc-0c85469c48d6"
+    }, 
+    {
+        "url": "https://www.tripadvisor.com/Restaurant_Review-g60608-d5263759-Reviews-Malolo_Lounge-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+        "namespace_id": "d5263759", 
+        "namespace": "tripadvisor", 
+        "factual_id": "8b019ba5-a4c1-4a2e-b640-fc42f6b17847"
+    }, 
+    {
+        "url": "http://www.tripadvisor.com/Restaurant_Review-g60608-d5263759-Reviews-Malolo_Lounge-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+        "namespace_id": "d5263759", 
+        "namespace": "tripadvisor", 
+        "factual_id": "8b019ba5-a4c1-4a2e-b640-fc42f6b17847"
+    }, 
+    {
+        "url": "http://www.yelp.com/biz/sweet-paradise-chocolate-waikoloa", 
+        "namespace": "yelp", 
+        "factual_id": "2c1e2ae8-4cd5-48c8-adad-83786e1fc27e"
+    }, 
+    {
+        "url": "https://www.tripadvisor.com/Restaurant_Review-g60608-d5082954-Reviews-Waikoloa_Grill_N_Bar-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+        "namespace_id": "d5082954", 
+        "namespace": "tripadvisor", 
+        "factual_id": "ddb2d794-8f92-49ce-b3da-cd7954a2ad0b"
+    }, 
+    {
+        "url": "http://www.tripadvisor.com/Restaurant_Review-g60608-d5082954-Reviews-Waikoloa_Grill_N_Bar-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+        "namespace_id": "d5082954", 
+        "namespace": "tripadvisor", 
+        "factual_id": "ddb2d794-8f92-49ce-b3da-cd7954a2ad0b"
+    }, 
+    {
+        "url": "http://www.yelp.com/biz/waikoloa-grilln-bar-waikoloa", 
+        "namespace": "yelp", 
+        "factual_id": "ddb2d794-8f92-49ce-b3da-cd7954a2ad0b"
+    }, 
+    {
+        "url": "http://www.tripadvisor.com/Restaurant_Review-g60608-d1534515-Reviews-Waikoloa_Grill_N_Bar-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+        "namespace_id": "d1534515", 
+        "namespace": "tripadvisor", 
+        "factual_id": "ddb2d794-8f92-49ce-b3da-cd7954a2ad0b"
+    }, 
+    {
+        "url": "http://www.yelp.com/biz/three-fat-pigs-waikoloa-2", 
+        "namespace": "yelp", 
+        "factual_id": "49a8c264-5fe6-4c26-bf76-c7c30fed9e9b"
+    }, 
+    {
+        "url": "https://www.tripadvisor.com/Restaurant_Review-g60608-d3980105-Reviews-Three_Fat_Pigs-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+        "namespace_id": "d3980105", 
+        "namespace": "tripadvisor", 
+        "factual_id": "49a8c264-5fe6-4c26-bf76-c7c30fed9e9b"
+    }, 
+    {
+        "url": "http://www.yelp.com/biz/the-three-fat-pigs-waikoloa", 
+        "namespace": "yelp", 
+        "factual_id": "49a8c264-5fe6-4c26-bf76-c7c30fed9e9b"
+    }, 
+    {
+        "url": "http://www.tripadvisor.com/Restaurant_Review-g60608-d3980105-Reviews-Three_Fat_Pigs-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+        "namespace_id": "d3980105", 
+        "namespace": "tripadvisor", 
+        "factual_id": "49a8c264-5fe6-4c26-bf76-c7c30fed9e9b"
+    }
+]

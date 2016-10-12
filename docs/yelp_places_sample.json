@@ -1,0 +1,961 @@
+{
+    "region": {
+        "span": {
+            "latitude_delta": 0.38655993796673016, 
+            "longitude_delta": 0.18967092013764386
+        }, 
+        "center": {
+            "latitude": 19.816312862712152, 
+            "longitude": -155.911543345392
+        }
+    }, 
+    "total": 52, 
+    "businesses": [
+        {
+            "is_claimed": false, 
+            "rating": 4.5, 
+            "mobile_url": "https://m.yelp.com/biz/49-black-sand-beach-kamuela?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png", 
+            "review_count": 9, 
+            "name": "49 Black Sand Beach", 
+            "rating_img_url_small": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/a5221e66bc70/ico/stars/v1/stars_small_4_half.png", 
+            "url": "https://www.yelp.com/biz/49-black-sand-beach-kamuela?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 2029.9220858074634, 
+            "phone": "8088870531", 
+            "snippet_text": "Due to popularity, can be challenge if you do not get their early to get one of the coveted parking passes?  So get the family up early and it will be a...", 
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/PUutggfVVm64zjqY0MQxKQ/ms.jpg", 
+            "categories": [
+                [
+                    "Beaches", 
+                    "beaches"
+                ]
+            ], 
+            "display_phone": "+1-808-887-0531", 
+            "rating_img_url_large": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/9f83790ff7f6/ico/stars/v1/stars_large_4_half.png", 
+            "id": "49-black-sand-beach-kamuela", 
+            "snippet_image_url": "https://s3-media2.fl.yelpcdn.com/photo/Dx5io-jjghGUEEiXFkpzOw/ms.jpg", 
+            "location": {
+                "city": "Kamuela", 
+                "display_address": [
+                    "68-1107 Honokaope Pl", 
+                    "Kamuela, HI 96743"
+                ], 
+                "geo_accuracy": 8.0, 
+                "postal_code": "96743", 
+                "country_code": "US", 
+                "address": [
+                    "68-1107 Honokaope Pl"
+                ], 
+                "coordinate": {
+                    "latitude": 19.9322810769081, 
+                    "longitude": -155.878625437617
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": false, 
+            "rating": 5.0, 
+            "mobile_url": "https://m.yelp.com/biz/waikoloa-beach-resort-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/f1def11e4e79/ico/stars/v1/stars_5.png", 
+            "review_count": 3, 
+            "name": "Waikoloa Beach Resort", 
+            "rating_img_url_small": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/c7623205d5cd/ico/stars/v1/stars_small_5.png", 
+            "url": "https://www.yelp.com/biz/waikoloa-beach-resort-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 651.7092039478284, 
+            "phone": "8088866060", 
+            "snippet_text": "Just Wow!", 
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/ws-d6HEcqHvxQwk0cRS5aA/ms.jpg", 
+            "categories": [
+                [
+                    "Golf", 
+                    "golf"
+                ], 
+                [
+                    "Apartments", 
+                    "apartments"
+                ]
+            ], 
+            "display_phone": "+1-808-886-6060", 
+            "rating_img_url_large": "https://s3-media3.fl.yelpcdn.com/assets/2/www/img/22affc4e6c38/ico/stars/v1/stars_large_5.png", 
+            "id": "waikoloa-beach-resort-waikoloa", 
+            "snippet_image_url": "https://s3-media4.fl.yelpcdn.com/photo/h1e1RnTEtjHFYvuMupeVmA/ms.jpg", 
+            "location": {
+                "city": "Waikoloa", 
+                "display_address": [
+                    "69-1020 Keana Pl", 
+                    "Waikoloa, HI 96738"
+                ], 
+                "geo_accuracy": 8.0, 
+                "postal_code": "96738", 
+                "country_code": "US", 
+                "address": [
+                    "69-1020 Keana Pl"
+                ], 
+                "coordinate": {
+                    "latitude": 19.92088, 
+                    "longitude": -155.88565
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": false, 
+            "rating": 5.0, 
+            "mobile_url": "https://m.yelp.com/biz/holoholokai-beach-park-waimea?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/f1def11e4e79/ico/stars/v1/stars_5.png", 
+            "review_count": 2, 
+            "name": "Holoholokai Beach Park", 
+            "rating_img_url_small": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/c7623205d5cd/ico/stars/v1/stars_small_5.png", 
+            "url": "https://www.yelp.com/biz/holoholokai-beach-park-waimea?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 5211.06950483549, 
+            "snippet_text": "Beautiful landscape with redic views of the ocean.\n\nPerfect place to sit on lava rock, listen to the crashing waves, chill and meditate.\n\nMahalo.", 
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/EVnS_7_BGXGUOEgICcgflA/ms.jpg", 
+            "categories": [
+                [
+                    "Beaches", 
+                    "beaches"
+                ]
+            ], 
+            "rating_img_url_large": "https://s3-media3.fl.yelpcdn.com/assets/2/www/img/22affc4e6c38/ico/stars/v1/stars_large_5.png", 
+            "id": "holoholokai-beach-park-waimea", 
+            "snippet_image_url": "https://s3-media4.fl.yelpcdn.com/photo/iY8k-Rv2kXI5Z-kC8koeKw/ms.jpg", 
+            "location": {
+                "city": "Waimea", 
+                "display_address": [
+                    "72-88 N Kaniku Dr", 
+                    "Waimea, HI 96743"
+                ], 
+                "geo_accuracy": 9.5, 
+                "postal_code": "96743", 
+                "country_code": "US", 
+                "address": [
+                    "72-88 N Kaniku Dr"
+                ], 
+                "coordinate": {
+                    "latitude": 19.9511290439855, 
+                    "longitude": -155.855140124072
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": true, 
+            "rating": 4.5, 
+            "mobile_url": "https://m.yelp.com/biz/mauna-lani-sea-aventures-kamuela?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png", 
+            "review_count": 22, 
+            "name": "Mauna Lani Sea Aventures", 
+            "rating_img_url_small": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/a5221e66bc70/ico/stars/v1/stars_small_4_half.png", 
+            "url": "https://www.yelp.com/biz/mauna-lani-sea-aventures-kamuela?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 3393.779024037352, 
+            "phone": "8088857883", 
+            "snippet_text": "What a great time diving with Gary. Captain Jay was so nice and helpful. This was my 9th and 10th dive. So I'm a newbie. Both dives were slow and easy. They...", 
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/GFDFRo9WbsFh0X9B-Ujgjw/ms.jpg", 
+            "categories": [
+                [
+                    "Boating", 
+                    "boating"
+                ], 
+                [
+                    "Snorkeling", 
+                    "snorkeling"
+                ], 
+                [
+                    "Scuba Diving", 
+                    "scuba"
+                ]
+            ], 
+            "display_phone": "+1-808-885-7883", 
+            "rating_img_url_large": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/9f83790ff7f6/ico/stars/v1/stars_large_4_half.png", 
+            "id": "mauna-lani-sea-aventures-kamuela", 
+            "snippet_image_url": "https://s3-media4.fl.yelpcdn.com/photo/VwyXEdFHrABfUGxb1yMsfQ/ms.jpg", 
+            "location": {
+                "city": "Kamuela", 
+                "display_address": [
+                    "68-1400 Mauna Lani Dr", 
+                    "Kamuela, HI 96743"
+                ], 
+                "geo_accuracy": 9.5, 
+                "postal_code": "96743", 
+                "country_code": "US", 
+                "address": [
+                    "68-1400 Mauna Lani Dr"
+                ], 
+                "coordinate": {
+                    "latitude": 19.942207821557, 
+                    "longitude": -155.871877670288
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": false, 
+            "rating": 3.5, 
+            "mobile_url": "https://m.yelp.com/biz/anaehoomalu-beach-waikoloa-2?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/5ef3eb3cb162/ico/stars/v1/stars_3_half.png", 
+            "review_count": 3, 
+            "name": "Anaeho'omalu Beach", 
+            "rating_img_url_small": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/2e909d5d3536/ico/stars/v1/stars_small_3_half.png", 
+            "url": "https://www.yelp.com/biz/anaehoomalu-beach-waikoloa-2?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 3610.371302281087, 
+            "snippet_text": "Pack some fins and a mask and come early in the day-  the best snorkeling is farther out, away from the sand- away from the yahoos on the paddle bikes-...", 
+            "categories": [
+                [
+                    "Beaches", 
+                    "beaches"
+                ]
+            ], 
+            "rating_img_url_large": "https://s3-media3.fl.yelpcdn.com/assets/2/www/img/bd9b7a815d1b/ico/stars/v1/stars_large_3_half.png", 
+            "id": "anaehoomalu-beach-waikoloa-2", 
+            "snippet_image_url": "https://s3-media2.fl.yelpcdn.com/photo/4GD9PG3t137YNNkQDgtwFw/ms.jpg", 
+            "location": {
+                "city": "Waikoloa", 
+                "display_address": [
+                    "Mile Marker 76, Highway 19", 
+                    "Waikoloa, HI 96738"
+                ], 
+                "geo_accuracy": 6.0, 
+                "postal_code": "96738", 
+                "country_code": "US", 
+                "address": [
+                    "Mile Marker 76, Highway 19"
+                ], 
+                "coordinate": {
+                    "latitude": 19.9235599, 
+                    "longitude": -155.8583
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": true, 
+            "rating": 4.5, 
+            "mobile_url": "https://m.yelp.com/biz/ocean-sports-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png", 
+            "review_count": 76, 
+            "name": "Ocean Sports", 
+            "rating_img_url_small": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/a5221e66bc70/ico/stars/v1/stars_small_4_half.png", 
+            "url": "https://www.yelp.com/biz/ocean-sports-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 92.73612773198141, 
+            "phone": "8088866666", 
+            "snippet_text": "My wife and I just landed an hour or so ago after a terrific Sunset Cruise on Ocean Sports. We were picked up at our hotel and taken to the dock. Very easy....", 
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/6hCiuRGuUBgUSxtHVTGTEg/ms.jpg", 
+            "categories": [
+                [
+                    "Boating", 
+                    "boating"
+                ], 
+                [
+                    "Boat Charters", 
+                    "boatcharters"
+                ], 
+                [
+                    "Diving", 
+                    "diving"
+                ]
+            ], 
+            "display_phone": "+1-808-886-6666", 
+            "rating_img_url_large": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/9f83790ff7f6/ico/stars/v1/stars_large_4_half.png", 
+            "id": "ocean-sports-waikoloa", 
+            "snippet_image_url": "https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_styleguide/189f2ca1fe8c/assets/img/default_avatars/user_medium_square.png", 
+            "location": {
+                "city": "Waikoloa", 
+                "display_address": [
+                    "69-275 Waikoloa Beach Dr", 
+                    "Waikoloa, HI 96738"
+                ], 
+                "geo_accuracy": 9.5, 
+                "postal_code": "96738", 
+                "country_code": "US", 
+                "address": [
+                    "69-275 Waikoloa Beach Dr"
+                ], 
+                "coordinate": {
+                    "latitude": 19.9161118165888, 
+                    "longitude": -155.886935582031
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": true, 
+            "rating": 5.0, 
+            "mobile_url": "https://m.yelp.com/biz/calley-o-neill-and-the-full-body-elixir-waikoloa-beach-resort?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/f1def11e4e79/ico/stars/v1/stars_5.png", 
+            "review_count": 5, 
+            "name": "Calley O'Neill and The Full Body Elixir", 
+            "rating_img_url_small": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/c7623205d5cd/ico/stars/v1/stars_small_5.png", 
+            "url": "https://www.yelp.com/biz/calley-o-neill-and-the-full-body-elixir-waikoloa-beach-resort?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 219.05822330288623, 
+            "deals": [
+                {
+                    "what_you_get": "You get a voucher redeemable for $80 at Calley O'Neill and The Full Body Elixir.\nPrint out your voucher, or redeem on your phone with the <a href=\"https://www.yelp.com/mobile?source=deal_marketing\">Yelp app</a>.", 
+                    "time_start": 1410325429, 
+                    "title": "$65 for $80", 
+                    "url": "https://www.yelp.com/deals/calley-o-neill-and-the-full-body-elixir-waikoloa-beach-resort?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+                    "additional_restrictions": "Promotion lasts for 1 year from date of purchase. After that period, your voucher is redeemable for the amount you paid, less any value you may have received. Not valid with other vouchers, certificates, or offers. Voucher can only be used for services, not retail products. Only 1 voucher(s) can be purchased and redeemed per person. Up to 3 can be purchased as gifts for others. Subject to the <a target=\"_blank\" href=\"https://www.yelp.com/tos/general_b2c_us_20120911\">General Terms</a>.", 
+                    "id": "_Qk-BXRu8x3V50KcLetLxQ", 
+                    "image_url": "https://s3-media2.fl.yelpcdn.com/dphoto/EeNtI6eAs5yBP4MLYfJvgA/m.jpg", 
+                    "options": [
+                        {
+                            "original_price": 8000, 
+                            "title": "$65 for $80", 
+                            "price": 6500, 
+                            "purchase_url": "https://www.yelp.com/checkout/deal/NGG1y67Op3Fjpvi8J2sV-g?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+                            "formatted_original_price": "$80", 
+                            "formatted_price": "$65", 
+                            "is_quantity_limited": false
+                        }
+                    ], 
+                    "currency_code": "USD"
+                }
+            ], 
+            "phone": "8088850609", 
+            "snippet_text": "Calley O'Neill was our first yoga instructor 12 years or so ago (back when we only did yoga on vacation). We've practiced yoga with her just about every...", 
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/yx9u3ujfih7AvW5Xio-L9A/ms.jpg", 
+            "categories": [
+                [
+                    "Yoga", 
+                    "yoga"
+                ]
+            ], 
+            "display_phone": "+1-808-885-0609", 
+            "gift_certificates": [
+                {
+                    "url": "https://www.yelp.com/gift-certificates/calley-o-neill-and-the-full-body-elixir-waikoloa-beach-resort?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+                    "unused_balances": "CREDIT", 
+                    "id": "Qazak7E8JmT_SyA_zjl1hw", 
+                    "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/Ee_1v_9umX0Fd03hhZN2lg/m.jpg", 
+                    "options": [
+                        {
+                            "price": 7500, 
+                            "formatted_price": "$75"
+                        }
+                    ], 
+                    "currency_code": "USD"
+                }
+            ], 
+            "rating_img_url_large": "https://s3-media3.fl.yelpcdn.com/assets/2/www/img/22affc4e6c38/ico/stars/v1/stars_large_5.png", 
+            "id": "calley-o-neill-and-the-full-body-elixir-waikoloa-beach-resort", 
+            "snippet_image_url": "https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_styleguide/189f2ca1fe8c/assets/img/default_avatars/user_medium_square.png", 
+            "location": {
+                "city": "Waikoloa Beach Resort", 
+                "display_address": [
+                    "Lava Lava Beach Club", 
+                    "69-1081 Ku'uali'i Pl", 
+                    "Waikoloa Beach Resort, HI 96738"
+                ], 
+                "geo_accuracy": 9.5, 
+                "postal_code": "96738", 
+                "country_code": "US", 
+                "address": [
+                    "Lava Lava Beach Club", 
+                    "69-1081 Ku'uali'i Pl"
+                ], 
+                "coordinate": {
+                    "latitude": 19.913532, 
+                    "longitude": -155.888059
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": false, 
+            "rating": 4.0, 
+            "mobile_url": "https://m.yelp.com/biz/puako-petroglyphs-kohala-coast?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png", 
+            "review_count": 15, 
+            "name": "Puako Petroglyphs", 
+            "rating_img_url_small": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/f62a5be2f902/ico/stars/v1/stars_small_4.png", 
+            "url": "https://www.yelp.com/biz/puako-petroglyphs-kohala-coast?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 4055.6157275580526, 
+            "snippet_text": "Bring water and wear closed toe shoes.  It is worth the .7 mile hike through really cool creepy forest like terrain.", 
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/dqt9ZG5OuoDakowRCaZ8Jw/ms.jpg", 
+            "categories": [
+                [
+                    "Parks", 
+                    "parks"
+                ]
+            ], 
+            "rating_img_url_large": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/ccf2b76faa2c/ico/stars/v1/stars_large_4.png", 
+            "id": "puako-petroglyphs-kohala-coast", 
+            "snippet_image_url": "https://s3-media4.fl.yelpcdn.com/photo/3HhVHXJsNeo0t43sYjXTUA/ms.jpg", 
+            "location": {
+                "city": "Kohala Coast", 
+                "display_address": [
+                    "68-1400 Mauna Lani Dr", 
+                    "Kohala Coast, HI 96743"
+                ], 
+                "geo_accuracy": 8.0, 
+                "postal_code": "96743", 
+                "country_code": "US", 
+                "address": [
+                    "68-1400 Mauna Lani Dr"
+                ], 
+                "coordinate": {
+                    "latitude": 19.943512, 
+                    "longitude": -155.863297
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": false, 
+            "rating": 4.0, 
+            "mobile_url": "https://m.yelp.com/biz/kings-trail-malama-petroglyph-trail-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png", 
+            "review_count": 18, 
+            "name": "King's Trail - Malama Petroglyph Trail", 
+            "rating_img_url_small": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/f62a5be2f902/ico/stars/v1/stars_small_4.png", 
+            "url": "https://www.yelp.com/biz/kings-trail-malama-petroglyph-trail-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 543.2525252757861, 
+            "snippet_text": "Nice petroglyphs but not too many of them. The trail had signs but was a little difficult to follow. Would hike again, but avoid the mid afternoon as the...", 
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/1H2UKcapnpv8wgaROIqAOg/ms.jpg", 
+            "categories": [
+                [
+                    "Hiking", 
+                    "hiking"
+                ]
+            ], 
+            "rating_img_url_large": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/ccf2b76faa2c/ico/stars/v1/stars_large_4.png", 
+            "id": "kings-trail-malama-petroglyph-trail-waikoloa", 
+            "snippet_image_url": "https://s3-media4.fl.yelpcdn.com/photo/-gCQa12OWfdrJdRRrTVMOw/ms.jpg", 
+            "location": {
+                "city": "Waikoloa", 
+                "display_address": [
+                    "69-250 Waikoloa Beach Dr", 
+                    "Waikoloa, HI 96738"
+                ], 
+                "geo_accuracy": 8.0, 
+                "postal_code": "96738", 
+                "country_code": "US", 
+                "address": [
+                    "69-250 Waikoloa Beach Dr"
+                ], 
+                "coordinate": {
+                    "latitude": 19.91651, 
+                    "longitude": -155.88222
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": false, 
+            "rating": 4.5, 
+            "mobile_url": "https://m.yelp.com/biz/puako-bay-beach-puako?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png", 
+            "review_count": 3, 
+            "name": "Puako Bay Beach", 
+            "rating_img_url_small": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/a5221e66bc70/ico/stars/v1/stars_small_4_half.png", 
+            "url": "https://www.yelp.com/biz/puako-bay-beach-puako?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 7349.222437555855, 
+            "snippet_text": "I promised a seasoned snorkeler here that I would help keep this place a secret. Conflicting duties, so here is the Yelp review. :-)\n\nAfter frustratingly...", 
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/byUcqHcHYt_U98cFERGigA/ms.jpg", 
+            "categories": [
+                [
+                    "Beaches", 
+                    "beaches"
+                ]
+            ], 
+            "rating_img_url_large": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/9f83790ff7f6/ico/stars/v1/stars_large_4_half.png", 
+            "id": "puako-bay-beach-puako", 
+            "snippet_image_url": "https://s3-media3.fl.yelpcdn.com/photo/KXwqQIw3m1kztDla6c1IKA/ms.jpg", 
+            "location": {
+                "city": "Puako", 
+                "display_address": [
+                    "Puako Beach Dr", 
+                    "Puako, HI 96743"
+                ], 
+                "geo_accuracy": 9.5, 
+                "postal_code": "96743", 
+                "country_code": "US", 
+                "address": [
+                    "Puako Beach Dr"
+                ], 
+                "coordinate": {
+                    "latitude": 19.968463, 
+                    "longitude": -155.845482
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": true, 
+            "rating": 4.5, 
+            "mobile_url": "https://m.yelp.com/biz/bikeworks-beach-and-sports-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png", 
+            "review_count": 24, 
+            "name": "Bikeworks Beach and Sports", 
+            "rating_img_url_small": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/a5221e66bc70/ico/stars/v1/stars_small_4_half.png", 
+            "url": "https://www.yelp.com/biz/bikeworks-beach-and-sports-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 832.9708560659391, 
+            "phone": "8088865000", 
+            "snippet_text": "Groovy, very good quality bikes, high end actually, well maintained. Spend the time to find a model and size that works for you, and the pricing for each...", 
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/MGgnnPnsATiPkHiVkU43ew/ms.jpg", 
+            "categories": [
+                [
+                    "Bike Rentals", 
+                    "bikerentals"
+                ], 
+                [
+                    "Bikes", 
+                    "bikes"
+                ], 
+                [
+                    "Outdoor Gear", 
+                    "outdoorgear"
+                ]
+            ], 
+            "display_phone": "+1-808-886-5000", 
+            "rating_img_url_large": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/9f83790ff7f6/ico/stars/v1/stars_large_4_half.png", 
+            "id": "bikeworks-beach-and-sports-waikoloa", 
+            "snippet_image_url": "https://s3-media3.fl.yelpcdn.com/photo/8GI1BSm_u9Yph1eVK-6mCg/ms.jpg", 
+            "location": {
+                "city": "Waikoloa", 
+                "display_address": [
+                    "69-201 Waikoloa Beach Dr", 
+                    "Waikoloa, HI 96738"
+                ], 
+                "geo_accuracy": 9.5, 
+                "postal_code": "96738", 
+                "country_code": "US", 
+                "address": [
+                    "69-201 Waikoloa Beach Dr"
+                ], 
+                "coordinate": {
+                    "latitude": 19.9135200700879, 
+                    "longitude": -155.879691272271
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": false, 
+            "rating": 4.5, 
+            "mobile_url": "https://m.yelp.com/biz/beach-69-hawaii?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png", 
+            "review_count": 44, 
+            "name": "Beach 69", 
+            "rating_img_url_small": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/a5221e66bc70/ico/stars/v1/stars_small_4_half.png", 
+            "url": "https://www.yelp.com/biz/beach-69-hawaii?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 9576.759626947513, 
+            "snippet_text": "What a beautiful beach.  Hurricane Lester and Madeline are going by, this beach is still calm and clear.", 
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/J0yq2e-rdZB4DOwwxSOJxQ/ms.jpg", 
+            "categories": [
+                [
+                    "Beaches", 
+                    "beaches"
+                ]
+            ], 
+            "rating_img_url_large": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/9f83790ff7f6/ico/stars/v1/stars_large_4_half.png", 
+            "id": "beach-69-hawaii", 
+            "snippet_image_url": "https://s3-media4.fl.yelpcdn.com/photo/MH-Y1j834TF4jsk_3YCXwg/ms.jpg", 
+            "location": {
+                "city": "Hawaii", 
+                "display_address": [
+                    "Old Puako Rd", 
+                    "Hawaii, HI 96740"
+                ], 
+                "geo_accuracy": 9.5, 
+                "postal_code": "96740", 
+                "country_code": "US", 
+                "address": [
+                    "Old Puako Rd"
+                ], 
+                "coordinate": {
+                    "latitude": 19.981536, 
+                    "longitude": -155.828708
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": true, 
+            "rating": 4.5, 
+            "mobile_url": "https://m.yelp.com/biz/kona-boys-beach-shack-kailua-kona?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png", 
+            "review_count": 75, 
+            "name": "Kona Boys - Beach Shack", 
+            "rating_img_url_small": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/a5221e66bc70/ico/stars/v1/stars_small_4_half.png", 
+            "url": "https://www.yelp.com/biz/kona-boys-beach-shack-kailua-kona?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 32665.255751904595, 
+            "phone": "8083292345", 
+            "snippet_text": "Shout out to AJ at Kona Boys, my family had an amazing time kayaking and snorkeling here. Staff is knowledgeable to make sure you don't disturb the wildlife...", 
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/H1vbXmThtUleRp3Zjyb40w/ms.jpg", 
+            "categories": [
+                [
+                    "Tours", 
+                    "tours"
+                ], 
+                [
+                    "Rafting/Kayaking", 
+                    "rafting"
+                ], 
+                [
+                    "Beaches", 
+                    "beaches"
+                ]
+            ], 
+            "display_phone": "+1-808-329-2345", 
+            "rating_img_url_large": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/9f83790ff7f6/ico/stars/v1/stars_large_4_half.png", 
+            "id": "kona-boys-beach-shack-kailua-kona", 
+            "snippet_image_url": "https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_styleguide/189f2ca1fe8c/assets/img/default_avatars/user_medium_square.png", 
+            "location": {
+                "city": "Kailua-Kona", 
+                "display_address": [
+                    "75-5660 Palani Rd", 
+                    "Kailua-Kona, HI 96740"
+                ], 
+                "geo_accuracy": 8.0, 
+                "postal_code": "96740", 
+                "country_code": "US", 
+                "address": [
+                    "75-5660 Palani Rd"
+                ], 
+                "coordinate": {
+                    "latitude": 19.640871, 
+                    "longitude": -155.997451
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": false, 
+            "rating": 4.0, 
+            "mobile_url": "https://m.yelp.com/biz/kiholo-bay-kailua-kona?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png", 
+            "review_count": 9, 
+            "name": "Kiholo Bay", 
+            "rating_img_url_small": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/f62a5be2f902/ico/stars/v1/stars_small_4.png", 
+            "url": "https://www.yelp.com/biz/kiholo-bay-kailua-kona?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 8723.411691299107, 
+            "snippet_text": "My husband and I decided to check this out on a whim and we are so glad we did! \n\nThis is a hidden gem just 15 minutes away from the resorts by Mauna Lani....", 
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/1Ks6R3beEpoKwpALaS2meg/ms.jpg", 
+            "categories": [
+                [
+                    "Beaches", 
+                    "beaches"
+                ]
+            ], 
+            "rating_img_url_large": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/ccf2b76faa2c/ico/stars/v1/stars_large_4.png", 
+            "id": "kiholo-bay-kailua-kona", 
+            "snippet_image_url": "https://s3-media3.fl.yelpcdn.com/photo/9hsHv-BkV0fWazbw8V0nBA/ms.jpg", 
+            "location": {
+                "city": "Kailua-Kona", 
+                "display_address": [
+                    "Mile Marker 81 On Hwy 11", 
+                    "Kailua-Kona, HI"
+                ], 
+                "geo_accuracy": 9.5, 
+                "country_code": "US", 
+                "address": [
+                    "Mile Marker 81 On Hwy 11"
+                ], 
+                "coordinate": {
+                    "latitude": 19.8486969611905, 
+                    "longitude": -155.931311157312
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": true, 
+            "rating": 5.0, 
+            "mobile_url": "https://m.yelp.com/biz/maya-parish-yoga-kohala-coast-3?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/f1def11e4e79/ico/stars/v1/stars_5.png", 
+            "review_count": 11, 
+            "name": "Maya Parish Yoga", 
+            "rating_img_url_small": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/c7623205d5cd/ico/stars/v1/stars_small_5.png", 
+            "url": "https://www.yelp.com/biz/maya-parish-yoga-kohala-coast-3?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 4012.3649323762943, 
+            "phone": "8086382928", 
+            "snippet_text": "I was fortunate enough to practice yoga with Maya yesterday and wanted to write this review before I returned to the mainland. Maya was recommended to me by...", 
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/Rabqy7G_nJkG_5wcwp01qA/ms.jpg", 
+            "categories": [
+                [
+                    "Yoga", 
+                    "yoga"
+                ]
+            ], 
+            "display_phone": "+1-808-638-2928", 
+            "rating_img_url_large": "https://s3-media3.fl.yelpcdn.com/assets/2/www/img/22affc4e6c38/ico/stars/v1/stars_large_5.png", 
+            "id": "maya-parish-yoga-kohala-coast-3", 
+            "snippet_image_url": "https://s3-media2.fl.yelpcdn.com/photo/_5jA4RReVr4BYxLotLhRPA/ms.jpg", 
+            "location": {
+                "city": "Kohala Coast", 
+                "display_address": [
+                    "68-1330 Mauna Lani Dr", 
+                    "Ste 306", 
+                    "Kohala Coast, HI 96743"
+                ], 
+                "geo_accuracy": 9.5, 
+                "postal_code": "96743", 
+                "country_code": "US", 
+                "address": [
+                    "68-1330 Mauna Lani Dr", 
+                    "Ste 306"
+                ], 
+                "coordinate": {
+                    "latitude": 19.9436426810229, 
+                    "longitude": -155.863509201074
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": true, 
+            "rating": 5.0, 
+            "mobile_url": "https://m.yelp.com/biz/hawaii-surf-and-kayak-puako-2?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/f1def11e4e79/ico/stars/v1/stars_5.png", 
+            "review_count": 55, 
+            "name": "Hawaii Surf and Kayak", 
+            "rating_img_url_small": "https://s3-media1.fl.yelpcdn.com/assets/2/www/img/c7623205d5cd/ico/stars/v1/stars_small_5.png", 
+            "url": "https://www.yelp.com/biz/hawaii-surf-and-kayak-puako-2?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 8758.018269585165, 
+            "phone": "8444752925", 
+            "snippet_text": "The concierge at Hapuna said this was a winner tour and she was right.  The four us of (3 adults and our 12 yr old son) went to Puako.  Kayaks were ready,...", 
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/mkIDmoKP8z7BaOTBRqpXKA/ms.jpg", 
+            "categories": [
+                [
+                    "Paddleboarding", 
+                    "paddleboarding"
+                ], 
+                [
+                    "Rafting/Kayaking", 
+                    "rafting"
+                ], 
+                [
+                    "Tours", 
+                    "tours"
+                ]
+            ], 
+            "display_phone": "+1-844-475-2925", 
+            "rating_img_url_large": "https://s3-media3.fl.yelpcdn.com/assets/2/www/img/22affc4e6c38/ico/stars/v1/stars_large_5.png", 
+            "id": "hawaii-surf-and-kayak-puako-2", 
+            "snippet_image_url": "https://s3-media1.fl.yelpcdn.com/photo/jlVmh1mTWeX44E7WN6iHxQ/ms.jpg", 
+            "location": {
+                "city": "Puako", 
+                "display_address": [
+                    "Puako Harbor", 
+                    "Puako, HI 96743"
+                ], 
+                "geo_accuracy": 9.5, 
+                "postal_code": "96743", 
+                "country_code": "US", 
+                "address": [
+                    "Puako Harbor"
+                ], 
+                "coordinate": {
+                    "latitude": 19.9741328245072, 
+                    "longitude": -155.831572196204
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": false, 
+            "rating": 4.5, 
+            "mobile_url": "https://m.yelp.com/biz/hapuna-beach-state-recreation-area-kamuela?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png", 
+            "review_count": 224, 
+            "name": "Hapuna Beach State Recreation Area", 
+            "rating_img_url_small": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/a5221e66bc70/ico/stars/v1/stars_small_4_half.png", 
+            "url": "https://www.yelp.com/biz/hapuna-beach-state-recreation-area-kamuela?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 10708.753215779814, 
+            "phone": "8889774623", 
+            "snippet_text": "This beach is AWESOME! It's a beautiful white sand (soft sand) beach with the bluest water and picturesque views. It's nice and clean with tons of parking....", 
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/sW9hLFLHdHDbNS7ioJZUQA/ms.jpg", 
+            "categories": [
+                [
+                    "Swimming Pools", 
+                    "swimmingpools"
+                ], 
+                [
+                    "Parks", 
+                    "parks"
+                ], 
+                [
+                    "Beaches", 
+                    "beaches"
+                ]
+            ], 
+            "display_phone": "+1-888-977-4623", 
+            "rating_img_url_large": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/9f83790ff7f6/ico/stars/v1/stars_large_4_half.png", 
+            "id": "hapuna-beach-state-recreation-area-kamuela", 
+            "snippet_image_url": "https://s3-media2.fl.yelpcdn.com/photo/BoJac-7zal5zRUisIDcnVA/ms.jpg", 
+            "location": {
+                "city": "Kamuela", 
+                "display_address": [
+                    "Old Puako Rd", 
+                    "Kamuela, HI 96743"
+                ], 
+                "geo_accuracy": 9.5, 
+                "postal_code": "96743", 
+                "country_code": "US", 
+                "address": [
+                    "Old Puako Rd"
+                ], 
+                "coordinate": {
+                    "latitude": 19.9920219254243, 
+                    "longitude": -155.825329290784
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": true, 
+            "rating": 4.0, 
+            "mobile_url": "https://m.yelp.com/biz/big-island-motorcycle-co-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png", 
+            "review_count": 21, 
+            "name": "Big Island Motorcycle Co", 
+            "rating_img_url_small": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/f62a5be2f902/ico/stars/v1/stars_small_4.png", 
+            "url": "https://www.yelp.com/biz/big-island-motorcycle-co-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 555.9192989147891, 
+            "phone": "8088862011", 
+            "snippet_text": "First off, I want to say how wonderful the couple who own the shop treated me. They gave me a perfect scooter to ride ..and I dropped it. I was very shaken...", 
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/pFmOGMTs9ufz2aC5n2l68A/ms.jpg", 
+            "categories": [
+                [
+                    "Bike Rentals", 
+                    "bikerentals"
+                ], 
+                [
+                    "Motorcycle Rental", 
+                    "motorcycle_rental"
+                ]
+            ], 
+            "display_phone": "+1-808-886-2011", 
+            "rating_img_url_large": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/ccf2b76faa2c/ico/stars/v1/stars_large_4.png", 
+            "id": "big-island-motorcycle-co-waikoloa", 
+            "snippet_image_url": "https://s3-media1.fl.yelpcdn.com/photo/UqTM2HDMoPmg0n2sZr-xpw/ms.jpg", 
+            "location": {
+                "city": "Waikoloa", 
+                "display_address": [
+                    "69-250 Waikoloa Beach Dr", 
+                    "Ste A4", 
+                    "Waikoloa, HI 96738"
+                ], 
+                "geo_accuracy": 8.0, 
+                "postal_code": "96738", 
+                "country_code": "US", 
+                "address": [
+                    "69-250 Waikoloa Beach Dr", 
+                    "Ste A4"
+                ], 
+                "coordinate": {
+                    "latitude": 19.9165096, 
+                    "longitude": -155.8822174
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": true, 
+            "rating": 4.5, 
+            "mobile_url": "https://m.yelp.com/biz/blue-wilderness-dive-adventures-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png", 
+            "review_count": 52, 
+            "name": "Blue Wilderness Dive Adventures", 
+            "rating_img_url_small": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/a5221e66bc70/ico/stars/v1/stars_small_4_half.png", 
+            "url": "https://www.yelp.com/biz/blue-wilderness-dive-adventures-waikoloa?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 713.7139935627133, 
+            "phone": "8088860980", 
+            "snippet_text": "Blue Wilderness has got the BEST rating in my book.  We have dove with them two years running and I am going back again in August for more.   They treat all...", 
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/c7IvwDR7mObaJ6-bJnJLQg/ms.jpg", 
+            "categories": [
+                [
+                    "Diving", 
+                    "diving"
+                ]
+            ], 
+            "display_phone": "+1-808-886-0980", 
+            "rating_img_url_large": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/9f83790ff7f6/ico/stars/v1/stars_large_4_half.png", 
+            "id": "blue-wilderness-dive-adventures-waikoloa", 
+            "snippet_image_url": "https://s3-media1.fl.yelpcdn.com/photo/aWqJLVKwKps4jF0cMlKDWQ/ms.jpg", 
+            "location": {
+                "city": "Waikoloa", 
+                "display_address": [
+                    "Queen's Marketplace", 
+                    "201 Waikoloa Beach Dr, Unit D5", 
+                    "Waikoloa, HI 96738"
+                ], 
+                "geo_accuracy": 6.0, 
+                "postal_code": "96738", 
+                "country_code": "US", 
+                "address": [
+                    "Queen's Marketplace", 
+                    "201 Waikoloa Beach Dr, Unit D5"
+                ], 
+                "coordinate": {
+                    "latitude": 19.92545, 
+                    "longitude": -155.88433
+                }, 
+                "state_code": "HI"
+            }
+        }, 
+        {
+            "is_claimed": false, 
+            "rating": 2.5, 
+            "mobile_url": "https://m.yelp.com/biz/waikoloa-golf-resort-hawaii?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "rating_img_url": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c7fb9aff59f9/ico/stars/v1/stars_2_half.png", 
+            "review_count": 20, 
+            "name": "Waikoloa Golf Resort", 
+            "rating_img_url_small": "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/8e8633e5f8f0/ico/stars/v1/stars_small_2_half.png", 
+            "url": "https://www.yelp.com/biz/waikoloa-golf-resort-hawaii?adjust_creative=cF-s_aFVru9oum5Fyzp02g&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=cF-s_aFVru9oum5Fyzp02g", 
+            "is_closed": false, 
+            "distance": 2446.639044744108, 
+            "phone": "8088867888", 
+            "snippet_text": "Here's the deal. Please bring your own food. You do not pass by the clubhouse when you play the beach course and if you would like some nourishment you're...", 
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/ONVENkrGmhaJfzTzJdRnuQ/ms.jpg", 
+            "categories": [
+                [
+                    "Golf", 
+                    "golf"
+                ]
+            ], 
+            "display_phone": "+1-808-886-7888", 
+            "rating_img_url_large": "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/d63e3add9901/ico/stars/v1/stars_large_2_half.png", 
+            "id": "waikoloa-golf-resort-hawaii", 
+            "snippet_image_url": "https://s3-media1.fl.yelpcdn.com/photo/rKhBDPKIUmWxij1VO8H0tw/ms.jpg", 
+            "location": {
+                "city": "Hawaii", 
+                "display_address": [
+                    "600 Waikoloa Beach Dr", 
+                    "Hawaii, HI 96738"
+                ], 
+                "geo_accuracy": 6.0, 
+                "postal_code": "96738", 
+                "country_code": "US", 
+                "address": [
+                    "600 Waikoloa Beach Dr"
+                ], 
+                "coordinate": {
+                    "latitude": 19.92545, 
+                    "longitude": -155.88433
+                }, 
+                "state_code": "HI"
+            }
+        }
+    ]
+}

@@ -1,11 +1,13 @@
 from app.clients import yelpClient, factualClient
 
 from app.providers.yelp import resolve as resolveYelp
+from app.providers.wp import resolve as resolveWikipedia
 
 CROSSWALK_CACHE_VERSION = 1
 
 resolvers = {
-    "yelp": resolveYelp
+    "yelp": resolveYelp,
+    "wikipedia": resolveWikipedia,
 }
 
 def _getVenuesFromIndex(lat, lon):

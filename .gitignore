@@ -88,5 +88,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# Editor
+*.sw?
+
 # secrets
 *.local.json

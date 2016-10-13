@@ -1,0 +1,142 @@
+{'accessRole': 'reader',
+ 'defaultReminders': [],
+ 'description': 'Hawaii 24/7 Events Calendar',
+ 'etag': '"p324ftb41mb9cu0g"',
+ 'items': [{'created': '2008-11-17T07:44:01.000Z',
+            'creator': {'displayName': 'Domain Admin',
+                        'email': 'webmaster@hawaii247.com'},
+            'description': 'A wonderfully tasty competition! Awards for best '
+                           'entrée and dessert creations by amateurs, '
+                           'students, keiki and professionals utilizing 100% '
+                           'Kona coffee. Public tasting follows awards. '
+                           'Accompanying Big Island Showcase offers Kona '
+                           'coffee products samples and cooking demonstration. '
+                           'Door prizes.',
+            'end': {'dateTime': '2008-11-16T15:00:00-10:00'},
+            'etag': '"2453815683444000"',
+            'htmlLink': 'https://www.google.com/calendar/event?eid=NTducnMwbGs4bjIwZWRtNnJ0czI5bXJ1bDAgaGF3YWlpMjQ3LmNvbV9kbThtMDRoazllZjNjYzgxZW9vZXJoM3Vvc0Bn',
+            'iCalUID': '57nrs0lk8n20edm6rts29mrul0@google.com',
+            'id': '57nrs0lk8n20edm6rts29mrul0',
+            'kind': 'calendar#event',
+            'location': 'Sheraton Keauhou Bay Resort & Spa',
+            'organizer': {'displayName': 'Hawaii247.com Events Calendar',
+                          'email': 'hawaii247.com_dm8m04hk9ef3cc81eooerh3uos@group.calendar.google.com',
+                          'self': True},
+            'sequence': 0,
+            'start': {'dateTime': '2008-11-16T12:30:00-10:00'},
+            'status': 'confirmed',
+            'summary': 'KTA Super Stores Kona Coffee Recipe Contest/Big Island '
+                       'Showcase',
+            'updated': '2008-11-17T07:44:01.722Z'},
+           {'created': '2008-11-17T07:45:11.000Z',
+            'creator': {'displayName': 'Domain Admin',
+                        'email': 'webmaster@hawaii247.com'},
+            'description': 'Bring a chair and relax ocean front with music '
+                           'from the movies and classic pop. Conducted by Dr. '
+                           'Madeline Schatz and performed by the Kamuela '
+                           'Philharmonic Orchestra.',
+            'end': {'dateTime': '2008-11-16T17:00:00-10:00'},
+            'etag': '"2453815822386000"',
+            'htmlLink': 'https://www.google.com/calendar/event?eid=bDhkNGl0OXBmYWUyZm04N2RlcHRucmZqNjggaGF3YWlpMjQ3LmNvbV9kbThtMDRoazllZjNjYzgxZW9vZXJoM3Vvc0Bn',
+            'iCalUID': 'l8d4it9pfae2fm87deptnrfj68@google.com',
+            'id': 'l8d4it9pfae2fm87deptnrfj68',
+            'kind': 'calendar#event',
+            'location': 'Kona Inn Shopping Village',
+            'organizer': {'displayName': 'Hawaii247.com Events Calendar',
+                          'email': 'hawaii247.com_dm8m04hk9ef3cc81eooerh3uos@group.calendar.google.com',
+                          'self': True},
+            'sequence': 0,
+            'start': {'dateTime': '2008-11-16T16:00:00-10:00'},
+            'status': 'confirmed',
+            'summary': 'Kona Coffee Concert in the Park',
+            'updated': '2008-11-17T07:45:11.193Z',
+            'visibility': 'public'},
+           {'created': '2008-11-17T08:55:08.000Z',
+            'creator': {'displayName': 'Baron Sekiya',
+                        'email': 'baron@hawaii247.com'},
+            'description': 'Federal, State and County offices closed.',
+            'end': {'date': '2008-11-28'},
+            'etag': '"2453824298630000"',
+            'htmlLink': 'https://www.google.com/calendar/event?eid=c2lubXU2bnYzMXZ2dDE2bDNlaGlyN2NlY2sgaGF3YWlpMjQ3LmNvbV9kbThtMDRoazllZjNjYzgxZW9vZXJoM3Vvc0Bn',
+            'iCalUID': 'sinmu6nv31vvt16l3ehir7ceck@google.com',
+            'id': 'sinmu6nv31vvt16l3ehir7ceck',
+            'kind': 'calendar#event',
+            'organizer': {'displayName': 'Hawaii247.com Events Calendar',
+                          'email': 'hawaii247.com_dm8m04hk9ef3cc81eooerh3uos@group.calendar.google.com',
+                          'self': True},
+            'sequence': 0,
+            'start': {'date': '2008-11-27'},
+            'status': 'confirmed',
+            'summary': 'Thanksgiving',
+            'transparency': 'transparent',
+            'updated': '2008-11-17T08:55:49.315Z'},
+           {'created': '2008-11-17T15:54:08.000Z',
+            'creator': {'displayName': 'Kristin Wohlschlagel',
+                        'email': 'kristin@hawaii247.com'},
+            'description': 'Twenty-first year of the best handmade crafts in '
+                           'the State. Over 100 talented crafters from '
+                           'throughout the state and California come together '
+                           'for this annual holiday tradition of shopping and '
+                           'fun and games!',
+            'end': {'date': '2008-11-23'},
+            'etag': '"2453887941104000"',
+            'htmlLink': 'https://www.google.com/calendar/event?eid=ZTBpYjZjOG4xNjY3YnR2cGZsOXRvdGNhYWcgaGF3YWlpMjQ3LmNvbV9kbThtMDRoazllZjNjYzgxZW9vZXJoM3Vvc0Bn',
+            'iCalUID': 'e0ib6c8n1667btvpfl9totcaag@google.com',
+            'id': 'e0ib6c8n1667btvpfl9totcaag',
+            'kind': 'calendar#event',
+            'location': '350 Kalanikoa St., Hilo. Phone: 808.965.9353 ',
+            'organizer': {'displayName': 'Hawaii247.com Events Calendar',
+                          'email': 'hawaii247.com_dm8m04hk9ef3cc81eooerh3uos@group.calendar.google.com',
+                          'self': True},
+            'sequence': 0,
+            'start': {'date': '2008-11-21'},
+            'status': 'confirmed',
+            'summary': 'Christmas Craft &quot;Eg&quot;stravaganza (Hilo)',
+            'transparency': 'transparent',
+            'updated': '2008-11-17T17:46:10.552Z',
+            'visibility': 'public'},
+           {'created': '2008-11-17T16:06:23.000Z',
+            'creator': {'displayName': 'Kristin Wohlschlagel',
+                        'email': 'kristin@hawaii247.com'},
+            'description': 'An Old Hawaii Night is Saturday, November 22, 2008 '
+                           'at the newly-remodeled Waikoloa Beach Marriott '
+                           'Resort. This is a fundraiser to benefit Family '
+                           'Support Services of West Hawaii, helping families '
+                           'and children. The event begins at 5 P.M. with no '
+                           'host cocktails and entry into the spectacular '
+                           'silent auction, with a focus on Hawaiiana from the '
+                           '40s through today. Also includes activities, '
+                           'dinners, artwork, and more. Cocktails on the lanai '
+                           "and the lawn outside of the Marriott's "
+                           'newly-remodeled ballroom and inside the silent '
+                           'auction area. Dinner will be served at your table '
+                           'at 6:30, with a sumptuous meal and fine wine. The '
+                           'live auction follows, featuring spectacular '
+                           'artwork and special Hawaiiana treasures, getaways, '
+                           'and more. Aloha wear, new or vintage, is perfect '
+                           'attire. Call to get more details or to make '
+                           'reservations--326-7778, x 103, or send email, '
+                           'bfraser@fsswh.org. Many auction items will be '
+                           'online, www.fsswh.org starting October 1, 2008.',
+            'end': {'date': '2008-11-23'},
+            'etag': '"2453888000774000"',
+            'htmlLink': 'https://www.google.com/calendar/event?eid=am5lOWZna3BjcWpramN2a3A1Yjg5NjlhcGMgaGF3YWlpMjQ3LmNvbV9kbThtMDRoazllZjNjYzgxZW9vZXJoM3Vvc0Bn',
+            'iCalUID': 'jne9fgkpcqjkjcvkp5b8969apc@google.com',
+            'id': 'jne9fgkpcqjkjcvkp5b8969apc',
+            'kind': 'calendar#event',
+            'location': 'Waikoloa Beach Marriott Resort, 69-275 Waikoloa Beach '
+                        'Drive, Waikoloa, HI 96738',
+            'organizer': {'displayName': 'Hawaii247.com Events Calendar',
+                          'email': 'hawaii247.com_dm8m04hk9ef3cc81eooerh3uos@group.calendar.google.com',
+                          'self': True},
+            'sequence': 1,
+            'start': {'date': '2008-11-22'},
+            'status': 'confirmed',
+            'summary': 'An Old Hawaii Night (Waikaloa)',
+            'transparency': 'transparent',
+            'updated': '2008-11-17T17:46:40.387Z'}],
+ 'kind': 'calendar#events',
+ 'nextPageToken': 'CigKGmpuZTlmZ2twY3Fqa2pjdmtwNWI4OTY5YXBjGAEggIDAwbGfru0RGg0IABIAGIj-rIGy0s8C',
+ 'summary': 'Hawaii 24/7 Events Calendar',
+ 'timeZone': 'Pacific/Honolulu',
+ 'updated': '2016-10-11T09:01:44.373Z'}

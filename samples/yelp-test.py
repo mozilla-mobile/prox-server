@@ -1,19 +1,21 @@
-import io
 import json
 import pprint
 
-from yelp.client import Client
-from yelp.oauth1_authenticator import Oauth1Authenticator
+from app.clients import yelpClient, factualClient
+from app.representation import placeRecord
 
-from app.clients import yelpClient
-
+categories="beaches"
 
 def getLocality(lat, lon, **kwargs):
     return yelpClient.search_by_coordinates(lat, lon, **kwargs)
 
-locality = getLocality(19.915403, -155.887403, term='beach')
+locality = getLocality(19.915403, -155.887403, 
+  radius_filter=25000, 
+  sort=1, 
+  limit=20, 
+  offset=0, 
+  category_filter=categories
+)
 
 businesses = locality.businesses
-yelpIDs = [b.id for b in businesses]
-print(yelpIDs)
-
+print(json.dumps([placeRecord(b, {}) for b in businesses], indent=2))

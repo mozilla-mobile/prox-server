@@ -1,0 +1,26 @@
+{
+  "foursquare": {
+    "url": "https://foursquare.com/v/4bbfa4ff920eb713b2b4172c", 
+    "namespace_id": "4bbfa4ff920eb713b2b4172c"
+  }, 
+  "tripadvisor": {
+    "url": "http://www.tripadvisor.com/Attraction_Review-g60608-d4868306-Reviews-49_Black_Sand_Beach-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+    "namespace_id": "d4868306"
+  }, 
+  "yelp": {
+    "url": "http://www.yelp.com/biz/49-black-sand-beach-kamuela"
+  }, 
+  "yahoolocal": {
+    "url": "http://local.yahoo.com/info-21867686"
+  }, 
+  "version": 1, 
+  "superpages": {
+    "url": "http://www.superpages.com/bp/Kamuela-HI/49-Black-Sand-Beach-L0111680918.htm", 
+    "namespace_id": "0111680918"
+  }, 
+  "factualID": "1262aea4-bac5-4d37-a2ad-aa1ab1af3739", 
+  "id": "49-black-sand-beach-kamuela", 
+  "instagram_place": {
+    "namespace_id": "1902102"
+  }
+}

@@ -1,0 +1,426 @@
+[
+  [
+    {
+      "url": "https://local.yahoo.com/info-21867686", 
+      "namespace_id": "21867686", 
+      "namespace": "yahoolocal", 
+      "factual_id": "1262aea4-bac5-4d37-a2ad-aa1ab1af3739"
+    }, 
+    {
+      "url": "http://local.yahoo.com/info-21867686", 
+      "namespace": "yahoolocal", 
+      "factual_id": "1262aea4-bac5-4d37-a2ad-aa1ab1af3739"
+    }, 
+    {
+      "url": "http://www.superpages.com/bp/Kamuela-HI/49-Black-Sand-Beach-L0111680918.htm", 
+      "namespace_id": "0111680918", 
+      "namespace": "superpages", 
+      "factual_id": "1262aea4-bac5-4d37-a2ad-aa1ab1af3739"
+    }, 
+    {
+      "namespace_id": "1902102", 
+      "namespace": "instagram_place", 
+      "factual_id": "1262aea4-bac5-4d37-a2ad-aa1ab1af3739"
+    }, 
+    {
+      "url": "http://www.yelp.com/biz/49-black-sand-beach-kamuela", 
+      "namespace": "yelp", 
+      "factual_id": "1262aea4-bac5-4d37-a2ad-aa1ab1af3739"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4bbfa4ff920eb713b2b4172c", 
+      "namespace_id": "4bbfa4ff920eb713b2b4172c", 
+      "namespace": "foursquare", 
+      "factual_id": "1262aea4-bac5-4d37-a2ad-aa1ab1af3739"
+    }, 
+    {
+      "url": "http://www.tripadvisor.com/Attraction_Review-g60608-d4868306-Reviews-49_Black_Sand_Beach-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+      "namespace_id": "d4868306", 
+      "namespace": "tripadvisor", 
+      "factual_id": "1262aea4-bac5-4d37-a2ad-aa1ab1af3739"
+    }
+  ], 
+  [], 
+  [
+    {
+      "url": "https://foursquare.com/v/4bbbf457e436ef3be6195664", 
+      "namespace_id": "4bbbf457e436ef3be6195664", 
+      "namespace": "foursquare", 
+      "factual_id": "7550d5db-f2d0-4c79-a1bb-b04d81240506"
+    }, 
+    {
+      "url": "http://www.yelp.com/biz/holoholokai-beach-park-waimea", 
+      "namespace": "yelp", 
+      "factual_id": "7550d5db-f2d0-4c79-a1bb-b04d81240506"
+    }, 
+    {
+      "url": "https://local.yahoo.com/info-131623616", 
+      "namespace_id": "131623616", 
+      "namespace": "yahoolocal", 
+      "factual_id": "7550d5db-f2d0-4c79-a1bb-b04d81240506"
+    }, 
+    {
+      "url": "http://www.gogobot.com/holoholokai-beach-park-kohala-attraction", 
+      "namespace_id": "3000000028366", 
+      "namespace": "gogobot", 
+      "factual_id": "7550d5db-f2d0-4c79-a1bb-b04d81240506"
+    }, 
+    {
+      "url": "https://www.lonelyplanet.com/usa/hawaii/mauna-lani-resort-area/sights/beaches-islands-waterfronts/holoholokai-beach-park", 
+      "namespace": "lonelyplanet", 
+      "factual_id": "7550d5db-f2d0-4c79-a1bb-b04d81240506"
+    }, 
+    {
+      "namespace_id": "622863", 
+      "namespace": "instagram_place", 
+      "factual_id": "7550d5db-f2d0-4c79-a1bb-b04d81240506"
+    }, 
+    {
+      "url": "https://www.gogobot.com/holoholokai-beach-park-kohala-attraction", 
+      "namespace": "gogobot", 
+      "factual_id": "7550d5db-f2d0-4c79-a1bb-b04d81240506"
+    }
+  ], 
+  [], 
+  [], 
+  [], 
+  [], 
+  [
+    {
+      "url": "http://www.gogobot.com/anaehoomalu-bay-waikoloa-attraction", 
+      "namespace_id": "3000000172352", 
+      "namespace": "gogobot", 
+      "factual_id": "2b7a958c-ef77-4c1d-b9c8-0bc8495db965"
+    }, 
+    {
+      "url": "http://local.yahoo.com/info-24469255", 
+      "namespace": "yahoolocal", 
+      "factual_id": "2b7a958c-ef77-4c1d-b9c8-0bc8495db965"
+    }, 
+    {
+      "url": "https://foursquare.com/v/51b21728498ece4c1123f51e", 
+      "namespace_id": "51b21728498ece4c1123f51e", 
+      "namespace": "foursquare", 
+      "factual_id": "2b7a958c-ef77-4c1d-b9c8-0bc8495db965"
+    }, 
+    {
+      "url": "https://local.yahoo.com/info-196304347", 
+      "namespace_id": "196304347", 
+      "namespace": "yahoolocal", 
+      "factual_id": "2b7a958c-ef77-4c1d-b9c8-0bc8495db965"
+    }, 
+    {
+      "url": "http://www.fodors.com/world/north-america/usa/hawaii/big-island/review-421738.html", 
+      "namespace_id": "421738", 
+      "namespace": "fodors", 
+      "factual_id": "2b7a958c-ef77-4c1d-b9c8-0bc8495db965"
+    }, 
+    {
+      "url": "https://foursquare.com/v/526a045611d24d857f6b95ca", 
+      "namespace_id": "526a045611d24d857f6b95ca", 
+      "namespace": "foursquare", 
+      "factual_id": "2b7a958c-ef77-4c1d-b9c8-0bc8495db965"
+    }, 
+    {
+      "url": "http://www.tripadvisor.com/Attraction_Review-g60608-d154306-Reviews-Anaehoomalu-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+      "namespace_id": "d154306", 
+      "namespace": "tripadvisor", 
+      "factual_id": "2b7a958c-ef77-4c1d-b9c8-0bc8495db965"
+    }, 
+    {
+      "url": "http://www.tripadvisor.com/Attraction_Review-g60608-d154316-Reviews-Nalu_s_Bar_Grill-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+      "namespace_id": "d154316", 
+      "namespace": "tripadvisor", 
+      "factual_id": "2b7a958c-ef77-4c1d-b9c8-0bc8495db965"
+    }, 
+    {
+      "url": "http://www.yelp.com/biz/anaehoomalu-bay-waikoloa", 
+      "namespace": "yelp", 
+      "factual_id": "2b7a958c-ef77-4c1d-b9c8-0bc8495db965"
+    }, 
+    {
+      "url": "https://www.gogobot.com/anaehoomalu-bay-waikoloa-attraction", 
+      "namespace": "gogobot", 
+      "factual_id": "2b7a958c-ef77-4c1d-b9c8-0bc8495db965"
+    }
+  ], 
+  [], 
+  [], 
+  [
+    {
+      "url": "http://www.yelp.com/biz/kaunaoa-beach-mauna-kea-beach-kamuela", 
+      "namespace": "yelp", 
+      "factual_id": "2a2ee636-4592-4b2d-8806-c5958cac7cfe"
+    }, 
+    {
+      "url": "https://local.yahoo.com/info-197568939", 
+      "namespace_id": "197568939", 
+      "namespace": "yahoolocal", 
+      "factual_id": "2a2ee636-4592-4b2d-8806-c5958cac7cfe"
+    }
+  ], 
+  [], 
+  [
+    {
+      "url": "http://www.fodors.com/world/north-america/usa/hawaii/big-island/review-421721.html", 
+      "namespace_id": "421721", 
+      "namespace": "fodors", 
+      "factual_id": "d1f25de0-97d2-44a1-b8e0-5f6d87ca648f"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4bf824758d30d13a41360018", 
+      "namespace_id": "4bf824758d30d13a41360018", 
+      "namespace": "foursquare", 
+      "factual_id": "d1f25de0-97d2-44a1-b8e0-5f6d87ca648f"
+    }, 
+    {
+      "namespace_id": "822597", 
+      "namespace": "instagram_place", 
+      "factual_id": "d1f25de0-97d2-44a1-b8e0-5f6d87ca648f"
+    }, 
+    {
+      "url": "http://www.yelp.com/biz/spencer-state-beach-park-kawaihae", 
+      "namespace": "yelp", 
+      "factual_id": "d1f25de0-97d2-44a1-b8e0-5f6d87ca648f"
+    }, 
+    {
+      "url": "https://www.gogobot.com/spencer-beach-park-kamuela-waimea-attraction", 
+      "namespace": "gogobot", 
+      "factual_id": "d1f25de0-97d2-44a1-b8e0-5f6d87ca648f"
+    }, 
+    {
+      "url": "http://www.gogobot.com/spencer-beach-park-kamuela-waimea-attraction", 
+      "namespace_id": "3000000042358", 
+      "namespace": "gogobot", 
+      "factual_id": "d1f25de0-97d2-44a1-b8e0-5f6d87ca648f"
+    }
+  ], 
+  [
+    {
+      "url": "http://www.facebook.com/292926210461", 
+      "namespace_id": "292926210461", 
+      "namespace": "facebook", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "https://local.yahoo.com/info-197662326", 
+      "namespace_id": "197662326", 
+      "namespace": "yahoolocal", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4b48ed25f964a520bb5d26e3", 
+      "namespace_id": "4b48ed25f964a520bb5d26e3", 
+      "namespace": "foursquare", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "http://citysearch.com/profile/698587040", 
+      "namespace": "citysearch", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "http://www.superpages.com/bp/Kailua-Kona-HI/Kukio-Sales-Office-L0502295578.htm", 
+      "namespace_id": "0502295578", 
+      "namespace": "superpages", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "namespace_id": "2701878", 
+      "namespace": "instagram_place", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "https://foursquare.com/v/50ec9d6fe4b080db9a9b0631", 
+      "namespace_id": "50ec9d6fe4b080db9a9b0631", 
+      "namespace": "foursquare", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "http://www.insiderpages.com/b/15240769997/kukio-kailua-kona", 
+      "namespace": "insiderpages", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "https://local.yahoo.com/info-147640616", 
+      "namespace_id": "147640616", 
+      "namespace": "yahoolocal", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "http://www.yelp.com/biz/kukio-beach-hawaii", 
+      "namespace": "yelp", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "http://www.gogobot.com/kukio-kailua-kona-attraction", 
+      "namespace_id": "3000000115331", 
+      "namespace": "gogobot", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4c76eb9693faa093b53eeffb", 
+      "namespace_id": "4c81691de602b1f7f79d927a", 
+      "namespace": "foursquare", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4c76ebf7d06b224bbddffcd6", 
+      "namespace_id": "4c76ebf7d06b224bbddffcd6", 
+      "namespace": "foursquare", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "https://www.gogobot.com/kukio-kailua-kona-attraction", 
+      "namespace": "gogobot", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "http://www.superpages.com/bp/Kailua-Kona-HI/Kukio-L0502295578.htm", 
+      "namespace_id": "0502295578", 
+      "namespace": "superpages", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "http://www.facebook.com/151215070679", 
+      "namespace_id": "151215070679", 
+      "namespace": "facebook", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "namespace_id": "3626144", 
+      "namespace": "instagram_place", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "http://www.yelp.com/biz/kukio-kailua-kona", 
+      "namespace_id": "NxHXrc7CCj1ky8D8sXaMUQ", 
+      "namespace": "yelp", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4c81691de602b1f7f79d927a", 
+      "namespace_id": "4c81691de602b1f7f79d927a", 
+      "namespace": "foursquare", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4e090d00aeb74c399119a9b1", 
+      "namespace_id": "4e090d00aeb74c399119a9b1", 
+      "namespace": "foursquare", 
+      "factual_id": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792"
+    }
+  ], 
+  [], 
+  [], 
+  [], 
+  [
+    {
+      "url": "https://www.gogobot.com/kekaha-state-park-kailua-kona-attraction", 
+      "namespace": "gogobot", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4e4f3b64c65bb313ba83e5e8", 
+      "namespace_id": "4e4f3b64c65bb313ba83e5e8", 
+      "namespace": "foursquare", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "https://www.lonelyplanet.com/usa/hawaii/hawaii-the-big-island/sights/natural-landmarks/kehaka-kai-state-park", 
+      "namespace": "lonelyplanet", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "http://www.fodors.com/world/north-america/usa/hawaii/big-island/review-421781.html", 
+      "namespace_id": "421781", 
+      "namespace": "fodors", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "http://www.gogobot.com/kekaha-state-park-kailua-kona-attraction", 
+      "namespace_id": "3000000164500", 
+      "namespace": "gogobot", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "http://en.wikipedia.org/wiki/Kekaha_Kai_State_Park", 
+      "namespace": "wikipedia", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "https://www.lonelyplanet.com/usa/hawaii/north-kona-coast/sights/parks-gardens/kekaha-kai-kona-coast-state-park", 
+      "namespace": "lonelyplanet", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4bb29b922397b7132b4937b3", 
+      "namespace_id": "4bb29b922397b7132b4937b3", 
+      "namespace": "foursquare", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "https://www.tripadvisor.com/Attraction_Review-g29217-d582585-Reviews-Kekaha_Kai_State_Park-Island_of_Hawaii_Hawaii.html", 
+      "namespace_id": "d582585", 
+      "namespace": "tripadvisor", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "namespace_id": "2706518", 
+      "namespace": "instagram_place", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4d3516b8eefa8cfadd6451b3", 
+      "namespace_id": "4d3516b8eefa8cfadd6451b3", 
+      "namespace": "foursquare", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "namespace_id": "6070981", 
+      "namespace": "instagram_place", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "https://www.lonelyplanet.com/usa/hawaii/kekaha-kai-kona-coast-state-park/sights/parks-gardens/kekaha-kai-kona-coast-state-park", 
+      "namespace": "lonelyplanet", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "https://local.yahoo.com/info-195596842", 
+      "namespace_id": "195596842", 
+      "namespace": "yahoolocal", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4dee9ec0ae6047db16a5773f", 
+      "namespace_id": "4dee9ec0ae6047db16a5773f", 
+      "namespace": "foursquare", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "http://www.tripadvisor.com/Attraction_Review-g29217-d582585-Reviews-Kekaha_Kai_State_Park-Island_of_Hawaii_Hawaii.html", 
+      "namespace_id": "d582585", 
+      "namespace": "tripadvisor", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "http://www.yelp.com/biz/kekaha-kai-state-park-kailua", 
+      "namespace": "yelp", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "https://foursquare.com/v/4d3516b8eefa8cfadd6451b3", 
+      "namespace_id": "4bb29b922397b7132b4937b3", 
+      "namespace": "foursquare", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }, 
+    {
+      "url": "http://www.fodors.com/world/north-america/usa/hawaii/big-island/review-421763.html", 
+      "namespace_id": "421763", 
+      "namespace": "fodors", 
+      "factual_id": "ebab617e-554d-4917-a868-8eddef2c2f35"
+    }
+  ], 
+  []
+]

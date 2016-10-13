@@ -1,0 +1,175 @@
+[
+  {
+    "tripadvisor": {
+      "url": "http://www.tripadvisor.com/Attraction_Review-g60608-d4868306-Reviews-49_Black_Sand_Beach-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+      "namespace_id": "d4868306"
+    }, 
+    "yelp": {
+      "url": "http://www.yelp.com/biz/49-black-sand-beach-kamuela"
+    }, 
+    "yahoolocal": {
+      "url": "http://local.yahoo.com/info-21867686"
+    }, 
+    "foursquare": {
+      "url": "https://foursquare.com/v/4bbfa4ff920eb713b2b4172c", 
+      "namespace_id": "4bbfa4ff920eb713b2b4172c"
+    }, 
+    "superpages": {
+      "url": "http://www.superpages.com/bp/Kamuela-HI/49-Black-Sand-Beach-L0111680918.htm", 
+      "namespace_id": "0111680918"
+    }, 
+    "factualID": "1262aea4-bac5-4d37-a2ad-aa1ab1af3739", 
+    "instagram_place": {
+      "namespace_id": "1902102"
+    }
+  }, 
+  {
+    "yelp": {
+      "url": "http://www.yelp.com/biz/holoholokai-beach-park-waimea"
+    }, 
+    "yahoolocal": {
+      "url": "https://local.yahoo.com/info-131623616", 
+      "namespace_id": "131623616"
+    }, 
+    "gogobot": {
+      "url": "https://www.gogobot.com/holoholokai-beach-park-kohala-attraction"
+    }, 
+    "foursquare": {
+      "url": "https://foursquare.com/v/4bbbf457e436ef3be6195664", 
+      "namespace_id": "4bbbf457e436ef3be6195664"
+    }, 
+    "factualID": "7550d5db-f2d0-4c79-a1bb-b04d81240506", 
+    "instagram_place": {
+      "namespace_id": "622863"
+    }, 
+    "lonelyplanet": {
+      "url": "https://www.lonelyplanet.com/usa/hawaii/mauna-lani-resort-area/sights/beaches-islands-waterfronts/holoholokai-beach-park"
+    }
+  }, 
+  {
+    "tripadvisor": {
+      "url": "http://www.tripadvisor.com/Attraction_Review-g60608-d154316-Reviews-Nalu_s_Bar_Grill-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html", 
+      "namespace_id": "d154316"
+    }, 
+    "fodors": {
+      "url": "http://www.fodors.com/world/north-america/usa/hawaii/big-island/review-421738.html", 
+      "namespace_id": "421738"
+    }, 
+    "yelp": {
+      "url": "http://www.yelp.com/biz/anaehoomalu-bay-waikoloa"
+    }, 
+    "yahoolocal": {
+      "url": "https://local.yahoo.com/info-196304347", 
+      "namespace_id": "196304347"
+    }, 
+    "gogobot": {
+      "url": "https://www.gogobot.com/anaehoomalu-bay-waikoloa-attraction"
+    }, 
+    "foursquare": {
+      "url": "https://foursquare.com/v/526a045611d24d857f6b95ca", 
+      "namespace_id": "526a045611d24d857f6b95ca"
+    }, 
+    "factualID": "2b7a958c-ef77-4c1d-b9c8-0bc8495db965"
+  }, 
+  {
+    "factualID": "2a2ee636-4592-4b2d-8806-c5958cac7cfe", 
+    "yahoolocal": {
+      "url": "https://local.yahoo.com/info-197568939", 
+      "namespace_id": "197568939"
+    }, 
+    "yelp": {
+      "url": "http://www.yelp.com/biz/kaunaoa-beach-mauna-kea-beach-kamuela"
+    }
+  }, 
+  {
+    "fodors": {
+      "url": "http://www.fodors.com/world/north-america/usa/hawaii/big-island/review-421721.html", 
+      "namespace_id": "421721"
+    }, 
+    "yelp": {
+      "url": "http://www.yelp.com/biz/spencer-state-beach-park-kawaihae"
+    }, 
+    "gogobot": {
+      "url": "http://www.gogobot.com/spencer-beach-park-kamuela-waimea-attraction", 
+      "namespace_id": "3000000042358"
+    }, 
+    "foursquare": {
+      "url": "https://foursquare.com/v/4bf824758d30d13a41360018", 
+      "namespace_id": "4bf824758d30d13a41360018"
+    }, 
+    "factualID": "d1f25de0-97d2-44a1-b8e0-5f6d87ca648f", 
+    "instagram_place": {
+      "namespace_id": "822597"
+    }
+  }, 
+  {
+    "yelp": {
+      "url": "http://www.yelp.com/biz/kukio-kailua-kona", 
+      "namespace_id": "NxHXrc7CCj1ky8D8sXaMUQ"
+    }, 
+    "yahoolocal": {
+      "url": "https://local.yahoo.com/info-147640616", 
+      "namespace_id": "147640616"
+    }, 
+    "gogobot": {
+      "url": "https://www.gogobot.com/kukio-kailua-kona-attraction"
+    }, 
+    "citysearch": {
+      "url": "http://citysearch.com/profile/698587040"
+    }, 
+    "foursquare": {
+      "url": "https://foursquare.com/v/4e090d00aeb74c399119a9b1", 
+      "namespace_id": "4e090d00aeb74c399119a9b1"
+    }, 
+    "facebook": {
+      "url": "http://www.facebook.com/151215070679", 
+      "namespace_id": "151215070679"
+    }, 
+    "insiderpages": {
+      "url": "http://www.insiderpages.com/b/15240769997/kukio-kailua-kona"
+    }, 
+    "superpages": {
+      "url": "http://www.superpages.com/bp/Kailua-Kona-HI/Kukio-L0502295578.htm", 
+      "namespace_id": "0502295578"
+    }, 
+    "factualID": "7f6633bd-35ff-40fc-a1bc-faa83a3b8792", 
+    "instagram_place": {
+      "namespace_id": "3626144"
+    }
+  }, 
+  {
+    "tripadvisor": {
+      "url": "http://www.tripadvisor.com/Attraction_Review-g29217-d582585-Reviews-Kekaha_Kai_State_Park-Island_of_Hawaii_Hawaii.html", 
+      "namespace_id": "d582585"
+    }, 
+    "fodors": {
+      "url": "http://www.fodors.com/world/north-america/usa/hawaii/big-island/review-421763.html", 
+      "namespace_id": "421763"
+    }, 
+    "yelp": {
+      "url": "http://www.yelp.com/biz/kekaha-kai-state-park-kailua"
+    }, 
+    "wikipedia": {
+      "url": "http://en.wikipedia.org/wiki/Kekaha_Kai_State_Park"
+    }, 
+    "yahoolocal": {
+      "url": "https://local.yahoo.com/info-195596842", 
+      "namespace_id": "195596842"
+    }, 
+    "gogobot": {
+      "url": "http://www.gogobot.com/kekaha-state-park-kailua-kona-attraction", 
+      "namespace_id": "3000000164500"
+    }, 
+    "foursquare": {
+      "url": "https://foursquare.com/v/4d3516b8eefa8cfadd6451b3", 
+      "namespace_id": "4bb29b922397b7132b4937b3"
+    }, 
+    "factualID": "ebab617e-554d-4917-a868-8eddef2c2f35", 
+    "instagram_place": {
+      "namespace_id": "6070981"
+    }, 
+    "lonelyplanet": {
+      "url": "https://www.lonelyplanet.com/usa/hawaii/kekaha-kai-kona-coast-state-park/sights/parks-gardens/kekaha-kai-kona-coast-state-park"
+    }
+  }
+]

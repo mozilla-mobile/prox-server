@@ -1,5 +1,7 @@
 factual-api
 flask
+pprint
 pyrebase
 pytest
+requests
 yelp

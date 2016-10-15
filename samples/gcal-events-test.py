@@ -44,54 +44,89 @@ def fetchEvents(calId, maxResults, timeRangeMs):
 def getRfcTime(utcTime):
     return utcTime.isoformat('T') + 'Z'
 
-def getLocationInfo(itemLocation):
+def getLocationInfo(itemLocation, summary):
     name, address = getNameAndAddress(itemLocation)
+
+    # Check address, then name, then summary
 
     # Check address first for lat/long
     if address:
+        print('===address===')
         try:
+            ## address => geocode => textsearch.name => Yelp(name, location)
             params = { 'address': address, 'key': googleapikey, 'components': 'country:US' }
             r = requests.get('https://maps.googleapis.com/maps/api/geocode/json', params)
-            pp(r.json())
+            results = r.json()['results']
+
+            if len(results) > 1:
+                result = results[0]
+                placeId = result['place_id']
+                location = result['geometry']['location']
+
+                params = { 'location': str(location['lat']) + ',' + str(location['lng']), \
+                           'radius': 1,
+                           'query': summary,
+                           'key': googleapikey }
+
+                ## Use textsearch
+                r = requests.get('https://maps.googleapis.com/maps/api/place/textsearch/json', params)
+                results = r.json()['results']
+
+                if len(results) > 0:
+                    placeName = results[0]['name']
+                    r = yelpClient.search_by_coordinates(location['lat'], location['lng'], \
+                                                         limit=1,
+                                                         term=placeName)
+                    b = r.businesses
+                    if len(b) > 0:
+                        return (b[0].id, location)
+
         except Exception as err:
             print('Google Geocaching API: Couldn\'t find item, error: {}'.format(err))
 
     # Search for location by name
-    elif name:
-        try:
-            params = { 'input': name, \
-                       'location': KONA_LAT_LONG, \
-                       'radius': KONA_RADIUS, \
+    if name:
+        print('==name==')
+        params = { 'query': name, \
+                   'location': KONA_LAT_LONG, \
+                   'radius': 5000, \
+                   'key': googleapikey }
+
+        r = requests.get('https://maps.googleapis.com/maps/api/place/textsearch/json', params)
+        results = r.json()['results']
+        if len(results) > 0:
+            placeName = results[0]['name']
+            location = results[0]['geometry']['location']
+
+            # Find yelp id from name and location
+            r = yelpClient.search_by_coordinates(location['lat'], location['lng'], \
+                                             limit=1, \
+                                             term=placeName)
+            b = r.businesses
+            if len(b) > 0:
+                return (b[0].id, location)
+
+    # Search by summary
+    print('==radar==')
+    params = { 'keyword': summary, \
+               'location': KONA_LAT_LONG, \
+               'radius': KONA_RADIUS, \
+               'key': googleapikey }
+
+    try:
+        r = requests.get('https://maps.googleapis.com/maps/api/place/radarsearch/json', params)
+        results = r.json()['results']
+        if len(results) > 0:
+            result = results[0]
+            placeId = result['place_id']
+            params = { 'placeid': placeId, \
                        'key': googleapikey }
+            res = requests.get('https://maps.googleapis.com/maps/api/place/details/json', params)
+            return res.json()['result']['name']
 
-            r = requests.get('https://maps.googleapis.com/maps/api/place/autocomplete/json', params)
+    except Exception as err:
+        print('PROBLEM: {}'.format(err))
 
-            predictions = r.json()['predictions']
-            if len(predictions) > 0:
-                placeId = predictions[0]['place_id']
-
-                # Get latlong from Places Details
-                params = { 'placeid': placeId, \
-                           'key': googleapikey }
-                r = requests.get('https://maps.googleapis.com/maps/api/place/details/json', params)
-                result = r.json()['result']
-                location = result['geometry']['location']
-
-                placeName = result['name']
-
-                # Find yelp id from name and location
-                r = yelpClient.search_by_coordinates(location['lat'], location['lng'], \
-                                                 limit=1, \
-                                                 term=placeName)
-                b = r.businesses
-                if len(b) > 0:
-                    return (b[0].id, location)
-
-            else:
-                return None
-
-        except Exception as err:
-            print('Google Autocomplete API: Couldn\'t find item, error: {}'.format(err))
 
 nameAddressRegex = re.compile('^([^0-9]*)([0-9]*.*)')
 
@@ -102,7 +137,8 @@ def getNameAndAddress(rawLocation):
     regex = re.search(nameAddressRegex, output) # guess at splitting into (name, address) fields if possible
     return regex.groups()
 
-eventsList = fetchEvents(CAL_ID, 5, datetime.timedelta(days=7))
+eventsList = fetchEvents(CAL_ID, 15, datetime.timedelta(days=7))
 for event in eventsList:
     if 'location' in event:
-        getLocationInfo(event['location'])
+        pp(getLocationInfo(event['location'], event['summary']))
+        print('\n')

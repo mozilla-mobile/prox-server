@@ -74,7 +74,21 @@ def getLocationInfo(itemLocation):
                 params = { 'placeid': placeId, \
                            'key': googleapikey }
                 r = requests.get('https://maps.googleapis.com/maps/api/place/details/json', params)
-                pp(r.json()['result']['geometry']['location'])
+                result = r.json()['result']
+                location = result['geometry']['location']
+
+                placeName = result['name']
+
+                # Find yelp id from name and location
+                r = yelpClient.search_by_coordinates(location['lat'], location['lng'], \
+                                                 limit=1, \
+                                                 term=placeName)
+                b = r.businesses
+                if len(b) > 0:
+                    return (b[0].id, location)
+
+            else:
+                return None
 
         except Exception as err:
             print('Google Autocomplete API: Couldn\'t find item, error: {}'.format(err))

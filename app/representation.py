@@ -1,26 +1,27 @@
-  # biz is the response object from the Yelp Search API
-  return {
-    "version": 1.0,
-    "id": biz.id,
-    "geo": {
-      "lat": biz.location.coordinate.latitude,
-      "lon": biz.location.coordinate.longitude
-    },
-    "images": [],
-    "address": biz.location.display_address,
 def venueRecord(biz, **details):
+    # biz is the response object from the Yelp Search API
+    return {
+      "version": 1.0,
+      "id": biz.id,
+      "coordinates": {
+        "lat": biz.location.coordinate.latitude,
+        "lon": biz.location.coordinate.longitude
+      },
+      "images": [],
+      "address": biz.location.display_address,
 
-    "pullQuote": biz.snippet_text,
+      "pullQuote": biz.snippet_text,
 
-    "providers": {
-      "yelp": {
-        "rating": biz.rating,
-        "reviewCount": biz.review_count,
-        "ratingMax": 5,
-        "url": biz.url
+      "providers": {
+        "yelp": {
+          "rating": biz.rating,
+          "reviewCount": biz.review_count,
+          "ratingMax": 5,
+          "url": biz.url
+        }
       }
     }
-  }
+
 def createKey(biz):
     return biz.id
 

@@ -6,6 +6,5 @@ pyrebase
 pytest
 pygeohash
 requests
-usaddress
 wikipedia
 yelp

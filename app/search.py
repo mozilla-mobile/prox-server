@@ -4,6 +4,8 @@ from app.providers.yelp import resolve as resolveYelp
 from app.providers.wp import resolve as resolveWikipedia
 
 CROSSWALK_CACHE_VERSION = 1
+# CSV list
+CATEGORIES = "beaches" 
 
 resolvers = {
     "yelp": resolveYelp,
@@ -16,7 +18,7 @@ def _getVenuesFromIndex(lat, lon):
       "sort": 1,
       "limit": 20, 
       "offset": 0, 
-      "category_filter": categories
+      "category_filter": CATEGORIES
     }
     return yelpClient.search_by_coordinates(lat, lon, **opts)
 

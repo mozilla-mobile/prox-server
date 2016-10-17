@@ -3,6 +3,7 @@ flask
 pprint
 pyrebase
 pytest
+pygeohash
 requests
 wikipedia
 yelp

@@ -2,7 +2,7 @@ import json
 import pprint
 
 from app.clients import yelpClient, factualClient
-from app.representation import placeRecord
+from app.representation import venueRecord
 
 categories="beaches"
 
@@ -18,4 +18,4 @@ locality = getLocality(19.915403, -155.887403,
 )
 
 businesses = locality.businesses
-print(json.dumps([placeRecord(b, {}) for b in businesses], indent=2))
+print(json.dumps([venueRecord(b) for b in businesses], indent=2))

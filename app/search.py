@@ -1,4 +1,6 @@
-from app.clients import yelpClient, factualClient
+import requests
+
+from app.clients import yelpClient, factualClient, googleapikey
 
 from app.providers.yelp import resolve as resolveYelp
 from app.providers.wp import resolve as resolveWikipedia
@@ -6,6 +8,7 @@ from app.providers.wp import resolve as resolveWikipedia
 CROSSWALK_CACHE_VERSION = 1
 # CSV list
 CATEGORIES = "beaches" 
+DEFAULT_COUNTRY_GOOGLEAPI = 'country:US'
 
 resolvers = {
     "yelp": resolveYelp,
@@ -21,6 +24,17 @@ def _getVenuesFromIndex(lat, lon):
       "category_filter": CATEGORIES
     }
     return yelpClient.search_by_coordinates(lat, lon, **opts)
+
+def _guessYelpId(placeName, lat, lon):
+    opts = {
+      'term': placeName[:30],
+      'limit': 1
+    }
+    r = yelpClient.search_by_coordinates(lat, lon, **opts)
+    if len(r.businesses) > 0:
+        return r.businesses[0].id
+    else:
+        return None
 
 def _getVenueCrosswalk(yelpID):
     yelpURL = "https://yelp.com/biz/%s" % yelpID
@@ -61,3 +75,34 @@ def _getVenueDetails(venueIdentifiers):
             continue
         venueDetails[namespace] = info
     return venueDetails
+
+def _getAddressIdentifiers(address):
+    params = { 'address': address,
+               'key': googleapikey,
+               'components': DEFAULT_COUNTRY_GOOGLEAPI }
+
+    r = requests.get('https://maps.googleapis.com/maps/api/geocode/json', params)
+    results = r.json()['results']
+    if len(results) > 0:
+        mapping = {
+          "id": results[0]['place_id'],
+          "location": results[0]['geometry']['location']
+        }
+        return mapping
+    return None
+
+def _findPlaceInRange(query, location, radius):
+    latlongString = str(location['lat']) + ',' + str(location['lng'])
+    params = { 'query': query,
+               'key': googleapikey,
+               'location': latlongString,
+               'radius': radius }
+
+    results = requests.get('https://maps.googleapis.com/maps/api/place/textsearch/json', params).json()['results']
+    if len(results) > 0:
+        mapping = {
+                'name': results[0]['name'],
+                'location': results[0]['geometry']['location']
+        }
+        return mapping
+

@@ -31,9 +31,26 @@ def venueRecord(biz, **details):
         }
       },
 
-      "photoURLs": []
+      "photoURLs": [],
 
-      # TODO: hours
+      # Format: <day>: { "start"/"end": <24h-time> }
+      #
+      # Notes:
+      #   - <day> = 0 for Monday
+      #   - <24h-time>, e.g. 1400 for 2pm
+      #   - Times are in the timezone of the location
+      #   - "end" < "start" if a location is open overnight
+      #   - An entry for <day> will be missing if a location is not open that day
+      "hours": {
+        0: {
+          "start": 1400,
+          "end": 1830
+        },
+        4: {
+          "start": 1400,
+          "end": 200
+        }
+      }
     }
 
 def createKey(biz):

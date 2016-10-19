@@ -2,6 +2,7 @@ def venueRecord(biz, **details):
     # biz is the response object from the Yelp Search API
     providers = {}
     images = []
+    hours = []
     if "yelp" in details:
       info = details["yelp"]
       providers["yelp"] = {
@@ -12,6 +13,7 @@ def venueRecord(biz, **details):
         "url": biz.url
       }
       images = images + info["photos"]
+      hours = info["hours"][0]["open"]
 
     if "wikipedia" in details:
       info = details["wikipedia"]
@@ -24,6 +26,7 @@ def venueRecord(biz, **details):
     return {
       "id": biz.id,
       "name": biz.name,
+      "hours": hours,
       "coordinates": {
         "lat": biz.location.coordinate.latitude,
         "lon": biz.location.coordinate.longitude

@@ -23,7 +23,7 @@ KONA_RADIUS = 100000
   All fields are required (locations without a Yelp id will be omitted).
 '''
 
-def fetchEvents(calId, maxResults, timeRangeMs):
+def fetchEventsFromGcal(calId, maxResults, timeRangeMs):
     # Just assume UTC timezone for simplicity
     now = datetime.datetime.utcnow()
     now_rfc = _getRfcTime(now)
@@ -42,7 +42,7 @@ def fetchEvents(calId, maxResults, timeRangeMs):
 def _getRfcTime(utcTime):
     return utcTime.isoformat('T') + 'Z'
 
-def getEventObj(event):
+def getGcalEventObj(event):
     # Check address, then name, then summary
     name, address = getNameAndAddress(event['location'])
     summary = event['summary']
@@ -51,11 +51,12 @@ def getEventObj(event):
     # Check address first for lat/long
     if address:
         try:
-            mapping = search._getAddressIdentifiers(address)
-            if mapping:
-                placeName = search._findPlaceInRange(summary, mapping['location'], 5)
-                if placeName:
-                    location = mapping['location']
+            addressMapping = search._getAddressIdentifiers(address)
+            if addressMapping:
+                placeMapping = search._findPlaceInRange(summary, addressMapping['location'], 5)
+                if placeMapping:
+                    placeName = placeMapping['name']
+                    location = placeMapping['location']
                     yelpId = search._guessYelpId(placeName, location['lat'], location['lng'])
                     if yelpId:
                         eventObj = { 'yelp_id': yelpId,

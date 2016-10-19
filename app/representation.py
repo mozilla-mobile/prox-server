@@ -1,25 +1,38 @@
 def venueRecord(biz, **details):
     # biz is the response object from the Yelp Search API
+    providers = {}
+    images = []
+    if "yelp" in details:
+      info = details["yelp"]
+      providers["yelp"] = {
+        "rating": biz.rating,
+        "reviewCount": biz.review_count,
+        "ratingMax": 5,
+        "description": biz.snippet_text,
+        "url": biz.url
+      }
+      images = images + info["photos"]
+
+    if "wikipedia" in details:
+      info = details["wikipedia"]
+      providers["wikipedia"] = {
+        "url": info.url,
+        "description": info.summary
+      }
+      images = images + info.images
+
     return {
-      "version": 1.0,
       "id": biz.id,
+      "name": biz.name,
       "coordinates": {
         "lat": biz.location.coordinate.latitude,
         "lon": biz.location.coordinate.longitude
       },
-      "images": [],
+      "images": images,
       "address": biz.location.display_address,
-
-      "pullQuote": biz.snippet_text,
-
-      "providers": {
-        "yelp": {
-          "rating": biz.rating,
-          "reviewCount": biz.review_count,
-          "ratingMax": 5,
-          "url": biz.url
-        }
-      }
+      "description": biz.snippet_text,
+      "providers": providers,
+      "version": 1.0
     }
 
 def createKey(biz):

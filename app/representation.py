@@ -3,21 +3,52 @@ def venueRecord(biz, **details):
     return {
       "version": 1.0,
       "id": biz.id,
+
+      "name": "A Temporary Name",
+      "summary": biz.snippet_text,
       "coordinates": {
         "lat": biz.location.coordinate.latitude,
-        "lon": biz.location.coordinate.longitude
+        "long": biz.location.coordinate.longitude
       },
-      "images": [],
-      "address": biz.location.display_address,
 
-      "pullQuote": biz.snippet_text,
+      "categories": ["Temporary Hotel"],
+      "url": "http://mozilla.org",
+
+      "address": biz.location.display_address,
 
       "providers": {
         "yelp": {
           "rating": biz.rating,
-          "reviewCount": biz.review_count,
-          "ratingMax": 5,
-          "url": biz.url
+          "totalReviewCount": biz.review_count,
+          "url": biz.url,
+          "reviews": ["Yelp temp review"]
+        },
+        "tripAdvisor": {
+          "rating": 1.0,
+          "totalReviewCount": 1337,
+          "url": "http://http://tripadvisor.com/",
+          "reviews": ["TripAdvisor temp review"]
+        }
+      },
+
+      "photoURLs": [],
+
+      # Format: <day>: { "start"/"end": <24h-time> }
+      #
+      # Notes:
+      #   - <day> = 0 for Monday
+      #   - <24h-time>, e.g. 1400 for 2pm
+      #   - Times are in the timezone of the location
+      #   - "end" < "start" if a location is open overnight
+      #   - An entry for <day> will be missing if a location is not open that day
+      "hours": {
+        0: {
+          "start": 1400,
+          "end": 1830
+        },
+        4: {
+          "start": 1400,
+          "end": 200
         }
       }
     }

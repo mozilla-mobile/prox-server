@@ -3,23 +3,37 @@ def venueRecord(biz, **details):
     return {
       "version": 1.0,
       "id": biz.id,
+
+      "name": "A Temporary Name",
+      "summary": biz.snippet_text,
       "coordinates": {
         "lat": biz.location.coordinate.latitude,
-        "lon": biz.location.coordinate.longitude
+        "long": biz.location.coordinate.longitude
       },
-      "images": [],
-      "address": biz.location.display_address,
 
-      "pullQuote": biz.snippet_text,
+      "categories": ["Temporary Hotel"],
+      "url": "http://mozilla.org",
+
+      "address": biz.location.display_address,
 
       "providers": {
         "yelp": {
           "rating": biz.rating,
-          "reviewCount": biz.review_count,
-          "ratingMax": 5,
-          "url": biz.url
+          "totalReviewCount": biz.review_count,
+          "url": biz.url,
+          "reviews": ["Yelp temp review"]
+        },
+        "tripAdvisor": {
+          "rating": 1.0,
+          "totalReviewCount": 1337,
+          "url": "http://http://tripadvisor.com/",
+          "reviews": ["TripAdvisor temp review"]
         }
-      }
+      },
+
+      "photoURLs": []
+
+      # TODO: hours
     }
 
 def createKey(biz):

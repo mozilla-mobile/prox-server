@@ -1,0 +1,166 @@
+{
+  "rating": 4.5, 
+  "review_count": 10, 
+  "name": "49 Black Sand Beach", 
+  "phone": "+18088870531", 
+  "url": "https://www.yelp.com/biz/49-black-sand-beach-kamuela?adjust_creative=IsIDClmA95d_bteaxrfQSg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=IsIDClmA95d_bteaxrfQSg", 
+  "coordinates": {
+    "latitude": 19.9322810769081, 
+    "longitude": -155.878625437617
+  }, 
+  "hours": [
+    {
+      "hours_type": "REGULAR", 
+      "open": [], 
+      "is_open_now": false
+    }
+  ], 
+  "photos": [
+    "https://s3-media1.fl.yelpcdn.com/bphoto/PUutggfVVm64zjqY0MQxKQ/o.jpg", 
+    "https://s3-media2.fl.yelpcdn.com/bphoto/XklW__6AljuF9lCzmA0TWg/o.jpg", 
+    "https://s3-media4.fl.yelpcdn.com/bphoto/B6XajK-DwGe8aEGRctyKsQ/o.jpg"
+  ], 
+  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/PUutggfVVm64zjqY0MQxKQ/o.jpg", 
+  "location": {
+    "city": "Kamuela", 
+    "country": "US", 
+    "address2": null, 
+    "address3": null, 
+    "state": "HI", 
+    "address1": "68-1107 Honokaope Pl", 
+    "zip_code": "96743"
+  }, 
+  "id": "49-black-sand-beach-kamuela", 
+  "categories": [
+    {
+      "alias": "beaches", 
+      "title": "Beaches"
+    }
+  ]
+}
+(env) 18:17:44 jhugman/yelp3 ~/workspaces/mozilla/prox/prox-server
+$ python -m samples.yelp-test
+{
+  "rating": 4.0, 
+  "review_count": 738, 
+  "name": "North India Restaurant", 
+  "phone": "+14153481234", 
+  "url": "https://www.yelp.com/biz/north-india-restaurant-san-francisco?adjust_creative=IsIDClmA95d_bteaxrfQSg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=IsIDClmA95d_bteaxrfQSg", 
+  "price": "$$", 
+  "coordinates": {
+    "latitude": 37.787789124691, 
+    "longitude": -122.399305736113
+  }, 
+  "hours": [
+    {
+      "hours_type": "REGULAR", 
+      "open": [
+        {
+          "start": "1000", 
+          "end": "2300", 
+          "day": 0, 
+          "is_overnight": false
+        }, 
+        {
+          "start": "1000", 
+          "end": "2300", 
+          "day": 1, 
+          "is_overnight": false
+        }, 
+        {
+          "start": "1000", 
+          "end": "2300", 
+          "day": 2, 
+          "is_overnight": false
+        }, 
+        {
+          "start": "1000", 
+          "end": "2300", 
+          "day": 3, 
+          "is_overnight": false
+        }, 
+        {
+          "start": "1000", 
+          "end": "0000", 
+          "day": 4, 
+          "is_overnight": false
+        }, 
+        {
+          "start": "1000", 
+          "end": "0000", 
+          "day": 5, 
+          "is_overnight": false
+        }, 
+        {
+          "start": "1000", 
+          "end": "2300", 
+          "day": 6, 
+          "is_overnight": false
+        }
+      ], 
+      "is_open_now": true
+    }
+  ], 
+  "photos": [
+    "https://s3-media4.fl.yelpcdn.com/bphoto/howYvOKNPXU9A5KUahEXLA/o.jpg", 
+    "https://s3-media3.fl.yelpcdn.com/bphoto/I-CX8nioj3_ybAAYmhZcYg/o.jpg", 
+    "https://s3-media2.fl.yelpcdn.com/bphoto/uaSNfzJUiFDzMeSCwTcs-A/o.jpg"
+  ], 
+  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/howYvOKNPXU9A5KUahEXLA/o.jpg", 
+  "location": {
+    "city": "San Francisco", 
+    "country": "US", 
+    "address2": "", 
+    "address3": "", 
+    "state": "CA", 
+    "address1": "123 Second St", 
+    "zip_code": "94105"
+  }, 
+  "id": "north-india-restaurant-san-francisco", 
+  "categories": [
+    {
+      "alias": "indpak", 
+      "title": "Indian"
+    }
+  ]
+}
+{
+  "rating": 5.0, 
+  "review_count": 2, 
+  "name": "Holoholokai Beach Park", 
+  "photos": [
+    "https://s3-media2.fl.yelpcdn.com/bphoto/EVnS_7_BGXGUOEgICcgflA/o.jpg", 
+    "https://s3-media2.fl.yelpcdn.com/bphoto/oDHYGEDpZtq4vHZZ1pjliQ/o.jpg", 
+    "https://s3-media3.fl.yelpcdn.com/bphoto/i9m1EW87EVTpV53OjhHLmQ/o.jpg"
+  ], 
+  "url": "https://www.yelp.com/biz/holoholokai-beach-park-waimea?adjust_creative=IsIDClmA95d_bteaxrfQSg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=IsIDClmA95d_bteaxrfQSg", 
+  "coordinates": {
+    "latitude": 19.9511290439855, 
+    "longitude": -155.855140124072
+  }, 
+  "hours": [
+    {
+      "hours_type": "REGULAR", 
+      "open": [], 
+      "is_open_now": false
+    }
+  ], 
+  "phone": "", 
+  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/EVnS_7_BGXGUOEgICcgflA/o.jpg", 
+  "location": {
+    "city": "Waimea", 
+    "country": "US", 
+    "address2": "", 
+    "address3": "", 
+    "state": "HI", 
+    "address1": "72-88 N Kaniku Dr", 
+    "zip_code": "96743"
+  }, 
+  "id": "holoholokai-beach-park-waimea", 
+  "categories": [
+    {
+      "alias": "beaches", 
+      "title": "Beaches"
+    }
+  ]
+}

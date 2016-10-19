@@ -16,7 +16,7 @@ EVENTFUL_URL = 'https://api.eventful.com/json/events/search'
   Returns a list of event JSON, each of the form:
     { 'yelp_id':
       'location':
-      'event_summary':
+      'event_title':
       'start_time':
       'url':
     }
@@ -62,7 +62,7 @@ def getGcalEventObj(event):
                     if yelpId:
                         eventObj = { 'yelp_id': yelpId,
                                      'location': location,
-                                     'event_summary': summary,
+                                     'event_title': summary,
                                      'start_time': event['start']['dateTime'],
                                      'url': event['htmlLink']
                         }
@@ -82,7 +82,7 @@ def getGcalEventObj(event):
                 if (yelpId):
                     eventObj = { 'yelp_id': yelpId,
                              'location': location,
-                                 'event_summary': summary,
+                                 'event_title': summary,
                                  'start_time': event['start']['dateTime'],
                                  'url': event['htmlLink']
                     }
@@ -113,7 +113,7 @@ def getEventfulEventObj(event):
     if yelpId:
         eventObj = { 'yelp_id': yelpId,
                      'location': location,
-                     'event_summary': event['title'],
+                     'event_title': event['title'],
                      'start_time': event['start_time'],
                      'url': event['url']
         }

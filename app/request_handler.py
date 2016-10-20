@@ -1,9 +1,11 @@
+from multiprocessing.dummy import Pool as ThreadPool 
 
 import pyrebase
 
 from config import FIREBASE_CONFIG
 import app.representation as representation
 import app.search as search
+from app.util import log
 
 VENUES_KEY = "venues"
 
@@ -24,16 +26,27 @@ def writeRecord(biz, **details):
 
     return { key: geo }
 
+def researchVenue(biz):
+    yelpID = biz.id
+    try:
+        venueIdentifiers = search._getVenueCrosswalk(yelpID)
+        venueDetails = search._getVenueDetails(venueIdentifiers)
+        writeRecord(biz, **venueDetails)
+        return yelpID
+    except KeyboardInterrupt:
+        return False
+    except Exception, err: 
+        log.exception("Error researching venue")
+        return False
+
 def searchLocation(lat, lon):
     locality = search._getVenuesFromIndex(lat, lon)
     yelpVenues = locality.businesses
-    for biz in yelpVenues:
-        yelpID = biz.id
-        try:
-            venueIdentifiers = search._getVenueCrosswalk(yelpID)
-            venueDetails = search._getVenueDetails(venueIdentifiers)
-            writeRecord(biz, **venueDetails)
-        except: # catch *all* exceptions
-            import sys
-            e = sys.exc_info()[0]
-            print( "Error: %s" % e )
+
+    pool = ThreadPool(5)
+
+    res = pool.map(researchVenue, yelpVenues)
+    pool.close()
+    pool.join()
+    import json
+    log.info("Finished: " + json.dumps(res))

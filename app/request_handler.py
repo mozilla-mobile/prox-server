@@ -34,7 +34,7 @@ def researchVenue(biz):
         venueIdentifiers = search._getVenueCrosswalk(yelpID)
         # This then uses the identifiers to look up (resolve) details.
         # We'll fan out these as much as possible.
-        venueDetails = search._getVenueDetails2(venueIdentifiers)
+        venueDetails = search._getVenueDetails(venueIdentifiers)
         
         # Once we've got the details, we should stash it in 
         # Firebase.

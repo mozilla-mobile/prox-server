@@ -66,19 +66,36 @@ def _getVenueCrosswalk(yelpID):
         log.error("Factual problem with " + yelpID + "; using Yelp only")
     return mapping
 
-def _getVenueDetails(venueIdentifiers):
+def _getVenueDetailsFromProvider(arg):
+    (namespace, idObj) = arg
     venueDetails = {}
-    for namespace, idObj in venueIdentifiers.iteritems():
-        if namespace not in resolvers:
-            continue
-        resolve = resolvers[namespace]
-        info = resolve(idObj)
-        if info is None:
-            continue
-        try:
-            venueDetails[namespace] = info
-        except Exception, err:
-            log.exception("Exeption hitting " + namespace + " about " + venueIdentifiers["yelp"]["url"])
+    if namespace not in resolvers:
+        return venueDetails
+
+    resolve = resolvers[namespace]
+    try:
+      info = resolve(idObj)
+      if info is not None:
+          venueDetails[namespace] = info
+    except Exception, err:
+        log.exception("Exeption hitting " + namespace)
+    return venueDetails
+
+def _getVenueDetails(venueIdentifiers):
+    from multiprocessing.dummy import Pool as ThreadPool
+    args = [(ns, idObj) for ns, idObj in venueIdentifiers.iteritems() if ns in resolvers]
+    
+    pool = ThreadPool(10)
+    
+    results = pool.map(_getVenueDetailsFromProvider, args)
+
+    pool.close()
+    pool.join()
+
+    venueDetails = {}
+    for d in results:
+        venueDetails.update(d)
+
     return venueDetails
 
 def _getAddressIdentifiers(address):

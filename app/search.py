@@ -62,7 +62,7 @@ def _getVenueCrosswalk(yelpID):
           del idObj["factual_id"]
           del idObj["namespace"]
           mapping[namespace] = idObj
-    except Exception, err:
+    except Exception as err:
         log.error("Factual problem with " + yelpID + "; using Yelp only")
     return mapping
 
@@ -77,7 +77,7 @@ def _getVenueDetailsFromProvider(arg):
       info = resolve(idObj)
       if info is not None:
           venueDetails[namespace] = info
-    except Exception, err:
+    except Exception as err:
         log.exception("Exeption hitting " + namespace)
     return venueDetails
 

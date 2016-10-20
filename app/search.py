@@ -4,6 +4,7 @@ from app.clients import yelpClient, factualClient, googleapikey
 
 from app.providers.yelp import resolve as resolveYelp
 from app.providers.wp import resolve as resolveWikipedia
+from app.util import log
 
 CROSSWALK_CACHE_VERSION = 1
 # CSV list
@@ -38,8 +39,6 @@ def _guessYelpId(placeName, lat, lon):
 
 def _getVenueCrosswalk(yelpID):
     yelpURL = "https://yelp.com/biz/%s" % yelpID
-    obj = factualClient.crosswalk().filters({"url": yelpURL}).data()
-
     mapping = {
       "id": yelpID,
       "version": CROSSWALK_CACHE_VERSION,
@@ -47,33 +46,56 @@ def _getVenueCrosswalk(yelpID):
         "url": yelpURL
       }
     }
+    try:
+      obj = factualClient.crosswalk().filters({"url": yelpURL}).data()
 
-    if len(obj) == 0:
-        return mapping
+      if len(obj) == 0:
+          return mapping
 
-    factualID = obj[0]["factual_id"]
-    mapping["factualID"] = factualID
+      factualID = obj[0]["factual_id"]
+      mapping["factualID"] = factualID
 
-    idList = factualClient.crosswalk().filters({"factual_id": factualID}).data()
+      idList = factualClient.crosswalk().filters({"factual_id": factualID}).data()
 
-    for idObj in idList:
-        namespace = idObj["namespace"]
-        del idObj["factual_id"]
-        del idObj["namespace"]
-        mapping[namespace] = idObj
-    
+      for idObj in idList:
+          namespace = idObj["namespace"]
+          del idObj["factual_id"]
+          del idObj["namespace"]
+          mapping[namespace] = idObj
+    except Exception, err:
+        log.error("Factual problem with " + yelpID + "; using Yelp only")
     return mapping
 
-def _getVenueDetails(venueIdentifiers):
+def _getVenueDetailsFromProvider(arg):
+    (namespace, idObj) = arg
     venueDetails = {}
-    for namespace, idObj in venueIdentifiers.iteritems():
-        if namespace not in resolvers:
-            continue
-        resolve = resolvers[namespace]
-        info = resolve(idObj)
-        if info is None:
-            continue
-        venueDetails[namespace] = info
+    if namespace not in resolvers:
+        return venueDetails
+
+    resolve = resolvers[namespace]
+    try:
+      info = resolve(idObj)
+      if info is not None:
+          venueDetails[namespace] = info
+    except Exception, err:
+        log.exception("Exeption hitting " + namespace)
+    return venueDetails
+
+def _getVenueDetails(venueIdentifiers):
+    from multiprocessing.dummy import Pool as ThreadPool
+    args = [(ns, idObj) for ns, idObj in venueIdentifiers.iteritems() if ns in resolvers]
+    
+    pool = ThreadPool(10)
+    
+    results = pool.map(_getVenueDetailsFromProvider, args)
+
+    pool.close()
+    pool.join()
+
+    venueDetails = {}
+    for d in results:
+        venueDetails.update(d)
+
     return venueDetails
 
 def _getAddressIdentifiers(address):

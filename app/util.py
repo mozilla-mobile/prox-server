@@ -1,4 +1,9 @@
+import logging
 import re
+
+logging.basicConfig(level=logging.WARNING)
+log = logging.getLogger('prox')
+
 
 _slugPattern = re.compile("/([^/\?]*)(\?.*)?$")
 

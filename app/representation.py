@@ -3,37 +3,44 @@ def venueRecord(biz, **details):
     providers = {}
     images = []
     hours = []
+    categories = set()
     if "yelp" in details:
       info = details["yelp"]
       providers["yelp"] = {
         "rating": biz.rating,
-        "reviewCount": biz.review_count,
+        "totalReviewCount": biz.review_count,
         "ratingMax": 5,
-        "description": biz.snippet_text,
+        "summary": biz.snippet_text,
         "url": biz.url
       }
       images = images + info["photos"]
       hours = info["hours"][0]["open"]
+      categories |= set([ c["title"] for c in info["categories"] if "title" in c])
 
     if "wikipedia" in details:
       info = details["wikipedia"]
       providers["wikipedia"] = {
         "url": info.url,
-        "description": info.summary
+        "summary": info.summary
       }
       images = images + info.images
+
+    # Ensure we're not getting SVG or other weird formats.
+    images = [url for url in images if url.split(".")[-1] in ["jpg", "jpeg", "png"]]
 
     return {
       "id": biz.id,
       "name": biz.name,
       "hours": hours,
+      "url": "https://mozilla.org", # TODO
+      "categories": list(categories),
       "coordinates": {
         "lat": biz.location.coordinate.latitude,
         "lon": biz.location.coordinate.longitude
       },
       "images": images,
       "address": biz.location.display_address,
-      "description": biz.snippet_text,
+      "summary": biz.snippet_text,
       "providers": providers,
       "version": 1.0
     }

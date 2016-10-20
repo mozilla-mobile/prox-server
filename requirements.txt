@@ -1,11 +1,8 @@
-datetime
 factual-api
 flask
-pprint
 pyrebase
 pytest
 pygeohash
-requests
 sanction
 wikipedia
 yelp

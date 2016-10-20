@@ -29,8 +29,15 @@ def writeRecord(biz, **details):
 def researchVenue(biz):
     yelpID = biz.id
     try:
+        # This gets the identifiers from Factual. It's two HTTP requests 
+        # per venue. 
         venueIdentifiers = search._getVenueCrosswalk(yelpID)
-        venueDetails = search._getVenueDetails(venueIdentifiers)
+        # This then uses the identifiers to look up (resolve) details.
+        # We'll fan out these as much as possible.
+        venueDetails = search._getVenueDetails2(venueIdentifiers)
+        
+        # Once we've got the details, we should stash it in 
+        # Firebase.
         writeRecord(biz, **venueDetails)
         return yelpID
     except KeyboardInterrupt:
@@ -48,5 +55,6 @@ def searchLocation(lat, lon):
     res = pool.map(researchVenue, yelpVenues)
     pool.close()
     pool.join()
+
     import json
     log.info("Finished: " + json.dumps(res))

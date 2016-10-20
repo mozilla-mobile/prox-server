@@ -6,5 +6,6 @@ pyrebase
 pytest
 pygeohash
 requests
+sanction
 wikipedia
 yelp

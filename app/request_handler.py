@@ -4,6 +4,7 @@ import pyrebase
 
 from config import FIREBASE_CONFIG
 from app.constants import venuesTable
+import app.crosswalk as crosswalk
 import app.representation as representation
 import app.search as search
 from app.util import log
@@ -30,7 +31,7 @@ def researchVenue(biz):
     try:
         # This gets the identifiers from Factual. It's two HTTP requests 
         # per venue. 
-        venueIdentifiers = search._getVenueCrosswalk(yelpID)
+        venueIdentifiers = crosswalk.getVenueIdentifiers(yelpID)
         # This then uses the identifiers to look up (resolve) details.
         # We'll fan out these as much as possible.
         venueDetails = search._getVenueDetails(venueIdentifiers)

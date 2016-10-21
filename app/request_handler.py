@@ -3,11 +3,10 @@ from multiprocessing.dummy import Pool as ThreadPool
 import pyrebase
 
 from config import FIREBASE_CONFIG
+from app.constants import venuesTable
 import app.representation as representation
 import app.search as search
 from app.util import log
-
-VENUES_KEY = "venues"
 
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 db = firebase.database()
@@ -17,7 +16,7 @@ def writeRecord(biz, **details):
     venue = representation.venueRecord(biz, **details)
     geo   = representation.geoRecord(biz)
 
-    db.child(VENUES_KEY).update(
+    db.child(venuesTable).update(
       {
         "details/" + key: venue,
         "locations/" + key: geo 

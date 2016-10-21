@@ -3,7 +3,9 @@ import re
 
 logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger('prox')
+log.level = logging.DEBUG
 
+debugging = log.isEnabledFor(logging.DEBUG)
 
 _slugPattern = re.compile("/([^/\?]*)(\?.*)?$")
 

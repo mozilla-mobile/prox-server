@@ -4,6 +4,7 @@ import requests
 
 import app.search as search
 from app.clients import yelpClient, googleapikey, eventfulkey
+import app.representation as representation
 
 CALENDAR_URL = 'https://www.googleapis.com/calendar/v3/calendars/{}/events?key={}'
 KONA_LAT_LONG = { 'lat': 19.622345, 'lng': -155.665041 }
@@ -14,7 +15,7 @@ EVENTFUL_URL = 'https://api.eventful.com/json/events/search'
 '''
   Best effort to fetch event details (including a Yelp id) from a Google calendar.
   Returns a list of event JSON, each of the form:
-    { 'yelpId':
+    { 'id':
       'coordinates':
       'name':
       'startTime':
@@ -52,20 +53,15 @@ def getGcalEventObj(event):
     # Check address first for lat/long
     if address:
         try:
-            addressMapping = search._getAddressIdentifiers(address)
-            if addressMapping:
-                placeMapping = search._findPlaceInRange(summary, addressMapping['location'], 5)
+            mapping = search._getAddressIdentifiers(address)
+            if mapping:
+                placeMapping = search._findPlaceInRange(summary, mapping['location'], 5)
                 if placeMapping:
+                    location = mapping['location']
                     placeName = placeMapping['name']
-                    location = placeMapping['location']
                     yelpId = search._guessYelpId(placeName, location['lat'], location['lng'])
                     if yelpId:
-                        eventObj = { 'yelpId': yelpId,
-                                     'coordinates': location,
-                                     'description': summary,
-                                     'startTime': event['start']['dateTime'],
-                                     'url': event['htmlLink']
-                        }
+                        eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['htmlLink'])
                         return eventObj
 
         except Exception as err:
@@ -80,12 +76,7 @@ def getGcalEventObj(event):
                 location = mapping['location']
                 yelpId = search._guessYelpId(placeName, location['lat'], location['lng'])
                 if (yelpId):
-                    eventObj = { 'yelpId': yelpId,
-                                 'coordinates': location,
-                                 'description': summary,
-                                 'startTime': event['start']['dateTime'],
-                                 'url': event['htmlLink']
-                    }
+                    eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['htmlLink'])
                     return eventObj
 
         except Exception as err:
@@ -111,7 +102,7 @@ def getEventfulEventObj(event):
     # print(str(event['venue_name']) + '_' + str(event['venue_address']) + '_' + str(event['title']) + '_\n' + str(event['description']) + '\n')
     yelpId = search._guessYelpId(event['venue_name'], location['lat'], location['lng'])
     if yelpId:
-        eventObj = { 'yelpId': yelpId,
+        eventObj = { 'id': yelpId,
                      'coordinates': location,
                      'description': event['title'],
                      'startTime': event['start_time'],

@@ -127,6 +127,18 @@ def _yelpHoursRecord(hours):
             ]
     return record
 
+def eventRecord(yelpId, lat, lon, title, startTime, url):
+    return {
+            "id": yelpId,
+            "coordinates": { "lat": lat, "lng": lon },
+            "description": title,
+            "startTime": startTime,
+            "url": url
+    }
+
+def createEventKey(eventObj):
+    return eventObj['id']
+
 def createKey(biz):
     return biz.id
 

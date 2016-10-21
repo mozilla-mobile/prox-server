@@ -29,8 +29,9 @@ def getVenueIdentifiers(yelpID):
       del idObj["factual_id"]
       del idObj["namespace"]
       mapping[namespace] = idObj
+    return mapping, True
   except APIException:
     log.error("Factual API failed again")
   except Exception:
     log.exception("Factual problem " + yelpID)
-  return mapping
+  return mapping, False

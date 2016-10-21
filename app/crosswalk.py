@@ -1,6 +1,6 @@
 from app.clients   import factualClient
-from app.constants import debug
 from app.util      import log
+from factual       import APIException
 
 CROSSWALK_CACHE_VERSION = 1
 
@@ -29,9 +29,8 @@ def getVenueIdentifiers(yelpID):
       del idObj["factual_id"]
       del idObj["namespace"]
       mapping[namespace] = idObj
-  except Exception, err:
-    if debug:
-      log.exception("Factual problem " + yelpID)
-    else:
-      log.error("Factual problem with " + yelpID + "; using Yelp only")
+  except APIException:
+    log.error("Factual API failed again")
+  except Exception:
+    log.exception("Factual problem " + yelpID)
   return mapping

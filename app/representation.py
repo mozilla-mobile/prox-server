@@ -1,9 +1,11 @@
+
 def venueRecord(biz, **details):
     # biz is the response object from the Yelp Search API
     providers = {}
     images = []
     hours = []
-    categories = set()
+    from collections import OrderedDict
+    categories = OrderedDict()
     if "yelp" in details:
       info = details["yelp"]
       providers["yelp"] = {
@@ -15,7 +17,8 @@ def venueRecord(biz, **details):
       }
       images = images + info["photos"]
       hours = info["hours"][0]["open"]
-      categories |= set([ c["title"] for c in info["categories"] if "title" in c])
+
+      categories.update([ (c["title"], True) for c in info["categories"] if "title" in c])
 
     if "wikipedia" in details:
       info = details["wikipedia"]
@@ -33,7 +36,7 @@ def venueRecord(biz, **details):
       "name": biz.name,
       "hours": hours,
       "url": "https://mozilla.org", # TODO
-      "categories": list(categories),
+      "categories": categories.keys(),
       "coordinates": {
         "lat": biz.location.coordinate.latitude,
         "lon": biz.location.coordinate.longitude

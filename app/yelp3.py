@@ -13,20 +13,15 @@ class Yelp3Client:
         if self.client.access_token is not None:
             from datetime import datetime, timedelta
             from time import mktime
-            now = mktime(datetime.utcnow().timetuple())
+            now = mktime(datetime.utcnow().timetuple()) + 60
             if now <= self.client.token_expires:
                 return self.client.access_token  
-
         self.client.request_token(grant_type="client_credentials")
         return self.client.access_token
 
     def request(self, endpoint):
         access_token = self.refreshAccessToken()
         return self.client.request(endpoint, 
-            method="GET", 
-            headers={'Authorization': 'Bearer {0}'.format(access_token)}
+          method="GET", 
+          headers={'Authorization': 'Bearer {0}'.format(access_token)}
         )
-
-
-
-

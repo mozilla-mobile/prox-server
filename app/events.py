@@ -14,10 +14,10 @@ EVENTFUL_URL = 'https://api.eventful.com/json/events/search'
 '''
   Best effort to fetch event details (including a Yelp id) from a Google calendar.
   Returns a list of event JSON, each of the form:
-    { 'yelp_id':
-      'location':
-      'event_summary':
-      'start_time':
+    { 'yelpId':
+      'coordinates':
+      'name':
+      'startTime':
       'url':
     }
 
@@ -60,10 +60,10 @@ def getGcalEventObj(event):
                     location = placeMapping['location']
                     yelpId = search._guessYelpId(placeName, location['lat'], location['lng'])
                     if yelpId:
-                        eventObj = { 'yelp_id': yelpId,
-                                     'location': location,
-                                     'event_summary': summary,
-                                     'start_time': event['start']['dateTime'],
+                        eventObj = { 'yelpId': yelpId,
+                                     'coordinates': location,
+                                     'description': summary,
+                                     'startTime': event['start']['dateTime'],
                                      'url': event['htmlLink']
                         }
                         return eventObj
@@ -80,10 +80,10 @@ def getGcalEventObj(event):
                 location = mapping['location']
                 yelpId = search._guessYelpId(placeName, location['lat'], location['lng'])
                 if (yelpId):
-                    eventObj = { 'yelp_id': yelpId,
-                             'location': location,
-                                 'event_summary': summary,
-                                 'start_time': event['start']['dateTime'],
+                    eventObj = { 'yelpId': yelpId,
+                                 'coordinates': location,
+                                 'description': summary,
+                                 'startTime': event['start']['dateTime'],
                                  'url': event['htmlLink']
                     }
                     return eventObj
@@ -111,10 +111,10 @@ def getEventfulEventObj(event):
     # print(str(event['venue_name']) + '_' + str(event['venue_address']) + '_' + str(event['title']) + '_\n' + str(event['description']) + '\n')
     yelpId = search._guessYelpId(event['venue_name'], location['lat'], location['lng'])
     if yelpId:
-        eventObj = { 'yelp_id': yelpId,
-                     'location': location,
-                     'event_summary': event['title'],
-                     'start_time': event['start_time'],
+        eventObj = { 'yelpId': yelpId,
+                     'coordinates': location,
+                     'description': event['title'],
+                     'startTime': event['start_time'],
                      'url': event['url']
         }
         return eventObj

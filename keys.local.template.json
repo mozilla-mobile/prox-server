@@ -16,6 +16,6 @@
     "app_secret" : "YOUR_APP_SECRET"
   },
 
-  "googleapi_key": "GOOGLE_API_KEY",
-  "eventful_key": "EVENTFUL_KEY"
+  "googleapikey": "GOOGLE_API_KEY",
+  "eventfulkey": "EVENTFUL_KEY"
 }

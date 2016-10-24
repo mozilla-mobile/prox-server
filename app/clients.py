@@ -15,7 +15,8 @@ with io.open('keys.local.json') as cred:
     yelpClient = Client(_auth)
     _factualCreds = creds["factual"]
     factualClient = Factual(_factualCreds["key"], _factualCreds["secret"])
-    googleapikey = creds["googleapi_key"]
+    googleapikey = creds["googleapikey"]
+    eventfulkey = creds["eventfulkey"]
 
     _yelp3Creds = creds["yelp3"]
     yelp3Client = Yelp3Client(_yelp3Creds["app_id"], _yelp3Creds["app_secret"])

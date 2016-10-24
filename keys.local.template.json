@@ -11,5 +11,11 @@
     "token_secret"    : "YOUR_TOKEN_SECRET"
   },
 
-  "googleapi_key": "GOOGLE_API_KEY"
+  "yelp3": {
+    "app_id"     : "YOUR_APP_ID",
+    "app_secret" : "YOUR_APP_SECRET"
+  },
+
+  "googleapikey": "GOOGLE_API_KEY",
+  "eventfulkey": "EVENTFUL_KEY"
 }

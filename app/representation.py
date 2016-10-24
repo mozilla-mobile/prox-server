@@ -29,7 +29,7 @@ def venueRecord(biz, **details):
       "hours": hours,
       "coordinates": {
         "lat": biz.location.coordinate.latitude,
-        "lon": biz.location.coordinate.longitude
+        "lng": biz.location.coordinate.longitude
       },
       "images": images,
       "address": biz.location.display_address,

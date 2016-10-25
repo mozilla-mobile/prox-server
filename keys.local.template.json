@@ -17,5 +17,6 @@
   },
 
   "googleapikey": "GOOGLE_API_KEY",
-  "eventfulkey": "EVENTFUL_KEY"
+  "eventfulkey" : "EVENTFUL_KEY",
+  "tripadvisorkey" : "TRIPADVISOR_KEY"
 }

@@ -1,42 +1,131 @@
+import random
+
 def venueRecord(biz, **details):
     # biz is the response object from the Yelp Search API
+
+    from collections import OrderedDict
+    # h is derived from the providers, but for the main body of the record.
+    # h is for header.
+    h = {
+      "url"        : "https://mozilla.org",
+      "description": {},
+      "categories" : OrderedDict(),
+      "images"     : [],
+      "hours"      : [],
+    }
     providers = {}
-    images = []
-    hours = []
+    
+    # Yelp.
     if "yelp" in details:
       info = details["yelp"]
       providers["yelp"] = {
-        "rating": biz.rating,
-        "reviewCount": biz.review_count,
-        "ratingMax": 5,
-        "description": biz.snippet_text,
-        "url": biz.url
+        "rating"          : biz.rating,
+        "totalReviewCount": biz.review_count,
+        "ratingMax"       : 5,
+        "description"     : biz.snippet_text,
+        "url"             : biz.url
       }
-      images = images + info["photos"]
-      hours = info["hours"][0]["open"]
+      h["description"] = _descriptionRecord("yelp", biz.snippet_text)
+      h["categories"].update([ (c["title"], _categoryRecord(c["alias"], c["title"])) for c in info["categories"] if "title" in c])
+      h["images"]     += _imageRecords("yelp", info["photos"], biz.url)
+      h["hours"]       = _yelpHoursRecord(info["hours"])
 
+
+    # Wikipedia.
     if "wikipedia" in details:
       info = details["wikipedia"]
       providers["wikipedia"] = {
-        "url": info.url,
+        "url"        : info.url,
         "description": info.summary
       }
-      images = images + info.images
+      h["description"] = _descriptionRecord("wikipedia", info.summary)
+      h["images"]     += _imageRecords("wikipedia", info.images, info.url)
+
+    images = h["images"]
+    h["images"] = random.sample(images, len(images))
 
     return {
-      "id": biz.id,
-      "name": biz.name,
-      "hours": hours,
+      "version"    : 1,
+      "id"         : biz.id,
+      
+      "name"       : biz.name,
+      "description": h["description"],
+      
+      "url"        : h["url"],
+      "phone"      : biz.display_phone,
+      
+      "address"    : biz.location.display_address,
       "coordinates": {
         "lat": biz.location.coordinate.latitude,
-        "lon": biz.location.coordinate.longitude
+        "lng": biz.location.coordinate.longitude
       },
-      "images": images,
-      "address": biz.location.display_address,
-      "description": biz.snippet_text,
-      "providers": providers,
-      "version": 1.0
+
+      "categories" : h["categories"].values(),
+      "providers"  : providers,
+      
+      "images"     : h["images"],
+      "hours"      : h["hours"],
     }
+
+def _categoryRecord(id, text):
+    return {
+      "id"  : id,
+      "text": text,
+    }
+
+def _descriptionRecord(provider, text, url = None):
+    return {
+      "text"    : text,
+      "provider": provider,
+    }
+
+def _imageRecords(provider, imageURLs, onClick):
+    # First iteration, such that there is only one page
+    # to go to if the user taps on the page.
+    return [
+      {
+        "src"        : url,
+        "provider"   : provider,
+        "providerURL": onClick,
+      }
+      for url in imageURLs
+      if url.split(".")[-1] in ["jpg", "jpeg", "png"]
+    ]
+
+def _yelpTimeFormat(string):
+    try:
+      from datetime import datetime
+      dt = datetime.strptime(string, "%H%M")
+      return dt.strftime("%H:%M")
+    except ValueError:
+      return string
+
+def _yelpHoursRecord(hours):
+    # "hours": [
+    #   {
+    #     "hours_type": "REGULAR", 
+    #     "open": [
+    #       {
+    #         "start": "1000", 
+    #         "end": "2300", 
+    #         "day": 0, 
+    #         "is_overnight": false
+    #       }, 
+    #   }
+    # ]
+    # https://www.yelp.com/developers/documentation/v3/business
+    days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    record = {}
+    for day in days:
+        record[day] = []
+    for section in hours:
+        for dayTime in section["open"]:
+            day = days[dayTime["day"]]
+            record[day] += [
+              _yelpTimeFormat(dayTime["start"]),
+              _yelpTimeFormat(dayTime["end"]),
+            ]
+    return record
 
 def createKey(biz):
     return biz.id

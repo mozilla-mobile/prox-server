@@ -30,6 +30,9 @@ Place: {
             rating: #, // normalized 0-5 w/ half values
             totalReviewCount: #,
             url: ""
+        },
+        tripAdvisor: {
+            // ...
         } // ...
     },
 

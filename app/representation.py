@@ -1,3 +1,4 @@
+from app.util import log
 
 def venueRecord(biz, **details):
     # biz is the response object from the Yelp Search API
@@ -25,7 +26,7 @@ def venueRecord(biz, **details):
         "url"             : biz.url
       }
       h["images"]      += info["photos"]
-      h["hours"]       = info["hours"][0]["open"]
+      h["hours"]       = _yelpHoursRecord(info["hours"])
       h["description"] = _descriptionRecord("yelp", biz.snippet_text)
       h["categories"].update([ (c["title"], _categoryRecord(c["alias"], c["title"])) for c in info["categories"] if "title" in c])
 
@@ -77,6 +78,41 @@ def _descriptionRecord(provider, text, url = None):
       "text"    : text,
       "provider": provider,
     }
+
+def _yelpTimeFormat(string):
+    try:
+      from datetime import datetime
+      dt = datetime.strptime(string, "%H%M")
+      return dt.strftime("%H:%M")
+    except ValueError:
+      return string
+
+def _yelpHoursRecord(hours):
+    # "hours": [
+    #   {
+    #     "hours_type": "REGULAR", 
+    #     "open": [
+    #       {
+    #         "start": "1000", 
+    #         "end": "2300", 
+    #         "day": 0, 
+    #         "is_overnight": false
+    #       }, 
+    #   }
+    # ]
+    # https://www.yelp.com/developers/documentation/v3/business
+    days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    record = {}
+    for day in days:
+        record[day] = []
+    for section in hours:
+        for dayTime in section["open"]:
+            day = days[dayTime["day"]]
+            record[day] += [
+              _yelpTimeFormat(dayTime["start"]),
+              _yelpTimeFormat(dayTime["end"]),
+            ]
+    return record
 
 def createKey(biz):
     return biz.id

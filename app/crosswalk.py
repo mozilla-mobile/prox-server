@@ -17,7 +17,7 @@ def getVenueIdentifiers(yelpID):
         obj = factualClient.crosswalk().filters({"url": yelpURL}).data()
 
         if len(obj) == 0:
-            return mapping
+            return mapping, True
 
         factualID = obj[0]["factual_id"]
         mapping["factualID"] = factualID

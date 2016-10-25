@@ -1,4 +1,4 @@
-from app.util import log
+import random
 
 def venueRecord(biz, **details):
     # biz is the response object from the Yelp Search API
@@ -25,10 +25,10 @@ def venueRecord(biz, **details):
         "description"     : biz.snippet_text,
         "url"             : biz.url
       }
-      h["images"]      += info["photos"]
-      h["hours"]       = _yelpHoursRecord(info["hours"])
       h["description"] = _descriptionRecord("yelp", biz.snippet_text)
       h["categories"].update([ (c["title"], _categoryRecord(c["alias"], c["title"])) for c in info["categories"] if "title" in c])
+      h["images"]     += _imageRecords("yelp", info["photos"], biz.url)
+      h["hours"]       = _yelpHoursRecord(info["hours"])
 
 
     # Wikipedia.
@@ -39,10 +39,10 @@ def venueRecord(biz, **details):
         "description": info.summary
       }
       h["description"] = _descriptionRecord("wikipedia", info.summary)
-      h["images"]     += info.images
+      h["images"]     += _imageRecords("wikipedia", info.images, info.url)
 
-    # Ensure we're not getting SVG or other weird formats.
-    h["images"] = [url for url in h["images"] if url.split(".")[-1] in ["jpg", "jpeg", "png"]]
+    images = h["images"]
+    h["images"] = random.sample(images, len(images))
 
     return {
       "version"    : 1,
@@ -78,6 +78,19 @@ def _descriptionRecord(provider, text, url = None):
       "text"    : text,
       "provider": provider,
     }
+
+def _imageRecords(provider, imageURLs, onClick):
+    # First iteration, such that there is only one page
+    # to go to if the user taps on the page.
+    return [
+      {
+        "src"        : url,
+        "provider"   : provider,
+        "providerURL": onClick,
+      }
+      for url in imageURLs
+      if url.split(".")[-1] in ["jpg", "jpeg", "png"]
+    ]
 
 def _yelpTimeFormat(string):
     try:

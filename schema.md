@@ -15,7 +15,7 @@ Place: {
     url: "",
     phone: "", // consistent format
 
-    address: "",
+    address: [""],
     coordinates: {
         lat: #,
         lng: #

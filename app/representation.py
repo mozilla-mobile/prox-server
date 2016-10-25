@@ -1,51 +1,81 @@
 
 def venueRecord(biz, **details):
     # biz is the response object from the Yelp Search API
-    providers = {}
-    images = []
-    hours = []
+
     from collections import OrderedDict
-    categories = OrderedDict()
+    # h is derived from the providers, but for the main body of the record.
+    # h is for header.
+    h = {
+      "url"        : "https://mozilla.org",
+      "description": {},
+      "categories" : OrderedDict(),
+      "images"     : [],
+      "hours"      : [],
+    }
+    providers = {}
+    
+    # Yelp.
     if "yelp" in details:
       info = details["yelp"]
       providers["yelp"] = {
-        "rating": biz.rating,
+        "rating"          : biz.rating,
         "totalReviewCount": biz.review_count,
-        "ratingMax": 5,
-        "summary": biz.snippet_text,
-        "url": biz.url
+        "ratingMax"       : 5,
+        "description"     : biz.snippet_text,
+        "url"             : biz.url
       }
-      images = images + info["photos"]
-      hours = info["hours"][0]["open"]
+      h["images"]      += info["photos"]
+      h["hours"]       = info["hours"][0]["open"]
+      h["description"] = _descriptionRecord("yelp", biz.snippet_text)
+      h["categories"].update([ (c["title"], _categoryRecord(c["alias"], c["title"])) for c in info["categories"] if "title" in c])
 
-      categories.update([ (c["title"], True) for c in info["categories"] if "title" in c])
 
+    # Wikipedia.
     if "wikipedia" in details:
       info = details["wikipedia"]
       providers["wikipedia"] = {
-        "url": info.url,
-        "summary": info.summary
+        "url"        : info.url,
+        "description": info.summary
       }
-      images = images + info.images
+      h["description"] = _descriptionRecord("wikipedia", info.summary)
+      h["images"]     += info.images
 
     # Ensure we're not getting SVG or other weird formats.
-    images = [url for url in images if url.split(".")[-1] in ["jpg", "jpeg", "png"]]
+    h["images"] = [url for url in h["images"] if url.split(".")[-1] in ["jpg", "jpeg", "png"]]
 
     return {
-      "id": biz.id,
-      "name": biz.name,
-      "hours": hours,
-      "url": "https://mozilla.org", # TODO
-      "categories": categories.keys(),
+      "version"    : 1,
+      "id"         : biz.id,
+      
+      "name"       : biz.name,
+      "description": h["description"],
+      
+      "url"        : h["url"],
+      "phone"      : biz.display_phone,
+      
+      "address"    : biz.location.display_address,
       "coordinates": {
         "lat": biz.location.coordinate.latitude,
-        "lon": biz.location.coordinate.longitude
+        "lng": biz.location.coordinate.longitude
       },
-      "images": images,
-      "address": biz.location.display_address,
-      "summary": biz.snippet_text,
-      "providers": providers,
-      "version": 1.0
+
+      "categories" : h["categories"].values(),
+      "providers"  : providers,
+      
+      "images"     : h["images"],
+      "hours"      : h["hours"],
+    }
+
+def _categoryRecord(id, text):
+    return {
+      "id"  : id,
+      "text": text,
+    }
+
+def _descriptionRecord(provider, text, url = None):
+    return {
+      "text"    : text,
+      "provider": provider,
     }
 
 def createKey(biz):

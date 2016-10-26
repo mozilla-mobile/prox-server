@@ -41,6 +41,21 @@ def venueRecord(biz, **details):
       h["description"] = _descriptionRecord("wikipedia", info.summary)
       h["images"]     += _imageRecords("wikipedia", info.images, info.url)
 
+    # TripAdvisor
+    if "tripadvisor" in details:
+      info = details["tripadvisor"]
+      reviews = info["reviews"]
+      firstReview = ""
+      if len(reviews) > 0:
+          firstReview = reviews[0]["text"]
+
+      providers["tripadvisor"] = {
+        "rating"          : info["rating"], # This is the aggregate rating
+        "totalReviewCount": info["num_reviews"],
+        "description"     : firstReview, # The rating of this review is not included
+        "url"             : info["web_url"]
+      }
+
     images = h["images"]
     h["images"] = random.sample(images, len(images))
 

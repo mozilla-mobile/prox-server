@@ -4,6 +4,7 @@ from app.clients import yelpClient, factualClient, googleapikey
 
 from app.providers.yelp import resolve as resolveYelp
 from app.providers.wp import resolve as resolveWikipedia
+from app.providers.tripadvisor import resolve as resolveTripAdvisor
 from app.util import log
 
 CROSSWALK_CACHE_VERSION = 1
@@ -14,6 +15,7 @@ DEFAULT_COUNTRY_GOOGLEAPI = 'country:US'
 resolvers = {
     "yelp": resolveYelp,
     "wikipedia": resolveWikipedia,
+    "tripadvisor": resolveTripAdvisor
 }
 
 def _getVenuesFromIndex(lat, lon):

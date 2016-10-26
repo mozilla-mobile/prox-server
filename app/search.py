@@ -48,8 +48,9 @@ def getVenueDetailsFromProvider(namespace, idObj, cached):
         return venueDetails
 
     if cached is not None:
-        # This should probably check when the cache happened.
-        return cached
+        venueDetails[namespace] = cached
+        return venueDetails
+        
     resolve = resolvers[namespace]
     try:
       info = resolve(idObj)

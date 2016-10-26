@@ -18,22 +18,25 @@ db = firebase.database()
 
 def writeVenueRecord(biz, details, idObj = None):
     key   = representation.createKey(biz)
-    venue = representation.venueRecord(biz, **details)
-    geo   = representation.geoRecord(biz)
+    try:
+        venue = representation.venueRecord(biz, **details)
+        geo   = representation.geoRecord(biz)
+        record = {
+          "details/" + key: venue,
+          "locations/" + key: geo 
+        }
+    except Exception as err:
+        log.exception("Exception preparing to write to firebase for key " + key)
+        record = {}
 
-    record = {
-      "details/" + key: venue,
-      "locations/" + key: geo 
-    }
-
+    record["cache/" + key] = details
     if idObj is not None:
-        cache = details
-        cache["identifiers"] = idObj
-        record["cache/" + key] = cache
+        # we're now going to cache the details, as well as the crosswalk 
+        # identifiers that we used to look them up.
+        details["identifiers"] = idObj
 
     db.child(venuesTable).update(record)
 
-    return { key: geo }
 
 def readCachedVenueDetails(key):
     cache = db.child(venuesTable).child("cache/" + key).get().val()
@@ -45,24 +48,23 @@ def readCachedVenueIdentifiers(cache):
     return None
 
 def researchVenue(biz):
-    yelpID = biz.id
     try:
+        yelpID = representation.createKey(biz)
         cache = readCachedVenueDetails(yelpID)
         venueIdentifiers = readCachedVenueIdentifiers(cache)
         # This gets the identifiers from Factual. It's two HTTP requests 
         # per venue. 
-        crosswalkNeeded = venueIdentifiers is None
-        if crosswalkNeeded:
+        crosswalkedFoundInCached = venueIdentifiers is None
+        if crosswalkedFoundInCached:
             venueIdentifiers, crosswalkAvailable = crosswalk.getVenueIdentifiers(yelpID)
 
         # This then uses the identifiers to look up (resolve) details.
         # We'll fan out these as much as possible.
         venueDetails = search._getVenueDetails(venueIdentifiers, cache)
     
-        
         # Once we've got the details, we should stash it in 
         # Firebase.
-        shouldCacheCrosswalk = (crosswalkNeeded and crosswalkAvailable)
+        shouldCacheCrosswalk = (not crosswalkedFoundInCached) or crosswalkAvailable
         if shouldCacheCrosswalk:
             writeVenueRecord(biz, venueDetails, venueIdentifiers)
         else:

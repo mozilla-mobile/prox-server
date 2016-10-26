@@ -4,6 +4,7 @@ from app.clients import yelpClient, factualClient, googleapikey
 
 from app.providers.yelp import resolve as resolveYelp
 from app.providers.wp import resolve as resolveWikipedia
+from app.providers.tripadvisor import resolve as resolveTripAdvisor
 from app.util import log
 
 CROSSWALK_CACHE_VERSION = 1
@@ -14,6 +15,7 @@ DEFAULT_COUNTRY_GOOGLEAPI = 'country:US'
 resolvers = {
     "yelp": resolveYelp,
     "wikipedia": resolveWikipedia,
+    "tripadvisor": resolveTripAdvisor
 }
 
 def _getVenuesFromIndex(lat, lon):
@@ -54,7 +56,7 @@ def _getVenueDetailsFromProvider(arg):
 
 def _getVenueDetails(venueIdentifiers):
     from multiprocessing.dummy import Pool as ThreadPool
-    args = [(ns, idObj) for ns, idObj in venueIdentifiers.iteritems() if ns in resolvers]
+    args = [(ns, idObj) for ns, idObj in venueIdentifiers.items() if ns in resolvers]
     
     pool = ThreadPool(10)
     

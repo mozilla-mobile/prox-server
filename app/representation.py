@@ -41,6 +41,21 @@ def venueRecord(biz, **details):
       h["description"] = _descriptionRecord("wikipedia", info.summary)
       h["images"]     += _imageRecords("wikipedia", info.images, info.url)
 
+    # TripAdvisor
+    if "tripadvisor" in details:
+      info = details["tripadvisor"]
+      reviews = info["reviews"]
+      firstReview = ""
+      if len(reviews) > 0:
+          firstReview = reviews[0]["text"]
+
+      providers["tripadvisor"] = {
+        "rating"          : info["rating"], # This is the aggregate rating
+        "totalReviewCount": info["num_reviews"],
+        "description"     : firstReview, # The rating of this review is not included
+        "url"             : info["web_url"]
+      }
+
     images = h["images"]
     h["images"] = random.sample(images, len(images))
 
@@ -60,7 +75,7 @@ def venueRecord(biz, **details):
         "lng": biz.location.coordinate.longitude
       },
 
-      "categories" : h["categories"].values(),
+      "categories" : list(h["categories"].values()),
       "providers"  : providers,
       
       "images"     : h["images"],
@@ -126,6 +141,18 @@ def _yelpHoursRecord(hours):
               _yelpTimeFormat(dayTime["end"]),
             ]
     return record
+
+def eventRecord(yelpId, lat, lon, title, startTime, url):
+    return {
+            "id": yelpId,
+            "coordinates": { "lat": lat, "lng": lon },
+            "description": title,
+            "startTime": startTime,
+            "url": url
+    }
+
+def createEventKey(eventObj):
+    return eventObj['id']
 
 def createKey(biz):
     return biz.id

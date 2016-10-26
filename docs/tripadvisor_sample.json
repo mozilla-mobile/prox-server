@@ -1,0 +1,760 @@
+[
+  {
+    "location_string": "Waikoloa, Kohala Coast, Island of Hawaii, Hawaii",
+    "num_reviews": "265",
+    "reviews": [
+      {
+        "travel_date": "2016-04",
+        "rating": 5,
+        "published_date": "2016-10-17T12:35:41-0400",
+        "text": "A full tour of the big island isn't complete without a stop here.  The beach and it's surroundings are beautiful.  Even knowing the source of the black sand, it was a real treat to be able to walk in...",
+        "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/s5.0-37399-5.png",
+        "lang": "en",
+        "trip_type": null,
+        "is_machine_translated": false,
+        "location_id": "4868306",
+        "helpful_votes": "0",
+        "user": {
+          "user_location": {
+            "name": "Ramona, California",
+            "id": "32937"
+          },
+          "username": "Early B"
+        },
+        "url": "https://www.tripadvisor.com/ShowUserReviews-g60608-d4868306-r428868276-m37399-49_Black_Sand_Beach-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#review428868276",
+        "title": "As good as we had heard",
+        "id": "428868276"
+      },
+      {
+        "travel_date": "2016-10",
+        "rating": 5,
+        "published_date": "2016-10-17T00:06:19-0400",
+        "text": "The turtles, the sand and the entire surrounding is breath taking.  Worth the drive!  Magical site to visit.",
+        "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/s5.0-37399-5.png",
+        "lang": "en",
+        "trip_type": "Family",
+        "is_machine_translated": false,
+        "location_id": "4868306",
+        "helpful_votes": "0",
+        "user": {
+          "user_location": {
+            "name": "California",
+            "id": null
+          },
+          "username": "unkie2016"
+        },
+        "url": "https://www.tripadvisor.com/ShowUserReviews-g60608-d4868306-r428626685-m37399-49_Black_Sand_Beach-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#review428626685",
+        "title": "Gorgeous",
+        "id": "428626685"
+      },
+      {
+        "travel_date": "2016-09",
+        "rating": 5,
+        "published_date": "2016-10-08T15:25:12-0400",
+        "text": "Black Sand Beach, is not how I would want to spend my day . but found it to be very different and a must see,",
+        "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/s5.0-37399-5.png",
+        "lang": "en",
+        "trip_type": "Couples",
+        "is_machine_translated": false,
+        "location_id": "4868306",
+        "helpful_votes": "0",
+        "user": {
+          "user_location": {
+            "name": "Fort Lauderdale, Florida",
+            "id": "34227"
+          },
+          "username": "ISLANDGIRL6969"
+        },
+        "url": "https://www.tripadvisor.com/ShowUserReviews-g60608-d4868306-r426219624-m37399-49_Black_Sand_Beach-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#review426219624",
+        "title": "Black Sand Beach very unique!",
+        "id": "426219624"
+      }
+    ],
+    "hours": null,
+    "longitude": "-155.88072",
+    "subcategory": [
+      {
+        "name": "nature_parks",
+        "localized_name": "Nature & Parks"
+      },
+      {
+        "name": "attractions",
+        "localized_name": "Attractions"
+      },
+      {
+        "name": "outdoor_activities",
+        "localized_name": "Outdoor Activities"
+      },
+      {
+        "name": "activities",
+        "localized_name": "Activities"
+      }
+    ],
+    "location_id": "4868306",
+    "see_all_photos": "https://www.tripadvisor.com/Attraction_Review-g60608-d4868306-m37399-Reviews-49_Black_Sand_Beach-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#photos",
+    "ranking_data": {
+      "ranking": "3",
+      "ranking_string": "#3 of 30 things to do in Waikoloa",
+      "geo_location_name": "Waikoloa",
+      "ranking_out_of": "30",
+      "geo_location_id": "60608"
+    },
+    "address_obj": {
+      "address_string": "Waikoloa, Island of Hawaii, HI",
+      "postalcode": null,
+      "city": "Waikoloa",
+      "street1": null,
+      "street2": null,
+      "country": "United States",
+      "state": "Hawaii"
+    },
+    "percent_recommended": null,
+    "rating": "4.5",
+    "name": "49 Black Sand Beach",
+    "web_url": "https://www.tripadvisor.com/Attraction_Review-g60608-d4868306-Reviews-m37399-49_Black_Sand_Beach-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html",
+    "wikipedia_info": null,
+    "latitude": "19.933353",
+    "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.5-37399-5.png",
+    "review_rating_count": {
+      "5": "154",
+      "2": "5",
+      "1": "0",
+      "3": "28",
+      "4": "78"
+    },
+    "attraction_types": [
+      {
+        "name": "beaches",
+        "localized_name": "Beaches"
+      }
+    ],
+    "write_review": "https://www.tripadvisor.com/UserReview-g60608-d4868306-m37399-49_Black_Sand_Beach-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html",
+    "trip_types": [
+      {
+        "value": "2",
+        "name": "business",
+        "localized_name": "Business"
+      },
+      {
+        "value": "95",
+        "name": "couples",
+        "localized_name": "Couples"
+      },
+      {
+        "value": "5",
+        "name": "solo",
+        "localized_name": "Solo travel"
+      },
+      {
+        "value": "112",
+        "name": "family",
+        "localized_name": "Family"
+      },
+      {
+        "value": "24",
+        "name": "friends",
+        "localized_name": "Friends getaway"
+      }
+    ],
+    "ancestors": [
+      {
+        "location_id": "60608",
+        "level": "City",
+        "name": "Waikoloa",
+        "abbrv": null
+      },
+      {
+        "location_id": "2219999",
+        "level": "District",
+        "name": "Kohala Coast",
+        "abbrv": null
+      },
+      {
+        "location_id": "29217",
+        "level": "Island",
+        "name": "Island of Hawaii",
+        "abbrv": null
+      },
+      {
+        "location_id": "28932",
+        "level": "State",
+        "name": "Hawaii",
+        "abbrv": "HI"
+      },
+      {
+        "location_id": "191",
+        "level": "Country",
+        "name": "United States",
+        "abbrv": null
+      }
+    ],
+    "awards": [
+      {
+        "images": {
+          "small": "https://www.tripadvisor.com/img/cdsi/img2/awards/CERTIFICATE_OF_EXCELLENCE_small-37399-5.jpg",
+          "large": "https://www.tripadvisor.com/img/cdsi/img2/awards/CERTIFICATE_OF_EXCELLENCE_2016_en_US_large-37399-5.jpg"
+        },
+        "year": "2016",
+        "categories": [],
+        "award_type": "Certificate of Excellence",
+        "display_name": "Certificate of Excellence 2016"
+      }
+    ],
+    "photo_count": "129",
+    "category": {
+      "name": "attraction",
+      "localized_name": "Attraction"
+    }
+  },
+  {
+    "category": {
+      "name": "restaurant",
+      "localized_name": "Restaurant"
+    },
+    "location_string": "Waikoloa, Kohala Coast, Island of Hawaii, Hawaii",
+    "num_reviews": "35",
+    "reviews": [
+      {
+        "travel_date": "2015-11",
+        "rating": 5,
+        "published_date": "2015-11-28T15:21:36-0500",
+        "text": "This was the Kings Grill but now reborn as Mai Grille. It is so good now I feel we in Waikoloa have won the lottery. The food is superb especially their beef (all local) and home made bacon (to die...",
+        "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/s5.0-37399-5.png",
+        "lang": "en",
+        "trip_type": "Couples",
+        "is_machine_translated": false,
+        "location_id": "2701835",
+        "helpful_votes": "0",
+        "user": {
+          "user_location": {
+            "name": null,
+            "id": null
+          },
+          "username": "Robert Y"
+        },
+        "url": "https://www.tripadvisor.com/ShowUserReviews-g60608-d2701835-r329613475-m37399-Kings_Grille-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#review329613475",
+        "title": "The Mai Grille is fantastique!",
+        "id": "329613475"
+      },
+      {
+        "travel_date": "2015-10",
+        "rating": 5,
+        "published_date": "2015-11-09T12:53:56-0500",
+        "text": "New owner and chef.  Either there for breakfast, lunch or brunch on Sunday's, service is always warm and friendly.  Broad choices of selections on the menu which I find as creative as their daily...",
+        "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/s5.0-37399-5.png",
+        "lang": "en",
+        "trip_type": null,
+        "is_machine_translated": false,
+        "location_id": "2701835",
+        "helpful_votes": "0",
+        "user": {
+          "user_location": {
+            "name": "Waimea, Hawaii",
+            "id": "60588"
+          },
+          "username": "marscurly333"
+        },
+        "url": "https://www.tripadvisor.com/ShowUserReviews-g60608-d2701835-r325578475-m37399-Kings_Grille-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#review325578475",
+        "title": "Now called \"Mai Grille\"",
+        "id": "325578475"
+      },
+      {
+        "travel_date": "2015-09",
+        "rating": 3,
+        "published_date": "2015-09-17T10:10:25-0400",
+        "text": "This place is undergoing a change of ownership, and their menu was abbreviated. The two primary choices we wanted were not available - French dip and  Rueben sandwiches. Ordered a hamburger - they...",
+        "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/s3.0-37399-5.png",
+        "lang": "en",
+        "trip_type": "Family",
+        "is_machine_translated": false,
+        "location_id": "2701835",
+        "helpful_votes": "0",
+        "user": {
+          "user_location": {
+            "name": "Morgan Hill",
+            "id": null
+          },
+          "username": "Larry M"
+        },
+        "url": "https://www.tripadvisor.com/ShowUserReviews-g60608-d2701835-r311345680-m37399-Kings_Grille-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#review311345680",
+        "title": "Decent eats, but . . . . .",
+        "id": "311345680"
+      }
+    ],
+    "hours": {
+      "week_ranges": [
+        {
+          "times": [
+            {
+              "open_time": "07:30",
+              "close_time": "18:00"
+            }
+          ],
+          "localized_day_name": "Sunday",
+          "day_name": "Sunday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "07:30",
+              "close_time": "18:00"
+            }
+          ],
+          "localized_day_name": "Monday",
+          "day_name": "Monday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "07:30",
+              "close_time": "18:00"
+            }
+          ],
+          "localized_day_name": "Tuesday",
+          "day_name": "Tuesday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "07:30",
+              "close_time": "18:00"
+            }
+          ],
+          "localized_day_name": "Wednesday",
+          "day_name": "Wednesday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "07:30",
+              "close_time": "18:00"
+            }
+          ],
+          "localized_day_name": "Thursday",
+          "day_name": "Thursday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "07:30",
+              "close_time": "18:00"
+            }
+          ],
+          "localized_day_name": "Friday",
+          "day_name": "Friday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "07:30",
+              "close_time": "18:00"
+            }
+          ],
+          "localized_day_name": "Saturday",
+          "day_name": "Saturday"
+        }
+      ],
+      "timezone": "Pacific/Honolulu"
+    },
+    "longitude": "-155.87318",
+    "location_id": "2701835",
+    "see_all_photos": "https://www.tripadvisor.com/Restaurant_Review-g60608-d2701835-m37399-Reviews-Kings_Grille-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#photos",
+    "ranking_data": null,
+    "subratings": [
+      {
+        "value": "3.5",
+        "rating_image_url": "https://static.tacdn.com/img2/ratings/traveler/ss3.5.gif",
+        "name": "rate_food",
+        "localized_name": "Food"
+      },
+      {
+        "value": "3.5",
+        "rating_image_url": "https://static.tacdn.com/img2/ratings/traveler/ss3.5.gif",
+        "name": "rate_atmosphere",
+        "localized_name": "Atmosphere"
+      },
+      {
+        "value": "4.0",
+        "rating_image_url": "https://static.tacdn.com/img2/ratings/traveler/ss4.0.gif",
+        "name": "rate_service",
+        "localized_name": "Service"
+      },
+      {
+        "value": "3.5",
+        "rating_image_url": "https://static.tacdn.com/img2/ratings/traveler/ss3.5.gif",
+        "name": "rate_value",
+        "localized_name": "Value"
+      }
+    ],
+    "price_level": null,
+    "address_obj": {
+      "address_string": "600 Waikoloa Beach Drive, Waikoloa, Island of Hawaii, HI 96738",
+      "postalcode": "96738",
+      "city": "Waikoloa",
+      "street1": "600 Waikoloa Beach Drive",
+      "street2": null,
+      "country": "United States",
+      "state": "Hawaii"
+    },
+    "percent_recommended": null,
+    "rating": "4.0",
+    "name": "Kings' Grille",
+    "web_url": "https://www.tripadvisor.com/Restaurant_Review-g60608-d2701835-Reviews-m37399-Kings_Grille-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html",
+    "latitude": "19.921957",
+    "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.0-37399-5.png",
+    "review_rating_count": {
+      "5": "9",
+      "2": "3",
+      "1": "1",
+      "3": "8",
+      "4": "14"
+    },
+    "subcategory": [
+      {
+        "name": "sit_down",
+        "localized_name": "Sit down"
+      }
+    ],
+    "write_review": "https://www.tripadvisor.com/UserReview-g60608-d2701835-m37399-Kings_Grille-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html",
+    "trip_types": [
+      {
+        "value": "0",
+        "name": "business",
+        "localized_name": "Business"
+      },
+      {
+        "value": "13",
+        "name": "couples",
+        "localized_name": "Couples"
+      },
+      {
+        "value": "1",
+        "name": "solo",
+        "localized_name": "Solo travel"
+      },
+      {
+        "value": "16",
+        "name": "family",
+        "localized_name": "Family"
+      },
+      {
+        "value": "2",
+        "name": "friends",
+        "localized_name": "Friends getaway"
+      }
+    ],
+    "ancestors": [
+      {
+        "location_id": "60608",
+        "level": "City",
+        "name": "Waikoloa",
+        "abbrv": null
+      },
+      {
+        "location_id": "2219999",
+        "level": "District",
+        "name": "Kohala Coast",
+        "abbrv": null
+      },
+      {
+        "location_id": "29217",
+        "level": "Island",
+        "name": "Island of Hawaii",
+        "abbrv": null
+      },
+      {
+        "location_id": "28932",
+        "level": "State",
+        "name": "Hawaii",
+        "abbrv": "HI"
+      },
+      {
+        "location_id": "191",
+        "level": "Country",
+        "name": "United States",
+        "abbrv": null
+      }
+    ],
+    "awards": [
+      {
+        "images": {
+          "small": "https://www.tripadvisor.com/img/cdsi/img2/awards/CERTIFICATE_OF_EXCELLENCE_small-37399-5.jpg",
+          "large": "https://www.tripadvisor.com/img/cdsi/img2/awards/CERTIFICATE_OF_EXCELLENCE_2016_en_US_large-37399-5.jpg"
+        },
+        "year": "2016",
+        "categories": [],
+        "award_type": "Certificate of Excellence",
+        "display_name": "Certificate of Excellence 2016"
+      }
+    ],
+    "photo_count": "11",
+    "cuisine": [
+      {
+        "name": "american",
+        "localized_name": "American"
+      }
+    ]
+  },
+  {
+    "location_string": "Waikoloa, Kohala Coast, Island of Hawaii, Hawaii",
+    "num_reviews": "38",
+    "reviews": [
+      {
+        "travel_date": "2016-09",
+        "rating": 5,
+        "published_date": "2016-09-21T12:24:54-0400",
+        "text": "I was on the big island for a conference and   Felt the need to do some riding...brought my own pedals, etc so was looking for a high end bike. Bike works is an excellent shop in terms of product and...",
+        "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/s5.0-37399-5.png",
+        "lang": "en",
+        "trip_type": "Business",
+        "is_machine_translated": false,
+        "location_id": "2368658",
+        "helpful_votes": "0",
+        "user": {
+          "user_location": {
+            "name": null,
+            "id": null
+          },
+          "username": "Adocfox"
+        },
+        "url": "https://www.tripadvisor.com/ShowUserReviews-g60608-d2368658-r420956427-m37399-Bike_Works_Beach_and_Sports-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#review420956427",
+        "title": "Friendly and professional",
+        "id": "420956427"
+      },
+      {
+        "travel_date": "2016-08",
+        "rating": 5,
+        "published_date": "2016-08-16T10:19:36-0400",
+        "text": "Thank you for the bike rental. I enjoyed riding the Ruby. Great ride indeed. Joseph was kind as he deliver the hotel to the Four Seasons. I appreciated the flexibility of Bike Works when I extended...",
+        "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/s5.0-37399-5.png",
+        "lang": "en",
+        "trip_type": "Friends getaway",
+        "is_machine_translated": false,
+        "location_id": "2368658",
+        "helpful_votes": "0",
+        "user": {
+          "user_location": {
+            "name": "Washington DC, District of Columbia",
+            "id": "28970"
+          },
+          "username": "Stacy W"
+        },
+        "url": "https://www.tripadvisor.com/ShowUserReviews-g60608-d2368658-r406233287-m37399-Bike_Works_Beach_and_Sports-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#review406233287",
+        "title": "Cycling in Kona",
+        "id": "406233287"
+      },
+      {
+        "travel_date": "2016-06",
+        "rating": 1,
+        "published_date": "2016-06-18T17:09:07-0400",
+        "text": "Had some work done at the Waikoloa bike shop. employee took off the front wheel to put the bike in our car. I got home and can't re-assemble the front brake cable (now without a bike)!",
+        "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/s1.0-37399-5.png",
+        "lang": "en",
+        "trip_type": "Couples",
+        "is_machine_translated": false,
+        "location_id": "2368658",
+        "helpful_votes": "0",
+        "user": {
+          "user_location": {
+            "name": "Kailua-Kona, Hawaii",
+            "id": "60872"
+          },
+          "username": "lynn c"
+        },
+        "url": "https://www.tripadvisor.com/ShowUserReviews-g60608-d2368658-r383816780-m37399-Bike_Works_Beach_and_Sports-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#review383816780",
+        "title": "Can't re-assemble front brake",
+        "id": "383816780"
+      }
+    ],
+    "hours": {
+      "week_ranges": [
+        {
+          "times": [
+            {
+              "open_time": "09:30",
+              "close_time": "21:30"
+            }
+          ],
+          "localized_day_name": "Sunday",
+          "day_name": "Sunday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "09:30",
+              "close_time": "21:30"
+            }
+          ],
+          "localized_day_name": "Monday",
+          "day_name": "Monday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "09:30",
+              "close_time": "21:30"
+            }
+          ],
+          "localized_day_name": "Tuesday",
+          "day_name": "Tuesday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "09:30",
+              "close_time": "21:30"
+            }
+          ],
+          "localized_day_name": "Wednesday",
+          "day_name": "Wednesday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "09:30",
+              "close_time": "21:30"
+            }
+          ],
+          "localized_day_name": "Thursday",
+          "day_name": "Thursday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "09:30",
+              "close_time": "21:30"
+            }
+          ],
+          "localized_day_name": "Friday",
+          "day_name": "Friday"
+        },
+        {
+          "times": [
+            {
+              "open_time": "09:30",
+              "close_time": "21:30"
+            }
+          ],
+          "localized_day_name": "Saturday",
+          "day_name": "Saturday"
+        }
+      ],
+      "timezone": "Pacific/Honolulu"
+    },
+    "longitude": "-155.88272",
+    "subcategory": [
+      {
+        "name": "outdoor_activities",
+        "localized_name": "Outdoor Activities"
+      },
+      {
+        "name": "activities",
+        "localized_name": "Activities"
+      }
+    ],
+    "location_id": "2368658",
+    "see_all_photos": "https://www.tripadvisor.com/Attraction_Review-g60608-d2368658-m37399-Reviews-Bike_Works_Beach_and_Sports-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html#photos",
+    "ranking_data": {
+      "ranking": "16",
+      "ranking_string": "#16 of 24 Outdoor Activities in Waikoloa",
+      "geo_location_name": "Waikoloa",
+      "ranking_out_of": "24",
+      "geo_location_id": "60608"
+    },
+    "address_obj": {
+      "address_string": "69-201 Waikoloa Beach Dr, Waikoloa, Island of Hawaii, HI 96738-5810",
+      "postalcode": "96738-5810",
+      "city": "Waikoloa",
+      "street1": "69-201 Waikoloa Beach Dr",
+      "street2": "",
+      "country": "United States",
+      "state": "Hawaii"
+    },
+    "percent_recommended": null,
+    "rating": "4.5",
+    "name": "Bike Works Beach and Sports",
+    "web_url": "https://www.tripadvisor.com/Attraction_Review-g60608-d2368658-Reviews-m37399-Bike_Works_Beach_and_Sports-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html",
+    "wikipedia_info": null,
+    "latitude": "19.91551",
+    "rating_image_url": "https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.5-37399-5.png",
+    "review_rating_count": {
+      "5": "29",
+      "2": "2",
+      "1": "1",
+      "3": "1",
+      "4": "5"
+    },
+    "attraction_types": [
+      {
+        "name": "gear rentals",
+        "localized_name": "Gear Rentals"
+      }
+    ],
+    "write_review": "https://www.tripadvisor.com/UserReview-g60608-d2368658-m37399-Bike_Works_Beach_and_Sports-Waikoloa_Kohala_Coast_Island_of_Hawaii_Hawaii.html",
+    "trip_types": [
+      {
+        "value": "2",
+        "name": "business",
+        "localized_name": "Business"
+      },
+      {
+        "value": "13",
+        "name": "couples",
+        "localized_name": "Couples"
+      },
+      {
+        "value": "6",
+        "name": "solo",
+        "localized_name": "Solo travel"
+      },
+      {
+        "value": "3",
+        "name": "family",
+        "localized_name": "Family"
+      },
+      {
+        "value": "8",
+        "name": "friends",
+        "localized_name": "Friends getaway"
+      }
+    ],
+    "ancestors": [
+      {
+        "location_id": "60608",
+        "level": "City",
+        "name": "Waikoloa",
+        "abbrv": null
+      },
+      {
+        "location_id": "2219999",
+        "level": "District",
+        "name": "Kohala Coast",
+        "abbrv": null
+      },
+      {
+        "location_id": "29217",
+        "level": "Island",
+        "name": "Island of Hawaii",
+        "abbrv": null
+      },
+      {
+        "location_id": "28932",
+        "level": "State",
+        "name": "Hawaii",
+        "abbrv": "HI"
+      },
+      {
+        "location_id": "191",
+        "level": "Country",
+        "name": "United States",
+        "abbrv": null
+      }
+    ],
+    "awards": [],
+    "photo_count": "9",
+    "category": {
+      "name": "attraction",
+      "localized_name": "Attraction"
+    }
+  }
+]

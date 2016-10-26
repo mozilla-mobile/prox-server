@@ -56,7 +56,7 @@ def _getVenueDetailsFromProvider(arg):
 
 def _getVenueDetails(venueIdentifiers):
     from multiprocessing.dummy import Pool as ThreadPool
-    args = [(ns, idObj) for ns, idObj in venueIdentifiers.iteritems() if ns in resolvers]
+    args = [(ns, idObj) for ns, idObj in venueIdentifiers.items() if ns in resolvers]
     
     pool = ThreadPool(10)
     

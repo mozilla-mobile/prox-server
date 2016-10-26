@@ -75,7 +75,7 @@ def venueRecord(biz, **details):
         "lng": biz.location.coordinate.longitude
       },
 
-      "categories" : h["categories"].values(),
+      "categories" : list(h["categories"].values()),
       "providers"  : providers,
       
       "images"     : h["images"],

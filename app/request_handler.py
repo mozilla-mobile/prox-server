@@ -27,20 +27,28 @@ def writeVenueRecord(biz, details, idObj = None):
     }
 
     if idObj is not None:
-        log.info("caching identifiers for " + key)
-        record["identifiers/" + key] = idObj
+        cache = details
+        cache["identifiers"] = idObj
+        record["cache/" + key] = cache
 
     db.child(venuesTable).update(record)
 
     return { key: geo }
 
-def readVenueIdentifiers(key):
-    return db.child(venuesTable).child("identifiers/" + key).get().val()
+def readCachedVenueDetails(key):
+    cache = db.child(venuesTable).child("cache/" + key).get().val()
+    return cache
+
+def readCachedVenueIdentifiers(cache):
+    if cache is not None:
+        return cache.get("identifiers", None)
+    return None
 
 def researchVenue(biz):
     yelpID = biz.id
     try:
-        venueIdentifiers = readVenueIdentifiers(yelpID)
+        cache = readCachedVenueDetails(yelpID)
+        venueIdentifiers = readCachedVenueIdentifiers(cache)
         # This gets the identifiers from Factual. It's two HTTP requests 
         # per venue. 
         crosswalkNeeded = venueIdentifiers is None
@@ -49,7 +57,8 @@ def researchVenue(biz):
 
         # This then uses the identifiers to look up (resolve) details.
         # We'll fan out these as much as possible.
-        venueDetails = search._getVenueDetails(venueIdentifiers)
+        venueDetails = search._getVenueDetails(venueIdentifiers, cache)
+    
         
         # Once we've got the details, we should stash it in 
         # Firebase.

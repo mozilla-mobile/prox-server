@@ -39,12 +39,17 @@ def _guessYelpId(placeName, lat, lon):
     else:
         return None
 
-def _getVenueDetailsFromProvider(arg):
-    (namespace, idObj) = arg
+def _getVenueDetailsFromProvider(args):
+     return getVenueDetailsFromProvider(*args)
+
+def getVenueDetailsFromProvider(namespace, idObj, cached):
     venueDetails = {}
     if namespace not in resolvers:
         return venueDetails
 
+    if cached is not None:
+        # This should probably check when the cache happened.
+        return cached
     resolve = resolvers[namespace]
     try:
       info = resolve(idObj)
@@ -54,9 +59,11 @@ def _getVenueDetailsFromProvider(arg):
         log.exception("Exeption hitting " + namespace)
     return venueDetails
 
-def _getVenueDetails(venueIdentifiers):
+def _getVenueDetails(venueIdentifiers, cachedDetails = None):
+    if cachedDetails is None:
+        cachedDetails = {}
     from multiprocessing.dummy import Pool as ThreadPool
-    args = [(ns, idObj) for ns, idObj in venueIdentifiers.items() if ns in resolvers]
+    args = [(ns, idObj, cachedDetails.get(ns, None)) for ns, idObj in venueIdentifiers.items() if ns in resolvers]
     
     pool = ThreadPool(10)
     

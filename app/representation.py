@@ -35,11 +35,11 @@ def venueRecord(biz, **details):
     if "wikipedia" in details:
       info = details["wikipedia"]
       providers["wikipedia"] = {
-        "url"        : info.url,
-        "description": info.summary
+        "url"        : info["url"],
+        "description": info["summary"]
       }
-      h["description"] = _descriptionRecord("wikipedia", info.summary)
-      h["images"]     += _imageRecords("wikipedia", info.images, info.url)
+      h["description"] = _descriptionRecord("wikipedia", info["summary"])
+      h["images"]     += _imageRecords("wikipedia", info["images"], info["url"])
 
     # TripAdvisor
     if "tripadvisor" in details:

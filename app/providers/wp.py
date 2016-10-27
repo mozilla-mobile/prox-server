@@ -4,4 +4,9 @@ from app.util import slug
 
 def resolve(idObj):
     pageID = slug(idObj["url"])
-    return wikipedia.page(pageID, preload=True)
+    page = wikipedia.page(pageID, preload=True)
+    return {
+      "url": page.url,
+      "summary": page.summary,
+      "images": page.images,
+    }

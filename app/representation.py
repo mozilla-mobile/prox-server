@@ -27,7 +27,7 @@ def venueRecord(biz, **details):
       }
       h["description"] = _descriptionRecord("yelp", biz.snippet_text)
       h["categories"].update([ (c["title"], _categoryRecord(c["alias"], c["title"])) for c in info["categories"] if "title" in c])
-      h["images"]     += _imageRecords("yelp", info["photos"], biz.url)
+      h["images"]     += _imageRecords("yelp", info.get("photos", []), biz.url)
       h["hours"]       = _yelpHoursRecord(info["hours"])
 
 
@@ -35,11 +35,11 @@ def venueRecord(biz, **details):
     if "wikipedia" in details:
       info = details["wikipedia"]
       providers["wikipedia"] = {
-        "url"        : info.url,
-        "description": info.summary
+        "url"        : info["url"],
+        "description": info["summary"]
       }
-      h["description"] = _descriptionRecord("wikipedia", info.summary)
-      h["images"]     += _imageRecords("wikipedia", info.images, info.url)
+      h["description"] = _descriptionRecord("wikipedia", info["summary"])
+      h["images"]     += _imageRecords("wikipedia", info["images"], info["url"])
 
     # TripAdvisor
     if "tripadvisor" in details:
@@ -134,7 +134,7 @@ def _yelpHoursRecord(hours):
     for day in days:
         record[day] = []
     for section in hours:
-        for dayTime in section["open"]:
+        for dayTime in section.get("open", []):
             day = days[dayTime["day"]]
             record[day] += [
               _yelpTimeFormat(dayTime["start"]),

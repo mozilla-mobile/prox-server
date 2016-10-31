@@ -32,6 +32,29 @@ g_GEOHASH_PRECISION = 10
 # Characters used in location geohashes
 g_BASE32 = "0123456789bcdefghjkmnpqrstuvwxyz"
 
+# Static method which calculates the distance, in kilometers, between two locations,
+# via the Haversine formula. Note that this is approximate due to the fact that the
+# Earth's radius varies between 6356.752 km and 6378.137 km.
+#
+# @param {Array.<number>} location1 The [latitude, longitude] pair of the first location.
+# @param {Array.<number>} location2 The [latitude, longitude] pair of the second location.
+# @return {number} The distance, in kilometers, between the inputted locations.
+def distance(location1, location2):
+    radius = 6371; # Earth's radius in kilometers
+    latDelta = degreesToRadians(location2[0] - location1[0]);
+    lonDelta = degreesToRadians(location2[1] - location1[1]);
+    
+    sinHalfLatDelta = math.sin(latDelta / 2)
+    sinHalfLonDelta = math.sin(lonDelta / 2)
+    a = (sinHalfLatDelta ** 2) + \
+        (sinHalfLonDelta ** 2) * \
+        math.cos(degreesToRadians(location1[0])) * \
+        math.cos(degreesToRadians(location2[0]))
+
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
+
+    return radius * c;
+
 def encodeGeohash(location, precision=g_GEOHASH_PRECISION):
     import pygeohash as pgh
     lat, lon = location

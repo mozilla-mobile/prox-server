@@ -16,6 +16,11 @@
     "app_secret" : "YOUR_APP_SECRET"
   },
 
+  "foursquare": {
+    "client_id": "YOUR_CLIENT_ID",
+    "client_secret": "YOUR_CLIENT_SECRET"
+  },
+
   "googleapikey": "GOOGLE_API_KEY",
   "eventfulkey" : "EVENTFUL_KEY",
   "tripadvisorkey" : "TRIPADVISOR_KEY"

@@ -2,6 +2,7 @@ import requests
 
 from app.clients import yelpClient, factualClient, googleapikey
 
+from app.providers.fs import resolve as resolveFoursquare
 from app.providers.yelp import resolve as resolveYelp
 from app.providers.wp import resolve as resolveWikipedia
 from app.providers.tripadvisor import resolve as resolveTripAdvisor
@@ -13,6 +14,7 @@ CATEGORIES = "beaches"
 DEFAULT_COUNTRY_GOOGLEAPI = 'country:US'
 
 resolvers = {
+    "foursquare": resolveFoursquare,
     "yelp": resolveYelp,
     "wikipedia": resolveWikipedia,
     "tripadvisor": resolveTripAdvisor

@@ -12,3 +12,5 @@ FIREBASE_CONFIG = {
     "serviceAccount": FIREBASE_KEY_PATH
     # Using the service account will authenticate as admin by default
 }
+
+yelpSearchCategories = ["beaches", "hotels", "restaurants"]

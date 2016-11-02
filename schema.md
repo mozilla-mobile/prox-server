@@ -8,10 +8,14 @@ Place: {
     id: "<yelp-id>",
 
     name: "",
-    description: {
+    description: [{
         provider: "wikipedia",
         text: ""
     },
+    {
+        provider: "yelp",
+        text: ""
+    }],
     url: "",
     phone: "", // consistent format
 

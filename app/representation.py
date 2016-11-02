@@ -56,6 +56,11 @@ def venueRecord(biz, **details):
         "url"             : info["web_url"]
       }
 
+    # Foursquare
+    if "foursquare" in details:
+        info = details["foursquare"]
+        h["images"] += _imageRecords("foursquare", info["images"], info["url"])
+
     images = h["images"]
     h["images"] = random.sample(images, len(images))
 

@@ -1,5 +1,6 @@
 factual-api
 flask
+foursquare
 pyrebase
 pytest
 pygeohash

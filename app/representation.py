@@ -142,10 +142,10 @@ def _yelpHoursRecord(hours):
     for section in hours:
         for dayTime in section.get("open", []):
             day = days[dayTime["day"]]
-            record[day] += [
+            record[day].append([
               _yelpTimeFormat(dayTime["start"]),
               _yelpTimeFormat(dayTime["end"]),
-            ]
+            ])
     return record
 
 def eventRecord(yelpId, lat, lon, title, startTime, url):

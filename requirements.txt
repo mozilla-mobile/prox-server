@@ -4,6 +4,8 @@ foursquare
 pyrebase
 pytest
 pygeohash
+redis
+rq
 sanction
 wikipedia
 yelp

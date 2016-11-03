@@ -1,6 +1,6 @@
 from flask import Flask, abort
 
-from app.request_handler import searchLocation
+from app.queue.enqueue import searchLocation
 
 
 app = Flask(__name__)
@@ -13,7 +13,8 @@ def index():
 def placeUser(latitude, longitude):
     try:
         latitude, longitude = float(latitude), float(longitude)
-        searchLocation(latitude, longitude)
+        jobCount = searchLocation(latitude, longitude)
+        return "OK %.8f,%.8f / %d" % (latitude, longitude, jobCount)
     except ValueError:
         abort(404)
     except KeyboardInterrupt:
@@ -23,7 +24,7 @@ def placeUser(latitude, longitude):
         from app.util import log
         log.exception("Unknown exception")
         abort(500)
-    return "OK - %.4f, %.4f" % (latitude, longitude)
+    
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -110,6 +110,16 @@ def researchVenue(biz):
         log.exception("Error researching venue")
         return False
 
+def searchLocationWithErrorRecovery(lat, lon):
+    try:
+        searchLocation(lat, lon)
+    except KeyboardInterrupt:
+        log.info("GOODBYE")
+        sys.exit(1)
+    except Exception, err:
+        from app.util import log
+        log.exception("Unknown exception")
+
 def searchLocation(lat, lon):
     searchRecord = findSearchRecord((lat, lon), searchCacheRadius)
     if searchRecord is not None:

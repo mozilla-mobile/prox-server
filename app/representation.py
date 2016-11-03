@@ -8,7 +8,7 @@ def venueRecord(biz, **details):
     # h is for header.
     h = {
       "url"        : "https://mozilla.org",
-      "description": {},
+      "description": [],
       "categories" : OrderedDict(),
       "images"     : [],
       "hours"      : [],
@@ -25,7 +25,7 @@ def venueRecord(biz, **details):
         "description"     : biz.snippet_text,
         "url"             : biz.url
       }
-      h["description"] = _descriptionRecord("yelp", biz.snippet_text)
+      h["description"].append(_descriptionRecord("yelp", biz.snippet_text))
       h["categories"].update([ (c["title"], _categoryRecord(c["alias"], c["title"])) for c in info["categories"] if "title" in c])
       h["images"]     += _imageRecords("yelp", info.get("photos", []), biz.url)
       h["hours"]       = _yelpHoursRecord(info["hours"])
@@ -38,7 +38,7 @@ def venueRecord(biz, **details):
         "url"        : info["url"],
         "description": info["summary"]
       }
-      h["description"] = _descriptionRecord("wikipedia", info["summary"])
+      h["description"].append(_descriptionRecord("wikipedia", info["summary"]))
       h["images"]     += _imageRecords("wikipedia", info["images"], info["url"])
 
     # TripAdvisor
@@ -48,6 +48,7 @@ def venueRecord(biz, **details):
       firstReview = ""
       if len(reviews) > 0:
           firstReview = reviews[0]["text"]
+          h["description"].append(_descriptionRecord("tripadvisor", firstReview))
 
       providers["tripadvisor"] = {
         "rating"          : info["rating"], # This is the aggregate rating
@@ -141,10 +142,10 @@ def _yelpHoursRecord(hours):
     for section in hours:
         for dayTime in section.get("open", []):
             day = days[dayTime["day"]]
-            record[day] += [
+            record[day].append([
               _yelpTimeFormat(dayTime["start"]),
               _yelpTimeFormat(dayTime["end"]),
-            ]
+            ])
     return record
 
 def eventRecord(yelpId, lat, lon, title, startTime, url):

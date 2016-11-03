@@ -8,14 +8,18 @@ Place: {
     id: "<yelp-id>",
 
     name: "",
-    description: {
+    description: [{
         provider: "wikipedia",
         text: ""
     },
+    {
+        provider: "yelp",
+        text: ""
+    }],
     url: "",
     phone: "", // consistent format
 
-    address: "",
+    address: [""],
     coordinates: {
         lat: #,
         lng: #
@@ -30,6 +34,9 @@ Place: {
             rating: #, // normalized 0-5 w/ half values
             totalReviewCount: #,
             url: ""
+        },
+        tripAdvisor: {
+            // ...
         } // ...
     },
 

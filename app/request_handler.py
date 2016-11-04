@@ -62,6 +62,7 @@ def findSearchRecord(center, radius=1000):
                 continue
             # double check that we're within distance
             circleDistance = geo.distance(center, record["l"]) * 1000
+            # 1000 m in 1 km (geo.distance is in km, searchCacheRadius is in m)
             log.info("Circle distance is " + str(circleDistance))
             if circleDistance < searchCacheRadius:
                 return record

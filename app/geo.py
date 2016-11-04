@@ -1,4 +1,4 @@
-
+# This is an incomplete Python port of https://github.com/firebase/geofire-js/blob/master/src
 import math
 
 # The meridional circumference of the earth in meters

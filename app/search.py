@@ -1,4 +1,5 @@
 import requests
+import string
 
 from app.clients import yelpClient, factualClient, googleapikey
 
@@ -8,9 +9,11 @@ from app.providers.wp import resolve as resolveWikipedia
 from app.providers.tripadvisor import resolve as resolveTripAdvisor
 from app.util import log
 
+from config  import yelpSearchCategories
+
 CROSSWALK_CACHE_VERSION = 1
 # CSV list
-CATEGORIES = "beaches" 
+CATEGORIES = string.join(yelpSearchCategories, ",") 
 DEFAULT_COUNTRY_GOOGLEAPI = 'country:US'
 
 resolvers = {

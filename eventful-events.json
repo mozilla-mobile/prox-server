@@ -1,0 +1,20 @@
+[
+  {
+    "url": "http://eventful.com/kailuakona/events/ustahawaii-west-hawaiiekolu-test-end-1117-/E0-001-096593537-2?utm_source=apis&utm_medium=apim&utm_campaign=apic",
+    "startTime": "2016-10-08 00:00:00",
+    "coordinates": {
+      "lng": "-155.854",
+      "lat": "19.7133"
+    },
+    "description": "USTA/HAWAII WEST HAWAII-Ekolu Test to end 1/1/17"
+  },
+  {
+    "url": "http://eventful.com/kamuela/events/kpo-season-tickets-/E0-001-095240654-2?utm_source=apis&utm_medium=apim&utm_campaign=apic",
+    "startTime": "2016-10-31 02:00:00",
+    "coordinates": {
+      "lng": "-155.744",
+      "lat": "20.0203"
+    },
+    "description": "KPO Season Tickets"
+  }
+]

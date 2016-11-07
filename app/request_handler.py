@@ -63,9 +63,9 @@ def findSearchRecord(center, radius=1000):
             # double check that we're within distance
             circleDistance = geo.distance(center, record["l"]) * 1000
             # 1000 m in 1 km (geo.distance is in km, searchCacheRadius is in m)
-            log.info("Circle distance is " + str(circleDistance))
             if circleDistance < searchCacheRadius:
                 return record
+            log.info("Circle distance is " + str(circleDistance))
 
 
 def readCachedVenueDetails(key):
@@ -110,15 +110,25 @@ def researchVenue(biz):
         log.exception("Error researching venue")
         return False
 
-def searchLocation(lat, lon):
-    searchRecord = findSearchRecord((lat, lon), searchCacheRadius)
+def searchLocationWithErrorRecovery(lat, lng):
+    try:
+        searchLocation(lat, lng)
+    except KeyboardInterrupt:
+        log.info("GOODBYE")
+        sys.exit(1)
+    except Exception:
+        from app.util import log
+        log.exception("Unknown exception")
+
+def searchLocation(lat, lng):
+    searchRecord = findSearchRecord((lat, lng), searchCacheRadius)
     if searchRecord is not None:
-        log.info("searchRecord: %s" % searchRecord)
+        log.debug("searchRecord: %s" % searchRecord)
         return
     else:
-        writeSearchRecord(lat, lon)
+        writeSearchRecord(lat, lng)
 
-    locality = search._getVenuesFromIndex(lat, lon)
+    locality = search._getVenuesFromIndex(lat, lng)
 
     yelpVenues = locality.businesses
 

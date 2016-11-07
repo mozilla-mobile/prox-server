@@ -3,7 +3,7 @@ import re
 
 logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger('prox')
-log.level = logging.DEBUG
+log.level = logging.INFO
 
 debugging = log.isEnabledFor(logging.DEBUG)
 

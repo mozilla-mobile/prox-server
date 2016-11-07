@@ -116,7 +116,7 @@ def searchLocationWithErrorRecovery(lat, lon):
     except KeyboardInterrupt:
         log.info("GOODBYE")
         sys.exit(1)
-    except Exception, err:
+    except Exception:
         from app.util import log
         log.exception("Unknown exception")
 

@@ -50,9 +50,9 @@ def venueRecord(biz, **details):
           firstReview = reviews[0]["text"]
           h["description"].append(_descriptionRecord("tripadvisor", firstReview))
 
-      providers["tripadvisor"] = {
-        "rating"          : info["rating"], # This is the aggregate rating
-        "totalReviewCount": info["num_reviews"],
+      providers["tripAdvisor"] = {
+        "rating"          : float(info["rating"]), # This is the aggregate rating
+        "totalReviewCount": int(info["num_reviews"]),
         "description"     : firstReview, # The rating of this review is not included
         "url"             : info["web_url"]
       }

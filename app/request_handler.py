@@ -63,9 +63,9 @@ def findSearchRecord(center, radius=1000):
             # double check that we're within distance
             circleDistance = geo.distance(center, record["l"]) * 1000
             # 1000 m in 1 km (geo.distance is in km, searchCacheRadius is in m)
-            log.info("Circle distance is " + str(circleDistance))
             if circleDistance < searchCacheRadius:
                 return record
+            log.info("Circle distance is " + str(circleDistance))
 
 
 def readCachedVenueDetails(key):
@@ -123,7 +123,7 @@ def searchLocationWithErrorRecovery(lat, lon):
 def searchLocation(lat, lon):
     searchRecord = findSearchRecord((lat, lon), searchCacheRadius)
     if searchRecord is not None:
-        log.info("searchRecord: %s" % searchRecord)
+        log.debug("searchRecord: %s" % searchRecord)
         return
     else:
         writeSearchRecord(lat, lon)

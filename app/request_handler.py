@@ -110,9 +110,9 @@ def researchVenue(biz):
         log.exception("Error researching venue")
         return False
 
-def searchLocationWithErrorRecovery(lat, lon):
+def searchLocationWithErrorRecovery(lat, lng):
     try:
-        searchLocation(lat, lon)
+        searchLocation(lat, lng)
     except KeyboardInterrupt:
         log.info("GOODBYE")
         sys.exit(1)
@@ -120,15 +120,15 @@ def searchLocationWithErrorRecovery(lat, lon):
         from app.util import log
         log.exception("Unknown exception")
 
-def searchLocation(lat, lon):
-    searchRecord = findSearchRecord((lat, lon), searchCacheRadius)
+def searchLocation(lat, lng):
+    searchRecord = findSearchRecord((lat, lng), searchCacheRadius)
     if searchRecord is not None:
         log.debug("searchRecord: %s" % searchRecord)
         return
     else:
-        writeSearchRecord(lat, lon)
+        writeSearchRecord(lat, lng)
 
-    locality = search._getVenuesFromIndex(lat, lon)
+    locality = search._getVenuesFromIndex(lat, lng)
 
     yelpVenues = locality.businesses
 

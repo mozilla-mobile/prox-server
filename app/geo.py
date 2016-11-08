@@ -159,9 +159,8 @@ def geohashQueries(center, radius):
     # preserve order of insertion, for the sake of ease of comparison
     keys = set()
     values = []
-    from string import join
     for query in queries:
-        key = join(query, ":")
+        key = ":".join(query)
         if key not in keys:
             keys.add(key)
             values.append(query)

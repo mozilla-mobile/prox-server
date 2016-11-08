@@ -25,16 +25,17 @@ EVENTFUL_URL = 'https://api.eventful.com/json/events/search'
   All fields are required (locations without a Yelp id will be omitted).
 '''
 
-def fetchEventsFromGcal(calId, maxResults, timeRangeMs):
+def fetchEventsFromGcal(calId, maxResults, timeRangeMs, startDatetimeUTC=None):
     # Just assume UTC timezone for simplicity
-    now = datetime.datetime.utcnow()
-    now_rfc = _getRfcTime(now)
-    later_rfc = _getRfcTime(now + timeRangeMs)
+    if not startDatetimeUTC:
+        startDatetimeUTC = datetime.datetime.utcnow()
+    start_rfc = _getRfcTime(startDatetimeUTC)
+    end_rfc = _getRfcTime(startDatetimeUTC + timeRangeMs)
 
     eventParams = {'orderBy': 'startTime',
                    'singleEvents': True,
-                   'timeMin': now_rfc,
-                   'timeMax': later_rfc,
+                   'timeMin': start_rfc,
+                   'timeMax': end_rfc,
                    'maxResults': maxResults }
 
     r = requests.get(CALENDAR_URL.format(calId, googleapikey), eventParams)
@@ -48,7 +49,6 @@ def getGcalEventObj(event):
     # Check address, then name, then summary
     name, address = getNameAndAddress(event['location'])
     summary = event['summary']
-    # print(name + '_' + address + '_' + summary)
 
     # Check address first for lat/long
     if address:
@@ -61,7 +61,7 @@ def getGcalEventObj(event):
                     placeName = placeMapping['name']
                     yelpId = search._guessYelpId(placeName, location['lat'], location['lng'])
                     if yelpId:
-                        eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['htmlLink'])
+                        eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
                         return eventObj
 
         except Exception as err:
@@ -76,7 +76,7 @@ def getGcalEventObj(event):
                 location = mapping['location']
                 yelpId = search._guessYelpId(placeName, location['lat'], location['lng'])
                 if (yelpId):
-                    eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['htmlLink'])
+                    eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
                     return eventObj
 
         except Exception as err:
@@ -84,10 +84,10 @@ def getGcalEventObj(event):
 
 nameAddressRegex = re.compile('^([^0-9]*)([0-9]*.*)')
 
-def fetchEventsFromLocation(latlong, maxResults, radius):
+def fetchEventsFromLocation(latlong, maxResults, radius=5, dateRange="Today"):
     params = { 'app_key': eventfulkey,
                'units': 'mi',
-               'date': 'Today',
+               'date': dateRange,
                'sort_order': 'relevance',
                'location': latlong,
                'page_size': maxResults,
@@ -99,7 +99,6 @@ def fetchEventsFromLocation(latlong, maxResults, radius):
 
 def getEventfulEventObj(event):
     location = { 'lat': event['latitude'], 'lng': event['longitude'] }
-    # print(str(event['venue_name']) + '_' + str(event['venue_address']) + '_' + str(event['title']) + '_\n' + str(event['description']) + '\n')
     yelpId = search._guessYelpId(event['venue_name'], location['lat'], location['lng'])
     if yelpId:
         eventObj = { 'id': yelpId,

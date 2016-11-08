@@ -148,12 +148,14 @@ def _yelpHoursRecord(hours):
             ])
     return record
 
-def eventRecord(yelpId, lat, lon, title, startTime, url):
+def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
     return {
             "id": yelpId,
             "coordinates": { "lat": lat, "lng": lon },
             "description": title,
+            "notification": "Event nearby: " + title, # Placeholder for event notification
             "startTime": startTime,
+            "endTime": endTime,
             "url": url
     }
 

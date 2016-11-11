@@ -29,6 +29,7 @@ Place: {
         text: ""
     }],
 
+    # Ratings providers
     providers: {
         yelp: {
             rating: #, // normalized 0-5 w/ half values
@@ -54,5 +55,22 @@ Place: {
             ["20:00", "4:00"]
         ], // ...
     }
+}
+```
+
+## Event
+
+```
+Event: {
+    coordinates: {
+        lat: #,
+        lng: #
+    },
+    description: "", # Used for badging
+    notification: "",
+    startTime: "", # RFC 3339, e.g., "2016-11-10T18:00:00-10:00",
+    endTime: "", # RFC 3339
+    id: "<yelp-id>", # Best effort Yelp id
+    url: "" # Optional: url to open when clicking on more information
 }
 ```

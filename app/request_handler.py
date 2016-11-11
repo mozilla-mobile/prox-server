@@ -8,10 +8,7 @@ from app.constants import venuesTable, eventsTable, searchesTable, searchCacheEx
 import app.crosswalk as crosswalk
 import app.representation as representation
 import app.search as search
-import app.events as events
 from app.util import log
-
-CAL_ID = 'hawaii247.com_dm8m04hk9ef3cc81eooerh3uos@group.calendar.google.com'
 
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 db = firebase.database()
@@ -140,14 +137,6 @@ def searchLocation(lat, lng):
 
     import json
     log.info("Finished: " + json.dumps(res))
-
-def loadCalendarEvents(numRecords, timeDuration):
-    eventsList = events.fetchEventsFromGcal(CAL_ID, numRecords, timeDuration)
-    for event in eventsList:
-        if 'location' in event:
-            eventObj = events.getGcalEventObj(event)
-            if eventObj:
-                writeEventRecord(eventObj)
 
 def writeEventRecord(eventObj):
     key   = representation.createEventKey(eventObj)

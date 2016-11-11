@@ -1,16 +1,48 @@
 import datetime
 import re
 import requests
+import sched
+import threading
+import time
 
 import app.search as search
 from app.clients import yelpClient, googleapikey, eventfulkey
+from app.request_handler import writeEventRecord
 import app.representation as representation
 
 CALENDAR_URL = 'https://www.googleapis.com/calendar/v3/calendars/{}/events?key={}'
+CALENDAR_IDS = [ 'hawaii247.com_dm8m04hk9ef3cc81eooerh3uos@group.calendar.google.com', 'mozilla.com_avh8q3pubnr4uj419aaubpat2g@group.calendar.google.com' ]
+
 KONA_LAT_LONG = { 'lat': 19.622345, 'lng': -155.665041 }
 KONA_RADIUS = 100000
 
 EVENTFUL_URL = 'https://api.eventful.com/json/events/search'
+
+DAY_DATETIME = datetime.timedelta(days=1)
+scheduler = sched.scheduler(time.time, time.sleep)
+
+def startGcalThread():
+    scheduler.enter(100, 1, updateFromGcals)
+    t = threading.Thread(target=scheduler.run)
+    t.start()
+
+def updateFromGcals():
+    try:
+        loadCalendarEvents(DAY_DATETIME)
+        scheduler.enter(3600, 1, updateFromGcals)
+    except Exception as err:
+        from app.util import log
+        log.exception("Error running scheduled calendar fetch")
+        scheduler.enter(3600, 1, updateFromGcals)
+
+def loadCalendarEvents(timeDuration):
+    for calId in CALENDAR_IDS:
+        eventsList = fetchEventsFromGcal(calId, timeDuration)
+        for event in eventsList:
+            if 'location' in event:
+                eventObj = getGcalEventObj(event)
+                if eventObj:
+                    writeEventRecord(eventObj)
 
 '''
   Best effort to fetch event details (including a Yelp id) from a Google calendar.
@@ -25,7 +57,7 @@ EVENTFUL_URL = 'https://api.eventful.com/json/events/search'
   All fields are required (locations without a Yelp id will be omitted).
 '''
 
-def fetchEventsFromGcal(calId, maxResults, timeRangeMs, startDatetimeUTC=None):
+def fetchEventsFromGcal(calId, timeRangeMs, startDatetimeUTC=None):
     # Just assume UTC timezone for simplicity
     if not startDatetimeUTC:
         startDatetimeUTC = datetime.datetime.utcnow()
@@ -35,8 +67,7 @@ def fetchEventsFromGcal(calId, maxResults, timeRangeMs, startDatetimeUTC=None):
     eventParams = {'orderBy': 'startTime',
                    'singleEvents': True,
                    'timeMin': start_rfc,
-                   'timeMax': end_rfc,
-                   'maxResults': maxResults }
+                   'timeMax': end_rfc }
 
     r = requests.get(CALENDAR_URL.format(calId, googleapikey), eventParams)
     items = r.json()['items']

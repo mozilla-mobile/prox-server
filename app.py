@@ -1,7 +1,7 @@
 from flask import Flask, abort
 
 from app.queue.enqueue import searchLocation
-
+from app.events import startGcalThread
 
 app = Flask(__name__)
 
@@ -20,11 +20,12 @@ def placeUser(latitude, longitude):
     except KeyboardInterrupt:
         log.info("GOODBYE")
         sys.exit(1)
-    except Exception, err:
+    except Exception as err:
         from app.util import log
         log.exception("Unknown exception")
         abort(500)
     
 
 if __name__ == '__main__':
+    startGcalThread()
     app.run(debug=True)

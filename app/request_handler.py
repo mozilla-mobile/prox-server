@@ -141,9 +141,11 @@ def searchLocation(lat, lng):
 def writeEventRecord(eventObj):
     key   = representation.createEventKey(eventObj)
     event = eventObj;
+    geo   = representation._geoRecord(eventObj["coordinates"]["lat"], eventObj["coordinates"]["lng"])
 
     db.child(eventsTable).update(
       {
-        key: event
+        "details/" + key: event,
+        "locations/" + key: geo
       }
     )

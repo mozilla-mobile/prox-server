@@ -13,7 +13,7 @@ from config  import yelpSearchCategories
 
 CROSSWALK_CACHE_VERSION = 1
 # CSV list
-CATEGORIES = string.join(yelpSearchCategories, ",") 
+CATEGORIES = ",".join(yelpSearchCategories)
 DEFAULT_COUNTRY_GOOGLEAPI = 'country:US'
 
 resolvers = {

@@ -14,3 +14,13 @@ searchCacheRadius = 1000 # m
 venuesTable = _tablePrefix + _venues
 eventsTable = _tablePrefix + _events
 searchesTable = _tablePrefix + _searches
+
+# Events
+konaLatLng = { "lat": 19.622345, "lng": -155.665041 }
+
+calendarInfo = {
+    "calRefreshSec": 3600,
+    "googleCalendarUrl": "https://www.googleapis.com/calendar/v3/calendars/{}/events?key={}",
+    "calendarIds": [ "hawaii247.com_dm8m04hk9ef3cc81eooerh3uos@group.calendar.google.com", "mozilla.com_avh8q3pubnr4uj419aaubpat2g@group.calendar.google.com" ],
+    "eventfulUrl": "https://api.eventful.com/json/events/search"
+}

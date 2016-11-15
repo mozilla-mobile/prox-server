@@ -7,36 +7,31 @@ import time
 
 import app.search as search
 from app.clients import yelpClient, googleapikey, eventfulkey
+from app.constants import calendarInfo, konaLatLng
 from app.request_handler import writeEventRecord
 import app.representation as representation
 
-CALENDAR_URL = 'https://www.googleapis.com/calendar/v3/calendars/{}/events?key={}'
-CALENDAR_IDS = [ 'hawaii247.com_dm8m04hk9ef3cc81eooerh3uos@group.calendar.google.com', 'mozilla.com_avh8q3pubnr4uj419aaubpat2g@group.calendar.google.com' ]
 
-KONA_LAT_LONG = { 'lat': 19.622345, 'lng': -155.665041 }
-KONA_RADIUS = 100000
-
-EVENTFUL_URL = 'https://api.eventful.com/json/events/search'
 
 DAY_DATETIME = datetime.timedelta(days=1)
 scheduler = sched.scheduler(time.time, time.sleep)
 
 def startGcalThread():
-    scheduler.enter(100, 1, updateFromGcals)
+    scheduler.enter(10, 1, updateFromGcals)
     t = threading.Thread(target=scheduler.run)
     t.start()
 
 def updateFromGcals():
     try:
         loadCalendarEvents(DAY_DATETIME)
-        scheduler.enter(3600, 1, updateFromGcals)
+        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals)
     except Exception as err:
         from app.util import log
         log.exception("Error running scheduled calendar fetch")
-        scheduler.enter(3600, 1, updateFromGcals)
+        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals)
 
 def loadCalendarEvents(timeDuration):
-    for calId in CALENDAR_IDS:
+    for calId in calendarInfo["calendarIds"]:
         eventsList = fetchEventsFromGcal(calId, timeDuration)
         for event in eventsList:
             if 'location' in event:
@@ -50,7 +45,8 @@ def loadCalendarEvents(timeDuration):
     { 'id':
       'coordinates':
       'name':
-      'startTime':
+      'localStartTime':
+      'localEndTime':
       'url':
     }
 
@@ -69,7 +65,7 @@ def fetchEventsFromGcal(calId, timeRangeMs, startDatetimeUTC=None):
                    'timeMin': start_rfc,
                    'timeMax': end_rfc }
 
-    r = requests.get(CALENDAR_URL.format(calId, googleapikey), eventParams)
+    r = requests.get(calendarInfo["googleCalendarUrl"].format(calId, googleapikey), eventParams)
     items = r.json()['items']
     return items
 
@@ -101,7 +97,7 @@ def getGcalEventObj(event):
     # Search for location by name
     if name:
         try:
-            mapping = search._findPlaceInRange(name, KONA_LAT_LONG, 5000)
+            mapping = search._findPlaceInRange(name, konaLatLng, 5000)
             if mapping:
                 placeName = mapping['name']
                 location = mapping['location']
@@ -124,20 +120,16 @@ def fetchEventsFromLocation(latlong, maxResults, radius=5, dateRange="Today"):
                'page_size': maxResults,
                'within': radius }
 
-    r = requests.get(EVENTFUL_URL, params)
+    r = requests.get(calendarInfo["eventfulUrl"], params)
     eventList = r.json()['events']['event']
     return eventList
 
 def getEventfulEventObj(event):
-    location = { 'lat': event['latitude'], 'lng': event['longitude'] }
-    yelpId = search._guessYelpId(event['venue_name'], location['lat'], location['lng'])
+    locLat = event['latitude']
+    locLng = event['longitude']
+    yelpId = search._guessYelpId(event['venue_name'], locLat, locLng)
     if yelpId:
-        eventObj = { 'id': yelpId,
-                     'coordinates': location,
-                     'description': event['title'],
-                     'startTime': event['start_time'],
-                     'url': event['url']
-        }
+        eventObj = representation.eventRecord(yelpId, locLat, locLng, event['title'], event['start_time'], event['stop_time'], event['url'])
         return eventObj
 
 def getNameAndAddress(rawLocation):

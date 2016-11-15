@@ -20,7 +20,7 @@ def placeUser(latitude, longitude):
     except KeyboardInterrupt:
         log.info("GOODBYE")
         sys.exit(1)
-    except Exception as err:
+    except Exception:
         from app.util import log
         log.exception("Unknown exception")
         abort(500)

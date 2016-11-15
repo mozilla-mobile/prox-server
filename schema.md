@@ -68,8 +68,8 @@ Event: {
     },
     description: "", # Used for badging
     notification: "",
-    startTime: "", # RFC 3339, e.g., "2016-11-10T18:00:00-10:00",
-    endTime: "", # RFC 3339
+    localStartTime: "", # RFC 3339, e.g., "2016-11-10T18:00:00-10:00",
+    localEndTime: "", # RFC 3339
     id: "<yelp-id>", # Best effort Yelp id
     url: "" # Optional: url to open when clicking on more information
 }

@@ -154,8 +154,8 @@ def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
             "coordinates": { "lat": lat, "lng": lon },
             "description": title,
             "notification": "Event nearby: " + title, # Placeholder for event notification
-            "startTime": startTime,
-            "endTime": endTime,
+            "localStartTime": startTime,
+            "localEndTime": endTime,
             "url": url
     }
 

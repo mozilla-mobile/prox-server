@@ -75,6 +75,8 @@ def getGcalEventObj(event):
     # Check address, then name, then summary
     name, address = getNameAndAddress(event['location'])
     summary = event['summary']
+    if ("dateTime" not in event["start"]) or ("dateTime" not in event["end"]):
+        return None
 
     # Check address first for lat/long
     if address:

@@ -1,13 +1,18 @@
+import datetime
 import json
 from multiprocessing.dummy import Pool as ThreadPool 
+import sched
+import threading
+import time
 
 import pyrebase
 
 from config import FIREBASE_CONFIG
-from app.constants import venuesTable, eventsTable, searchesTable, searchCacheExpiry, searchCacheRadius
+from app.constants import venuesTable, eventsTable, searchesTable, searchCacheExpiry, searchCacheRadius, konaLatLng, calendarInfo
 import app.crosswalk as crosswalk
 import app.representation as representation
 import app.search as search
+import app.events as events
 from app.util import log
 
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
@@ -107,6 +112,18 @@ def researchVenue(biz):
         log.exception("Error researching venue")
         return False
 
+def researchEvent(eventfulObj):
+    try:
+        eventObj = getEventfulEventObj(eventfulObj)
+        if eventObj:
+            writeEventRecord(eventObj)
+            return eventObj["id"]
+    except KeyboardInterrupt:
+        return False
+    except Exception as err:
+        log.exception("Error researching venue")
+        return False
+
 def searchLocationWithErrorRecovery(lat, lng):
     try:
         searchLocation(lat, lng)
@@ -118,6 +135,7 @@ def searchLocationWithErrorRecovery(lat, lng):
         log.exception("Unknown exception")
 
 def searchLocation(lat, lng):
+    # Fetch locations
     searchRecord = findSearchRecord((lat, lng), searchCacheRadius)
     if searchRecord is not None:
         log.debug("searchRecord: %s" % searchRecord)
@@ -132,6 +150,11 @@ def searchLocation(lat, lng):
     pool = ThreadPool(5)
 
     res = pool.map(researchVenue, yelpVenues)
+
+    # Fetch events from Eventful
+    eventListings = events.fetchEventsFromLocation(lat, lng)
+    eRes = pool.map(researchEvent, eventListings)
+
     pool.close()
     pool.join()
 
@@ -141,7 +164,7 @@ def searchLocation(lat, lng):
 def writeEventRecord(eventObj):
     key   = representation.createEventKey(eventObj)
     event = eventObj;
-    geo   = representation._geoRecord(eventObj["coordinates"]["lat"], eventObj["coordinates"]["lng"])
+    geo   = representation._geoRecord(float(eventObj["coordinates"]["lat"]), float(eventObj["coordinates"]["lng"]))
 
     db.child(eventsTable).update(
       {
@@ -149,3 +172,82 @@ def writeEventRecord(eventObj):
         "locations/" + key: geo
       }
     )
+
+def getEventfulEventObj(event):
+    locLat = event['latitude']
+    locLng = event['longitude']
+    yelpBiz = search._guessYelpBiz(event['venue_name'], locLat, locLng)
+    if yelpBiz:
+        researchVenue(yelpBiz)
+        eventObj = representation.eventRecord(yelpBiz.id, locLat, locLng, event['title'], event['start_time'], event['stop_time'], event['url'])
+        return eventObj
+
+# Fetching events from Google Calendar
+
+DAY_DATETIME = datetime.timedelta(days=1)
+scheduler = sched.scheduler(time.time, time.sleep)
+
+def startGcalThread():
+    scheduler.enter(10, 1, updateFromGcals)
+    t = threading.Thread(target=scheduler.run)
+    t.start()
+
+def updateFromGcals():
+    try:
+        loadCalendarEvents(DAY_DATETIME)
+        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals)
+    except Exception as err:
+        from app.util import log
+        log.exception("Error running scheduled calendar fetch")
+        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals)
+
+def loadCalendarEvents(timeDuration):
+    for calId in calendarInfo["calendarIds"]:
+        eventsList = events.fetchEventsFromGcal(calId, timeDuration)
+        for event in eventsList:
+            if 'location' in event:
+                eventObj = getGcalEventObj(event)
+                if eventObj:
+                    writeEventRecord(eventObj)
+
+def getGcalEventObj(event):
+    # Check address, then name, then summary
+    name, address = events.getNameAndAddress(event['location'])
+    summary = event['summary']
+    if ("dateTime" not in event["start"]) or ("dateTime" not in event["end"]):
+        return None
+
+    # Check address first for lat/long
+    if address:
+        try:
+            mapping = search._getAddressIdentifiers(address)
+            if mapping:
+                placeMapping = search._findPlaceInRange(summary, mapping['location'], 5)
+                if placeMapping:
+                    location = mapping['location']
+                    placeName = placeMapping['name']
+                    yelpBiz = search._guessYelpBiz(placeName, location['lat'], location['lng'])
+                    if yelpBiz:
+                        researchVenue(yelpBiz)
+                        eventObj = representation.eventRecord(yelpBiz.id, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
+                        return eventObj
+
+        except Exception as err:
+            print('Searching by address: error: {}'.format(err))
+
+    # Search for location by name
+    if name:
+        try:
+            mapping = search._findPlaceInRange(name, konaLatLng, 5000)
+            if mapping:
+                placeName = mapping['name']
+                location = mapping['location']
+                yelpBiz = search._guessYelpBiz(placeName, location['lat'], location['lng'])
+                if (yelpBiz):
+                    researchVenue(yelpBiz)
+                    eventObj = representation.eventRecord(yelpBiz.id, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
+                    return eventObj
+
+        except Exception as err:
+            print('Searching by name, error: {}'.format(err))
+

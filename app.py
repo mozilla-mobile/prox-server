@@ -1,7 +1,7 @@
 from flask import Flask, abort
 
 from app.queue.enqueue import searchLocation
-from app.events import startGcalThread
+from app.request_handler import startGcalThread
 
 app = Flask(__name__)
 

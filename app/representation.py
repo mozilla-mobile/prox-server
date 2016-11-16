@@ -7,7 +7,7 @@ def venueRecord(biz, **details):
     # h is derived from the providers, but for the main body of the record.
     # h is for header.
     h = {
-      "url"        : "https://mozilla.org",
+      "url"        : None,
       "description": [],
       "categories" : OrderedDict(),
       "images"     : [],
@@ -61,6 +61,11 @@ def venueRecord(biz, **details):
     if "foursquare" in details:
         info = details["foursquare"]
         h["images"] += _imageRecords("foursquare", info["images"], info["url"])
+
+    # Factual Places
+    if "factual" in details:
+        info = details["factual"]
+        h["url"] = info.get("website", None)
 
     images = h["images"]
     h["images"] = random.sample(images, len(images))

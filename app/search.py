@@ -7,6 +7,7 @@ from app.providers.fs import resolve as resolveFoursquare
 from app.providers.yelp import resolve as resolveYelp
 from app.providers.wp import resolve as resolveWikipedia
 from app.providers.tripadvisor import resolve as resolveTripAdvisor
+from app.providers.factual_places import resolve as resolveFactualPlace
 from app.util import log
 
 from config  import yelpSearchCategories
@@ -20,7 +21,8 @@ resolvers = {
     "foursquare": resolveFoursquare,
     "yelp": resolveYelp,
     "wikipedia": resolveWikipedia,
-    "tripadvisor": resolveTripAdvisor
+    "tripadvisor": resolveTripAdvisor,
+    "factual": resolveFactualPlace,
 }
 
 def _getVenuesFromIndex(lat, lon):

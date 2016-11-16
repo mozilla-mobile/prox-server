@@ -33,14 +33,14 @@ def _getVenuesFromIndex(lat, lon):
     }
     return yelpClient.search_by_coordinates(lat, lon, **opts)
 
-def _guessYelpId(placeName, lat, lon):
+def _guessYelpBiz(placeName, lat, lon):
     opts = {
       'term': placeName[:30],
       'limit': 1
     }
     r = yelpClient.search_by_coordinates(lat, lon, **opts)
     if len(r.businesses) > 0:
-        return r.businesses[0].id
+        return r.businesses[0]
     else:
         return None
 

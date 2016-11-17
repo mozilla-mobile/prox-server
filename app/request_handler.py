@@ -125,9 +125,14 @@ def searchLocation(lat, lng):
     else:
         writeSearchRecord(lat, lng)
 
-    locality = search._getVenuesFromIndex(lat, lng)
-
-    yelpVenues = locality.businesses
+    total = 1
+    offset = 0
+    yelpVenues = []
+    while offset < total:
+        locality = search._getVenuesFromIndex(lat, lng, offset=offset)
+        total = locality.total
+        yelpVenues += locality.businesses
+        offset = len(yelpVenues)
 
     pool = ThreadPool(5)
 

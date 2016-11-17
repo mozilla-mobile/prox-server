@@ -7,7 +7,7 @@ _events = "events"
 _searches = "searches"
 
 # number of seconds after a search in a given area that it should be cached.
-searchCacheExpiry = 60 * 60 * 24 # s
+searchCacheExpiry = 60 * 60 * 20 # s
 searchCacheRadius = 1000 # m
 
 # radius we ask yelp to query around.

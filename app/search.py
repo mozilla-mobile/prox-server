@@ -23,12 +23,12 @@ resolvers = {
     "tripadvisor": resolveTripAdvisor
 }
 
-def _getVenuesFromIndex(lat, lon):
+def _getVenuesFromIndex(lat, lon, offset=0):
     opts = {
-      "radius_filter": 25000,
-      "sort": 1,
+      "radius_filter": 40000, # max 40000
+      "sort": 1, # 1 = by distance, 2 = bayesian by rating.
       "limit": 20, 
-      "offset": 0, 
+      "offset": offset, 
       "category_filter": CATEGORIES
     }
     return yelpClient.search_by_coordinates(lat, lon, **opts)

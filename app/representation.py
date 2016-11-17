@@ -1,4 +1,6 @@
 import random
+from dateutil import parser
+import datetime
 
 def venueRecord(biz, **details):
     # biz is the response object from the Yelp Search API
@@ -149,15 +151,23 @@ def _yelpHoursRecord(hours):
     return record
 
 def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
-    return {
+    try :
+        isoStartTime = parser.parse(startTime)
+    except TypeError:
+        # No start time
+        return None
+
+    isoEndTime = parser.parse(endTime) if endTime else isoStartTime + datetime.timedelta(hours=1)
+    r = {
             "id": yelpId,
             "coordinates": { "lat": lat, "lng": lon },
             "description": title,
             "notification": "Event nearby: " + title, # Placeholder for event notification
-            "localStartTime": startTime,
-            "localEndTime": endTime,
+            "localStartTime": isoStartTime.isoformat(),
+            "localEndTime": isoEndTime.isoformat(),
             "url": url
     }
+    return r
 
 def createEventKey(eventObj):
     return eventObj['id']

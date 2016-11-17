@@ -17,18 +17,18 @@ DAY_DATETIME = datetime.timedelta(days=1)
 scheduler = sched.scheduler(time.time, time.sleep)
 
 def startGcalThread():
-    scheduler.enter(10, 1, updateFromGcals)
+    scheduler.enter(10, 1, updateFromGcals, ())
     t = threading.Thread(target=scheduler.run)
     t.start()
 
 def updateFromGcals():
     try:
         loadCalendarEvents(DAY_DATETIME)
-        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals)
+        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals, ())
     except Exception as err:
         from app.util import log
         log.exception("Error running scheduled calendar fetch")
-        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals)
+        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals, ())
 
 def loadCalendarEvents(timeDuration):
     for calId in calendarInfo["calendarIds"]:

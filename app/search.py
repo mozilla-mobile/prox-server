@@ -23,9 +23,10 @@ resolvers = {
     "tripadvisor": resolveTripAdvisor
 }
 
-def _getVenuesFromIndex(lat, lon, offset=0):
+def _getVenuesFromIndex(lat, lon, offset=0, radius=40000):
+    radius = min(radius, 40000)
     opts = {
-      "radius_filter": 40000, # max 40000
+      "radius_filter": radius, # max 40000
       "sort": 1, # 1 = by distance, 2 = bayesian by rating.
       "limit": 20, 
       "offset": offset, 

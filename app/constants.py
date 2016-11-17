@@ -10,6 +10,9 @@ _searches = "searches"
 searchCacheExpiry = 60 * 60 * 24 # s
 searchCacheRadius = 1000 # m
 
+# radius we ask yelp to query around.
+venueSearchRadius = 40000 # m
+
 # Don't edit these directly.
 venuesTable = _tablePrefix + _venues
 eventsTable = _tablePrefix + _events

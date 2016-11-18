@@ -1,9 +1,7 @@
 import datetime
 import json
 from multiprocessing.dummy import Pool as ThreadPool 
-import sched
 import threading
-import time
 
 import pyrebase
 
@@ -19,7 +17,7 @@ import app.crosswalk as crosswalk
 import app.representation as representation
 import app.search as search
 import app.events as events
-from app.util import log
+from app.util import log, scheduler
 
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 db = firebase.database()
@@ -220,10 +218,6 @@ def getEventfulEventObj(event):
         return eventObj
 
 # Fetching events from Google Calendar
-
-DAY_DATETIME = datetime.timedelta(days=1)
-scheduler = sched.scheduler(time.time, time.sleep)
-
 def startGcalThread():
     scheduler.enter(10, 1, updateFromGcals, ())
     t = threading.Thread(target=scheduler.run)
@@ -232,7 +226,7 @@ def startGcalThread():
 
 def updateFromGcals():
     try:
-        loadCalendarEvents(DAY_DATETIME)
+        loadCalendarEvents(datetime.timedelta(days=1))
         scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals, ())
     except Exception as err:
         from app.util import log

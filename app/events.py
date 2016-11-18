@@ -9,9 +9,8 @@ import app.search as search
 from app.clients import yelpClient, googleapikey, eventfulkey
 from app.constants import calendarInfo, konaLatLng
 from app.request_handler import writeEventRecord
+from app.request_handler import researchVenue
 import app.representation as representation
-
-
 
 DAY_DATETIME = datetime.timedelta(days=1)
 scheduler = sched.scheduler(time.time, time.sleep)
@@ -76,6 +75,8 @@ def getGcalEventObj(event):
     # Check address, then name, then summary
     name, address = getNameAndAddress(event['location'])
     summary = event['summary']
+    if ("dateTime" not in event["start"]) or ("dateTime" not in event["end"]):
+        return None
 
     # Check address first for lat/long
     if address:
@@ -86,9 +87,10 @@ def getGcalEventObj(event):
                 if placeMapping:
                     location = mapping['location']
                     placeName = placeMapping['name']
-                    yelpId = search._guessYelpId(placeName, location['lat'], location['lng'])
-                    if yelpId:
-                        eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
+                    yelpBiz = search._guessYelpBiz(placeName, location['lat'], location['lng'])
+                    if yelpBiz:
+                        researchVenue(yelpBiz)
+                        eventObj = representation.eventRecord(yelpBiz.id, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
                         return eventObj
 
         except Exception as err:
@@ -101,9 +103,10 @@ def getGcalEventObj(event):
             if mapping:
                 placeName = mapping['name']
                 location = mapping['location']
-                yelpId = search._guessYelpId(placeName, location['lat'], location['lng'])
-                if (yelpId):
-                    eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
+                yelpBiz = search._guessYelpBiz(placeName, location['lat'], location['lng'])
+                if (yelpBiz):
+                    researchVenue(yelpBiz)
+                    eventObj = representation.eventRecord(yelpBiz.id, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
                     return eventObj
 
         except Exception as err:
@@ -127,9 +130,10 @@ def fetchEventsFromLocation(latlong, maxResults, radius=5, dateRange="Today"):
 def getEventfulEventObj(event):
     locLat = event['latitude']
     locLng = event['longitude']
-    yelpId = search._guessYelpId(event['venue_name'], locLat, locLng)
-    if yelpId:
-        eventObj = representation.eventRecord(yelpId, locLat, locLng, event['title'], event['start_time'], event['stop_time'], event['url'])
+    yelpBiz = search._guessYelpBiz(event['venue_name'], locLat, locLng)
+    if yelpBiz:
+        researchVenue(yelpBiz)
+        eventObj = representation.eventRecord(yelpBiz.id, locLat, locLng, event['title'], event['start_time'], event['stop_time'], event['url'])
         return eventObj
 
 def getNameAndAddress(rawLocation):

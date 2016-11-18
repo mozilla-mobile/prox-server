@@ -11,9 +11,10 @@ from config import FIREBASE_CONFIG
 from app.constants import \
     venuesTable, venueSearchRadius, \
     eventsTable, \
-    searchesTable, searchCacheExpiry, searchCacheRadius \
+    searchesTable, searchCacheExpiry, searchCacheRadius, \
     konaLatLng, calendarInfo
 
+from app.clients import yelpClient
 import app.crosswalk as crosswalk
 import app.representation as representation
 import app.search as search
@@ -174,6 +175,30 @@ def searchLocation(lat, lng, radius=None):
     import json
     log.info("Finished: " + json.dumps(res))
 
+def _guessYelpId(placeName, lat, lon):
+    safePlaceName = placeName.replace(".", "_")
+    cachedId = db.child(eventsTable).child("cache/" + safePlaceName).get().val()
+    if cachedId:
+        return cachedId
+
+    opts = {
+      'term': placeName[:30],
+      'limit': 1
+    }
+    r = yelpClient.search_by_coordinates(lat, lon, **opts)
+    if len(r.businesses) > 0:
+        biz = r.businesses[0]
+        researchVenue(biz)
+
+        # Add bizId to cache
+        record = { "cache/" +  safePlaceName : str(biz.id) }
+        db.child(eventsTable).update(record)
+
+        return biz.id
+    else:
+        return None
+
+
 def writeEventRecord(eventObj):
     key   = representation.createEventKey(eventObj)
     event = eventObj;
@@ -189,10 +214,9 @@ def writeEventRecord(eventObj):
 def getEventfulEventObj(event):
     locLat = event['latitude']
     locLng = event['longitude']
-    yelpBiz = search._guessYelpBiz(event['venue_name'], locLat, locLng)
-    if yelpBiz:
-        researchVenue(yelpBiz)
-        eventObj = representation.eventRecord(yelpBiz.id, locLat, locLng, event['title'], event['start_time'], event['stop_time'], event['url'])
+    yelpId = _guessYelpId(event['venue_name'], locLat, locLng)
+    if yelpId:
+        eventObj = representation.eventRecord(yelpId, locLat, locLng, event['title'], event['start_time'], event['stop_time'], event['url'])
         return eventObj
 
 # Fetching events from Google Calendar
@@ -201,18 +225,19 @@ DAY_DATETIME = datetime.timedelta(days=1)
 scheduler = sched.scheduler(time.time, time.sleep)
 
 def startGcalThread():
-    scheduler.enter(10, 1, updateFromGcals)
+    scheduler.enter(10, 1, updateFromGcals, ())
     t = threading.Thread(target=scheduler.run)
+    t.setDaemon(True)
     t.start()
 
 def updateFromGcals():
     try:
         loadCalendarEvents(DAY_DATETIME)
-        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals)
+        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals, ())
     except Exception as err:
         from app.util import log
         log.exception("Error running scheduled calendar fetch")
-        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals)
+        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals, ())
 
 def loadCalendarEvents(timeDuration):
     for calId in calendarInfo["calendarIds"]:
@@ -239,10 +264,9 @@ def getGcalEventObj(event):
                 if placeMapping:
                     location = mapping['location']
                     placeName = placeMapping['name']
-                    yelpBiz = search._guessYelpBiz(placeName, location['lat'], location['lng'])
-                    if yelpBiz:
-                        researchVenue(yelpBiz)
-                        eventObj = representation.eventRecord(yelpBiz.id, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
+                    yelpId = _guessYelpId(placeName, location['lat'], location['lng'])
+                    if yelpId:
+                        eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
                         return eventObj
 
         except Exception as err:
@@ -255,10 +279,9 @@ def getGcalEventObj(event):
             if mapping:
                 placeName = mapping['name']
                 location = mapping['location']
-                yelpBiz = search._guessYelpBiz(placeName, location['lat'], location['lng'])
-                if (yelpBiz):
-                    researchVenue(yelpBiz)
-                    eventObj = representation.eventRecord(yelpBiz.id, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
+                yelpId = _guessYelpId(placeName, location['lat'], location['lng'])
+                if yelpId:
+                    eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
                     return eventObj
 
         except Exception as err:

@@ -34,17 +34,6 @@ def _getVenuesFromIndex(lat, lon, offset=0, radius=40000):
     }
     return yelpClient.search_by_coordinates(lat, lon, **opts)
 
-def _guessYelpBiz(placeName, lat, lon):
-    opts = {
-      'term': placeName[:30],
-      'limit': 1
-    }
-    r = yelpClient.search_by_coordinates(lat, lon, **opts)
-    if len(r.businesses) > 0:
-        return r.businesses[0]
-    else:
-        return None
-
 def _getVenueDetailsFromProvider(args):
      return getVenueDetailsFromProvider(*args)
 

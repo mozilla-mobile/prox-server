@@ -4,7 +4,11 @@ from multiprocessing.dummy import Pool as ThreadPool
 import pyrebase
 
 from config import FIREBASE_CONFIG
-from app.constants import venuesTable, eventsTable, searchesTable, searchCacheExpiry, searchCacheRadius
+from app.constants import \
+    venuesTable, venueSearchRadius, \
+    eventsTable, \
+    searchesTable, searchCacheExpiry, searchCacheRadius
+
 import app.crosswalk as crosswalk
 import app.representation as representation
 import app.search as search
@@ -107,9 +111,9 @@ def researchVenue(biz):
         log.exception("Error researching venue")
         return False
 
-def searchLocationWithErrorRecovery(lat, lng):
+def searchLocationWithErrorRecovery(lat, lng, radius=None):
     try:
-        searchLocation(lat, lng)
+        searchLocation(lat, lng, radius=radius)
     except KeyboardInterrupt:
         log.info("GOODBYE")
         sys.exit(1)
@@ -117,7 +121,7 @@ def searchLocationWithErrorRecovery(lat, lng):
         from app.util import log
         log.exception("Unknown exception")
 
-def searchLocation(lat, lng):
+def searchLocation(lat, lng, radius=None):
     searchRecord = findSearchRecord((lat, lng), searchCacheRadius)
     if searchRecord is not None:
         log.debug("searchRecord: %s" % searchRecord)
@@ -125,9 +129,17 @@ def searchLocation(lat, lng):
     else:
         writeSearchRecord(lat, lng)
 
-    locality = search._getVenuesFromIndex(lat, lng)
+    if radius is None: 
+        radius = venueSearchRadius
 
-    yelpVenues = locality.businesses
+    total = 1
+    offset = 0
+    yelpVenues = []
+    while offset < total:
+        locality = search._getVenuesFromIndex(lat, lng, offset=offset, radius=radius)
+        total = locality.total
+        yelpVenues += locality.businesses
+        offset = len(yelpVenues)
 
     pool = ThreadPool(5)
 

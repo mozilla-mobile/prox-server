@@ -18,6 +18,6 @@ redis_conn = Redis()
 
 q = Queue("api_search", connection=redis_conn, async=async)
 
-def searchLocation(lat, lng):
-    job = q.enqueue_call(func=searchLocationWithErrorRecovery, args=(lat, lng), ttl=ttl)
+def searchLocation(lat, lng, radius=None):
+    job = q.enqueue_call(func=searchLocationWithErrorRecovery, args=(lat, lng, radius), ttl=ttl)
     return q.count

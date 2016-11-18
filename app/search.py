@@ -25,12 +25,13 @@ resolvers = {
     "factual": resolveFactualPlace,
 }
 
-def _getVenuesFromIndex(lat, lon):
+def _getVenuesFromIndex(lat, lon, offset=0, radius=40000):
+    radius = min(radius, 40000)
     opts = {
-      "radius_filter": 25000,
-      "sort": 1,
+      "radius_filter": radius, # max 40000
+      "sort": 1, # 1 = by distance, 2 = bayesian by rating.
       "limit": 20, 
-      "offset": 0, 
+      "offset": offset, 
       "category_filter": CATEGORIES
     }
     return yelpClient.search_by_coordinates(lat, lon, **opts)

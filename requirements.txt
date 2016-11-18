@@ -4,6 +4,7 @@ foursquare
 pyrebase
 pytest
 pygeohash
+python-dateutil
 redis
 rq
 sanction

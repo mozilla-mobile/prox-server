@@ -70,7 +70,8 @@ Event: {
     notification: "",
     localStartTime: "", # ISO without timezone, e.g., "2016-11-10T18:00:00",
     localEndTime: "",
-    id: "<yelp-id>", # Best effort Yelp id
+    id: "", # Low-effort-uniqueness identifier made from event name and time
+    placeId: "<yelp-id>", # Best effort Yelp id
     url: "" # Optional: url to open when clicking on more information
 }
 ```

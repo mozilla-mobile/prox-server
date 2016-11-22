@@ -164,7 +164,8 @@ def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
 
     isoEndTime = parser.parse(endTime) if endTime else isoStartTime + datetime.timedelta(hours=1)
     r = {
-            "id": yelpId,
+            "id": title[:30].replace(" ", "-") + startTime,
+            "placeId": yelpId,
             "coordinates": { "lat": lat, "lng": lon },
             "description": title,
             "notification": "Event nearby: " + title, # Placeholder for event notification

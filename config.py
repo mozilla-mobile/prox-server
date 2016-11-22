@@ -15,14 +15,11 @@ FIREBASE_CONFIG = {
 
 yelpSearchCategories = ["active",
                         "arts",
-                        "beautysvc",
                         "eventservices",
                         "food",
                         "hotelstravel",
                         "localflavor",
-                        "massmedia",
                         "nightlife",
                         "pets",
-                        "publicservicesgovt",
                         "restaurants",
                         "shopping"]

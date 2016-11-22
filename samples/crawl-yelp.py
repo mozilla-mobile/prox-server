@@ -4,6 +4,7 @@ import sys
 import time
 
 from app.clients import yelp3Client
+from config import yelpSearchCategories
 
 # Excercises the Yelp Business API to download upto 1000 businesses
 # Outputs progress to stderr
@@ -11,15 +12,15 @@ from app.clients import yelp3Client
 # Once the raw JSON is available, use jq to process.
 # % brew install jq 
 # % python -m samples.crawl_yelp > top1000.json
-# % jq '[.[] | { name: .name, rating: .rating, review_count: .review_count, categories: [.categories[] | .alias], distance: .distance, coord: [ .coordinates.latitude,  .coordinates.longitude] } ]' top1000.json
+# % jq '[.[] | { name: .name, rating: .rating, review_count: .review_count, categories: [.categories[] | .alias], distance: .distance, coord: [ .coordinates.latitude,  .coordinates.longitude] } | select((2.5 <= .rating and 3 < .review_count) or .rating == 5.0) ]| sort_by(.distance) ' top1000.json
 
 lat, lon = 19.915403, -155.8961577 # Waikaloa
-categories=None # ["beaches", "hotels"]
-radius = 40000 # metres
+categories = yelpSearchCategories
+radius = 27000 # metres
 
 def getLocality(lat, lon, radius_filter=40000, offset=0, **kwargs):
     from app.clients import yelp3Client
-    queryParams = "latitude=" + str(lat) + "&longitude=" + str(lon) + "&limit=50&offset=" + str(offset) + "&radius=" + str(radius_filter) + "&sort_by=review_count")
+    queryParams = "latitude=" + str(lat) + "&longitude=" + str(lon) + "&limit=50&offset=" + str(offset) + "&radius=" + str(radius_filter) + "&sort_by=review_count"
     if categories is not None:
         queryParams += "&categories=" + string.join(categories, ",")
 

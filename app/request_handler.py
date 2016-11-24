@@ -8,7 +8,7 @@ import pyrebase
 
 from config import FIREBASE_CONFIG
 from app.constants import \
-    venuesTable, venueSearchRadius, \
+    venuesTable, venueSearchRadius, venueSearchNumber, \
     eventsTable, \
     searchesTable, searchCacheExpiry, searchCacheRadius, \
     konaLatLng, calendarInfo
@@ -135,16 +135,23 @@ def researchEvent(eventfulObj):
         log.exception("Error researching venue")
         return False
 
-def searchLocationWithErrorRecovery(lat, lng, radius=None):
+# This is the main entry point for the flask app.
+def searchLocationWithErrorRecovery(lat, lng, radius=None, maxNum=None):
     try:
-        searchLocation(lat, lng, radius=radius)
+        if radius is None:
+            # If the radius is unset, then we should set sensible 
+            # defaults
+            radius = venueSearchRadius
+        if maxNum is None:
+            maxNum = venueSearchNumber
+        searchLocation(lat, lng, radius, maxNum)
     except KeyboardInterrupt:
         log.exception("GOODBYE")
         sys.exit(1)
     except Exception:
         log.exception("Unknown exception")
 
-def searchLocation(lat, lng, radius=None):
+def searchLocation(lat, lng, radius, maxNum):
     # Fetch locations
     searchRecord = findSearchRecord((lat, lng), searchCacheRadius)
     if searchRecord is not None:
@@ -153,18 +160,7 @@ def searchLocation(lat, lng, radius=None):
     else:
         writeSearchRecord(lat, lng)
 
-    if radius is None: 
-        radius = venueSearchRadius
-
-    total = 1
-    offset = 0
-    yelpVenues = []
-    while offset < total:
-        locality = search._getVenuesFromIndex(lat, lng, offset=offset, radius=radius)
-        total = locality.total
-        yelpVenues += locality.businesses
-        offset = len(yelpVenues)
-
+    yelpVenues = search.getVenuesFromIndex(lat, lng, radius, maxNum)
     pool = ThreadPool(5)
 
     res = pool.map(researchVenue, yelpVenues)
@@ -177,7 +173,7 @@ def searchLocation(lat, lng, radius=None):
     pool.join()
 
     import json
-    log.info("Finished: " + json.dumps(res))
+    log.info("Found %d: %s" % (len(res), json.dumps(res)))
 
 def _guessYelpId(placeName, lat, lon):
     safePlaceName = placeName.replace(".", "_")

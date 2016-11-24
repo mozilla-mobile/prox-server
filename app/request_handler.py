@@ -1,3 +1,4 @@
+from app.util import log
 import datetime
 import json
 from multiprocessing.dummy import Pool as ThreadPool 
@@ -19,11 +20,16 @@ import app.search as search
 import app.events as events
 from app.util import log, scheduler
 
+import sys
+reload(sys)  
+sys.setdefaultencoding('utf8')
+
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 db = firebase.database()
 
 def writeVenueRecord(biz, details, idObj = None):
     key   = representation.createKey(biz)
+    key   = key.encode('utf-8').strip()
     try:
         venue = representation.venueRecord(biz, **details)
         geo   = representation.geoRecord(biz)
@@ -89,6 +95,7 @@ def readCachedVenueIdentifiers(cache):
 def researchVenue(biz):
     try:
         yelpID = representation.createKey(biz)
+        yelpID = yelpID.encode('utf-8').strip()
         cache = readCachedVenueDetails(yelpID)
         venueIdentifiers = readCachedVenueIdentifiers(cache)
         # This gets the identifiers from Factual. It's two HTTP requests 
@@ -132,10 +139,9 @@ def searchLocationWithErrorRecovery(lat, lng, radius=None):
     try:
         searchLocation(lat, lng, radius=radius)
     except KeyboardInterrupt:
-        log.info("GOODBYE")
+        log.exception("GOODBYE")
         sys.exit(1)
     except Exception:
-        from app.util import log
         log.exception("Unknown exception")
 
 def searchLocation(lat, lng, radius=None):

@@ -1,0 +1,12 @@
+[Unit]
+Description=prox backend
+
+[Service]
+WorkingDirectory=/home/prox/prox-server
+ExecStart=rq worker rq_settings
+Restart=always
+User=prox
+Group=prox
+
+[Install]
+WantedBy=multi-user.target

@@ -3,7 +3,7 @@ Description=prox backend
 
 [Service]
 WorkingDirectory=/home/prox/prox-server
-ExecStart=rq worker rq_settings
+ExecStart=/home/prox/prox-server/env/bin/rq worker rq_settings
 Restart=always
 User=prox
 Group=prox

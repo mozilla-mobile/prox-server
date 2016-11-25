@@ -3,7 +3,7 @@ Description=prox backend
 
 [Service]
 WorkingDirectory=/home/prox/prox-server
-ExecStart=/home/prox/prox-server/env/bin/gunicorn app:app
+ExecStart=/home/prox/prox-server/env/bin/gunicorn main:app
 Restart=always
 User=prox
 Group=prox

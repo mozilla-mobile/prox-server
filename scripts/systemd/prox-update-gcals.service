@@ -1,0 +1,10 @@
+[Unit]
+Description=prox update gcals
+
+[Service]
+Type=simple
+WorkingDirectory=/home/prox/prox-server
+ExecStart=/home/prox/prox-server/env/bin/python scripts/update_gcals.py
+User=prox
+Group=prox
+

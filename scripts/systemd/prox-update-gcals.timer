@@ -1,0 +1,9 @@
+[Unit]
+Description=prox update gcals timer
+
+[Timer]
+OnCalendar=*:0/10
+Unit=prox-update-gcals.service
+
+[Install]
+WantedBy=multi-user.target

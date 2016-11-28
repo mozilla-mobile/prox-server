@@ -10,7 +10,7 @@ grid_size_m = None
 # There is a hard maximum of 40 venues per geo-circle (Yelp v2),
 # so the smaller the radius, the more venues will be crawled.
 search_radius = 20000
-maxVenuesPerSearch = 250
+maxVenuesPerSearch = 400
 
 # Defined the bounded box of around the island.
 north_lat, west_lng = 20.260499, -156.030462

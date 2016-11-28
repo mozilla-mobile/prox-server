@@ -28,6 +28,7 @@ resolvers = {
 }
 
 def getVenuesFromIndex(lat, lon, radius, maxNum):
+    maxNum = min(maxNum, 1000)
     all = _getVenuesFromIndex(lat, lon, radius, "rating", maxNum)
     seen = set()
     unique = (biz for biz in all if biz.id not in seen and not seen.add(biz.id))
@@ -39,10 +40,24 @@ def _getVenuesFromIndex(lat, lon, radius, sortOrder, maxNum):
     offset = 0
     yelpVenues = []
     while offset < total:
-        locality = _singleSearchAPIQuery(lat, lon, offset, radius, sortOrder)
-        total = min(locality.total, maxNum)
-        yelpVenues += locality.businesses
-        offset += len(locality.businesses)
+        try:
+            locality = _singleSearchAPIQuery(lat, lon, offset, radius, sortOrder)
+            total = min(locality.total, maxNum)
+            yelpVenues += locality.businesses
+            offset += 20
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt()
+        except Exception:
+            log.exception("Exception searching with Yelp API")
+            # give up if this is the first try – we've seen
+            # occasional failures where the location doesn't 
+            # have any existing support (e.g. Vanuatu)
+            # but also, just randon 500 errors, which we can recover from.
+            if total == 1 and offset == 0:
+                return yelpVenues
+            else:
+                offset += 20
+
     return yelpVenues
 
 

@@ -10,4 +10,5 @@ def resolve(idObj):
     params = {
       "lang": "en"
     }
-    return yelp3Client.request("/businesses/%s" % key)
+    key = key.encode('utf-8').strip()
+    return yelp3Client.request("/businesses/{0}".format(key))

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 import string
 
@@ -9,6 +10,7 @@ from app.providers.wp import resolve as resolveWikipedia
 from app.providers.tripadvisor import resolve as resolveTripAdvisor
 from app.providers.factual_places import resolve as resolveFactualPlace
 from app.util import log
+from app.constants import venueSearchRadius
 
 from config  import yelpSearchCategories
 
@@ -25,11 +27,45 @@ resolvers = {
     "factual": resolveFactualPlace,
 }
 
-def _getVenuesFromIndex(lat, lon, offset=0, radius=40000):
+def getVenuesFromIndex(lat, lon, radius, maxNum):
+    maxNum = min(maxNum, 1000)
+    all = _getVenuesFromIndex(lat, lon, radius, "rating", maxNum)
+    seen = set()
+    unique = (biz for biz in all if biz.id not in seen and not seen.add(biz.id))
+    rated = [biz for biz in unique if biz.rating > 3.0]
+    return rated
+
+def _getVenuesFromIndex(lat, lon, radius, sortOrder, maxNum):
+    total = 1
+    offset = 0
+    yelpVenues = []
+    while offset < total:
+        try:
+            locality = _singleSearchAPIQuery(lat, lon, offset, radius, sortOrder)
+            total = min(locality.total, maxNum)
+            yelpVenues += locality.businesses
+            offset += 20
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt()
+        except Exception:
+            log.exception("Exception searching with Yelp API")
+            # give up if this is the first try – we've seen
+            # occasional failures where the location doesn't 
+            # have any existing support (e.g. Vanuatu)
+            # but also, just randon 500 errors, which we can recover from.
+            if total == 1 and offset == 0:
+                return yelpVenues
+            else:
+                offset += 20
+
+    return yelpVenues
+
+
+def _singleSearchAPIQuery(lat, lon, offset, radius, sortOrder):
     radius = min(radius, 40000)
     opts = {
-      "radius_filter": radius, # max 40000
-      "sort": 1, # 1 = by distance, 2 = bayesian by rating.
+      "radius_filter": radius,
+      "sort_by": sortOrder, 
       "limit": 20, 
       "offset": offset, 
       "category_filter": CATEGORIES

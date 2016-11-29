@@ -15,5 +15,5 @@ yelpID = "kekaha-kai-state-park-kailua"
 # pp(venueDetails)
 
 import app.request_handler as handler
-handler.searchLocation(50.822327, -0.13659)
-handler.searchLocation(19.915403, -155.887403)
+handler.searchLocation(50.822327, -0.13659, 2000, 100)
+handler.searchLocation(19.915403, -155.887403, 2000, 100)

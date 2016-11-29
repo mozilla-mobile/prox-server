@@ -1,6 +1,7 @@
 import random
 from dateutil import parser
 import datetime
+from app.util import log
 
 def venueRecord(biz, **details):
     # biz is the response object from the Yelp Search API
@@ -28,9 +29,14 @@ def venueRecord(biz, **details):
         "url"             : biz.url
       }
       h["description"].append(_descriptionRecord("yelp", biz.snippet_text))
-      h["categories"].update([ (c["title"], _categoryRecord(c["alias"], c["title"])) for c in info["categories"] if "title" in c])
+      if "categories" in info:
+          h["categories"].update([
+            (c["title"], _categoryRecord(c["alias"], c["title"])) 
+            for c in info["categories"] 
+            if "title" in c
+          ])
       h["images"]     += _imageRecords("yelp", info.get("photos", []), biz.url)
-      h["hours"]       = _yelpHoursRecord(info["hours"])
+      h["hours"]       = _yelpHoursRecord(info.get("hours", None))
 
 
     # Wikipedia.
@@ -46,18 +52,22 @@ def venueRecord(biz, **details):
     # TripAdvisor
     if "tripadvisor" in details:
       info = details["tripadvisor"]
-      reviews = info["reviews"]
+      reviews = info.get("reviews", [])
       firstReview = ""
       if len(reviews) > 0:
           firstReview = reviews[0]["text"]
           h["description"].append(_descriptionRecord("tripadvisor", firstReview))
 
-      providers["tripAdvisor"] = {
-        "rating"          : float(info["rating"]), # This is the aggregate rating
-        "totalReviewCount": int(info["num_reviews"]),
-        "description"     : firstReview, # The rating of this review is not included
-        "url"             : info["web_url"]
-      }
+      try:
+          providers["tripAdvisor"] = {
+            "rating"          : float(info["rating"]), # This is the aggregate rating
+            "totalReviewCount": int(info["num_reviews"]),
+            "description"     : firstReview, # The rating of this review is not included
+            "url"             : info["web_url"]
+          }
+      except KeyError:
+          log.debug("TripAdvisor weird for " + biz.id)
+
 
     # Foursquare
     if "foursquare" in details:
@@ -71,7 +81,12 @@ def venueRecord(biz, **details):
 
     images = h["images"]
     h["images"] = random.sample(images, len(images))
-
+    coord = None
+    if biz.location is not None and biz.location.coordinate is not None:
+        coord = {
+          "lat": biz.location.coordinate.latitude,
+          "lng": biz.location.coordinate.longitude
+        }
     return {
       "version"    : 1,
       "id"         : biz.id,
@@ -83,10 +98,7 @@ def venueRecord(biz, **details):
       "phone"      : biz.display_phone,
       
       "address"    : biz.location.display_address,
-      "coordinates": {
-        "lat": biz.location.coordinate.latitude,
-        "lng": biz.location.coordinate.longitude
-      },
+      "coordinates": coord,
 
       "categories" : list(h["categories"].values()),
       "providers"  : providers,
@@ -142,6 +154,8 @@ def _yelpHoursRecord(hours):
     #   }
     # ]
     # https://www.yelp.com/developers/documentation/v3/business
+    if hours is None:
+        return []
     days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
     record = {}
     for day in days:

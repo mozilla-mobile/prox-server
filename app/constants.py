@@ -25,6 +25,8 @@ searchCacheRadius = 1000 # m
 
 # radius we ask yelp to query around.
 venueSearchRadius = 40000 # m
+# the max number of venues we'll ask for for a given geo circle.
+venueSearchNumber = 200 
 
 # Don't edit these directly.
 venuesTable = _tablePrefix + _venues

@@ -1,5 +1,6 @@
 from app.util import log
 import datetime
+from dateutil import parser
 import json
 from multiprocessing.dummy import Pool as ThreadPool 
 import threading
@@ -219,6 +220,20 @@ def getEventfulEventObj(event):
         eventObj = representation.eventRecord(yelpId, locLat, locLng, event['title'], event['start_time'], event['stop_time'], event['url'])
         return eventObj
 
+def pruneEvents():
+    eventDetails = db.child(eventsTable).child("details").get().each()
+    cutoff = datetime.datetime.today() - datetime.timedelta(days=1, hours=1)
+
+    for event in eventDetails:
+        location = event.key()
+        endTime = parser.parse(event.val().get("localEndTime"))
+        if endTime < cutoff.replace(tzinfo=None):
+            db.child(eventsTable).update({
+                "details/" + location: None,
+                "cache/" + location: None,
+                "locations/" + location: None
+            })
+
 # Fetching events from Google Calendar
 def startGcalThread():
     scheduler.enter(10, 1, updateFromGcals, ())
@@ -230,6 +245,9 @@ def updateFromGcals():
     try:
         loadCalendarEvents(datetime.timedelta(days=1))
         scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals, ())
+
+        # Prune old events
+        pruneEvents()
     except Exception as err:
         from app.util import log
         log.exception("Error running scheduled calendar fetch")

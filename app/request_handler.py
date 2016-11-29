@@ -270,40 +270,23 @@ def loadCalendarEvents(timeDuration):
                     writeEventRecord(eventObj)
 
 def getGcalEventObj(event):
-    # Check address, then name, then summary
-    name, address = events.getNameAndAddress(event['location'])
-    summary = event['summary']
-    if ("dateTime" not in event["start"]) or ("dateTime" not in event["end"]):
+    if ("dateTime" not in event["start"]) or ("dateTime" not in event["end"]) or ("location" not in event):
         return None
 
-    # Check address first for lat/long
-    if address:
+    eventLoc = event["location"]
+    name, address = events.getNameAndAddress(eventLoc)
+    mapping = search._getAddressIdentifiers(address)
+    placeMapping = search._findPlaceInRange(name, mapping['location'], 5) or search._findPlaceInRange(eventLoc, konaLatLng, 5000)
+    if placeMapping:
         try:
-            mapping = search._getAddressIdentifiers(address)
-            if mapping:
-                placeMapping = search._findPlaceInRange(summary, mapping['location'], 5)
-                if placeMapping:
-                    location = mapping['location']
-                    placeName = placeMapping['name']
-                    yelpId = _guessYelpId(placeName, location['lat'], location['lng'])
-                    if yelpId:
-                        eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
-                        return eventObj
+            location = mapping['location']
+            placeName = placeMapping['name']
+            yelpId = _guessYelpId(placeName, location['lat'], location['lng'])
+            if yelpId:
+                optUrl = event["description"] if "description" in event else None
+                eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], event['summary'], event['start']['dateTime'], event['end']['dateTime'], optUrl)
+                return eventObj
 
         except Exception as err:
-            print('Searching by address: error: {}'.format(err))
-
-    # Search for location by name
-    if name:
-        try:
-            mapping = search._findPlaceInRange(name, konaLatLng, 5000)
-            if mapping:
-                placeName = mapping['name']
-                location = mapping['location']
-                yelpId = _guessYelpId(placeName, location['lat'], location['lng'])
-                if yelpId:
-                    eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], summary, event['start']['dateTime'], event['end']['dateTime'], event['htmlLink'])
-                    return eventObj
-
-        except Exception as err:
-            print('Searching by name, error: {}'.format(err))
+            log.exception("getGcalEventObj")
+    print("Unable to find corresponding location")

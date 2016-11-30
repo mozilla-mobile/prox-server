@@ -182,7 +182,6 @@ def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
             "placeId": yelpId,
             "coordinates": { "lat": lat, "lng": lon },
             "description": title,
-            "notification": "Event nearby: " + title, # Placeholder for event notification
             "localStartTime": isoStartTime.replace(tzinfo=None, second=1).isoformat(),
             "localEndTime": isoEndTime.replace(tzinfo=None, second=1).isoformat(),
             "url": url

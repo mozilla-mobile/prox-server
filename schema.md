@@ -67,7 +67,6 @@ Event: {
         lng: #
     },
     description: "", # Used for badging
-    notification: "",
     localStartTime: "", # ISO without timezone, e.g., "2016-11-10T18:00:00",
     localEndTime: "",
     id: "", # Low-effort-uniqueness identifier made from event name and time

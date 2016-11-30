@@ -225,14 +225,21 @@ def pruneEvents():
     cutoff = datetime.datetime.today() - datetime.timedelta(days=1, hours=1)
 
     for event in eventDetails:
-        location = event.key()
+        key = event.key()
+        if ("localEndTime" not in event.val()):
+            deleteEvent(key)
+            continue
+
         endTime = parser.parse(event.val().get("localEndTime"))
         if endTime < cutoff.replace(tzinfo=None):
-            db.child(eventsTable).update({
-                "details/" + location: None,
-                "cache/" + location: None,
-                "locations/" + location: None
-            })
+            deleteEvent(key)
+
+def deleteEvent(key):
+    db.child(eventsTable).update({
+        "details/" + key: None,
+        "cache/" + key: None,
+        "locations/" + key: None
+    })
 
 # Fetching events from Google Calendar
 def startGcalThread():

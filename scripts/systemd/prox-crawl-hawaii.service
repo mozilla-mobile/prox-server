@@ -1,11 +1,11 @@
 [Unit]
-Description=prox update gcals
+Description=prox crawl hawaii
 
 [Service]
 Type=simple
 WorkingDirectory=/home/prox/prox-server
 Environment=PYTHONPATH=/home/prox/prox-server
-ExecStart=/home/prox/prox-server/env/bin/python -m scripts.update_gcals
+ExecStart=/home/prox/prox-server/env/bin/python -m scripts.crawl_hawaii
 User=prox
 Group=prox
 

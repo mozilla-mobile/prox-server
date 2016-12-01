@@ -180,7 +180,9 @@ def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
     r = {
             "id": title[:30].replace(" ", "-") + startTime,
             "placeId": yelpId,
-            "coordinates": { "lat": lat, "lng": lon },
+            # We cast to string, because that's what the app is expecting, 
+            # not because it is right.
+            "coordinates": { "lat": str(lat), "lng": str(lon) },
             "description": title,
             "localStartTime": isoStartTime.replace(tzinfo=None, second=1).isoformat(),
             "localEndTime": isoEndTime.replace(tzinfo=None, second=1).isoformat(),

@@ -114,15 +114,17 @@ def _getVenueDetails(venueIdentifiers, cachedDetails = None):
 
 def _getAddressIdentifiers(address):
     params = { 'address': address,
-               'key': googleapikey,
-               'components': DEFAULT_COUNTRY_GOOGLEAPI }
+               'key': googleapikey, }
 
     r = requests.get('https://maps.googleapis.com/maps/api/geocode/json', params)
     results = r.json()['results']
     if len(results) > 0:
+        r = results[0]
         mapping = {
-          "id": results[0]['place_id'],
-          "location": results[0]['geometry']['location']
+          "id": r['place_id'],
+          "location": r['geometry']['location'],
+          "name": r['address_components'][0]['short_name'],
+          "zipcode": r['address_components'][-1]['short_name'],
         }
         return mapping
     return None
@@ -131,8 +133,7 @@ def _findPlaceInRange(query, location, radius):
     latlongString = str(location['lat']) + ',' + str(location['lng'])
     params = { 'query': query,
                'key': googleapikey,
-               'location': latlongString,
-               'radius': radius }
+               'location': latlongString, }
 
     results = requests.get('https://maps.googleapis.com/maps/api/place/textsearch/json', params).json()['results']
     if len(results) > 0:

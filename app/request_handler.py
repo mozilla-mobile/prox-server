@@ -19,6 +19,7 @@ import app.crosswalk as crosswalk
 import app.representation as representation
 import app.search as search
 import app.events as events
+import app.geo as geo
 from app.util import log, scheduler
 
 import sys
@@ -183,12 +184,21 @@ def _guessYelpId(placeName, lat, lon):
         return cachedId
 
     opts = {
-      'term': placeName[:30],
-      'limit': 1
+      # 'term': placeName,
+      'limit': 20,
+      'radius_filter': 1000,
+      #'radius_filter': 100,
+      #'sort_by': 'distance',
+      'sort': 1,
     }
     r = yelpClient.search_by_coordinates(lat, lon, **opts)
     if len(r.businesses) > 0:
-        biz = r.businesses[0]
+        location = (lat, lon)
+        biz = min(r.businesses, key=lambda b: 
+            geo.distance(location, 
+                         (b.location.coordinate.latitude, b.location.coordinate.longitude))
+        )
+        log.debug("%s --> %s" % (placeName, biz.name))
         researchVenue(biz)
 
         # Add bizId to cache
@@ -197,6 +207,7 @@ def _guessYelpId(placeName, lat, lon):
 
         return biz.id
     else:
+        log.info("Can't find %s" % placeName)
         return None
 
 
@@ -275,13 +286,12 @@ def getGcalEventObj(event):
 
     eventLoc = event["location"]
     name, address = events.getNameAndAddress(eventLoc)
-    mapping = search._getAddressIdentifiers(address)
-    placeMapping = search._findPlaceInRange(name, mapping['location'], 5) or search._findPlaceInRange(eventLoc, konaLatLng, 5000)
-    if placeMapping:
+    mapping = search._getAddressIdentifiers(eventLoc)
+    if mapping:
         try:
             location = mapping['location']
-            placeName = placeMapping['name']
-            yelpId = _guessYelpId(placeName, location['lat'], location['lng'])
+            placeName = '%s, %s' % (mapping['name'], mapping['zipcode'])
+            yelpId = _guessYelpId(eventLoc, location['lat'], location['lng'])
             if yelpId:
                 optUrl = event["description"] if "description" in event else None
                 eventObj = representation.eventRecord(yelpId, location['lat'], location['lng'], event['summary'], event['start']['dateTime'], event['end']['dateTime'], optUrl)
@@ -289,4 +299,4 @@ def getGcalEventObj(event):
 
         except Exception as err:
             log.exception("getGcalEventObj")
-    print("Unable to find corresponding location")
+    log.info("Unable to find corresponding location for %s" % eventLoc)

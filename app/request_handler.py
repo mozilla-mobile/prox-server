@@ -186,7 +186,7 @@ def _guessYelpId(placeName, lat, lon):
     opts = {
       # 'term': placeName,
       'limit': 20,
-      'radius': 1000,
+      'radius_filter': 1000,
       #'radius_filter': 100,
       #'sort_by': 'distance',
       'sort': 1,

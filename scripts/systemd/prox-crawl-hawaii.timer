@@ -1,0 +1,9 @@
+[Unit]
+Description=prox crawl hawaii timer
+
+[Timer]
+OnCalendar=2016-12-1..14 11:00:00 UTC
+Unit=prox-crawl-hawaii.service
+
+[Install]
+WantedBy=multi-user.target

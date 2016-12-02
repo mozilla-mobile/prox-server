@@ -37,7 +37,6 @@ searchesTable = _tablePrefix + _searches
 konaLatLng = { "lat": 19.622345, "lng": -155.665041 }
 
 calendarInfo = {
-    "calRefreshSec": 3600,
     "googleCalendarUrl": "https://www.googleapis.com/calendar/v3/calendars/{}/events?key={}",
     "calendarIds": [ "mozilla.com_avh8q3pubnr4uj419aaubpat2g@group.calendar.google.com" ],
     "eventfulUrl": "https://api.eventful.com/json/events/search"

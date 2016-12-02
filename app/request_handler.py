@@ -3,7 +3,6 @@ import datetime
 from dateutil import parser
 import json
 from multiprocessing.dummy import Pool as ThreadPool 
-import threading
 
 import pyrebase
 
@@ -20,7 +19,7 @@ import app.representation as representation
 import app.search as search
 import app.events as events
 import app.geo as geo
-from app.util import log, scheduler
+from app.util import log
 
 import sys
 reload(sys)  
@@ -257,24 +256,11 @@ def deleteEvent(key):
         "locations/" + key: None
     })
 
-# Fetching events from Google Calendar
-def startGcalThread():
-    scheduler.enter(10, 1, updateFromGcals, ())
-    t = threading.Thread(target=scheduler.run)
-    t.setDaemon(True)
-    t.start()
-
 def updateFromGcals():
-    try:
-        loadCalendarEvents(datetime.timedelta(days=1))
-        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals, ())
+    loadCalendarEvents(datetime.timedelta(days=1))
 
-        # Prune old events
-        pruneEvents()
-    except Exception as err:
-        from app.util import log
-        log.exception("Error running scheduled calendar fetch")
-        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals, ())
+    # Prune old events
+    pruneEvents()
 
 def loadCalendarEvents(timeDuration):
     for calId in calendarInfo["calendarIds"]:

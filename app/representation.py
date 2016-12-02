@@ -3,6 +3,7 @@ from dateutil import parser
 import datetime
 from app.util import log
 from events import isSingleDayEvent
+import hashlib
 
 def venueRecord(biz, **details):
     # biz is the response object from the Yelp Search API
@@ -185,7 +186,7 @@ def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
     isoEndTime = parser.parse(endTime) if endTime else isoStartTime + datetime.timedelta(hours=1)
 
     r = {
-            "id": title[:30].replace(" ", "-") + startTime,
+            "id": hashlib.md5(title[:30] + startTime).hexdigest(),
             "placeId": yelpId,
             # We cast to string, because that's what the app is expecting, 
             # not because it is right.

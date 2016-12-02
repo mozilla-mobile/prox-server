@@ -195,7 +195,11 @@ def _guessYelpId(placeName, lat, lon):
     try:
         if len(r.businesses) > 0:
             location = (lat, lon)
-            biz = min(r.businesses, key=lambda b:
+            businessWithCoords = filter(
+                lambda b: 
+                    (b.location is not None) and (b.location.coordinate is not None),
+                r.businesses)
+            biz = min(businessWithCoords, key=lambda b:
                 geo.distance(location,
                              (b.location.coordinate.latitude, b.location.coordinate.longitude))
             )
@@ -211,7 +215,7 @@ def _guessYelpId(placeName, lat, lon):
             log.info("Can't find %s" % placeName)
             return None
     except:
-        log.error("Error parsing yelp businesses for " + placeName)
+        log.exception("Error parsing yelp businesses for " + placeName)
 
 
 

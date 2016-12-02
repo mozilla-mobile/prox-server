@@ -1,6 +1,9 @@
 import datetime
+from dateutil import parser
+from pytz import timezone
 import re
 import requests
+import time
 
 import app.search as search
 from app.clients import googleapikey, eventfulkey
@@ -55,6 +58,26 @@ def fetchEventsFromLocation(lat, lng, maxResults=20, radius=10, dateRange="Today
         eventList = r.json()['events']['event']
         return eventList
     else: return []
+
+def getTimesWithTZ(startTime, endTime, lat, lng):
+    localTZ = getTZForLocation(lat, lng)
+    startTimeWithTZ = localTZ.localize(parser.parse(startTime))
+    endTimeWithTZ = localTZ.localize(parser.parse(endTime)) if endTime else startTimeWithTZ + datetime.timedelta(hours=1)
+    return (startTimeWithTZ.isoformat(), endTimeWithTZ.isoformat())
+
+def getTZForLocation(lat, lng):
+    params = {
+            "location": str(lat) + "," + str(lng),
+            "timestamp": time.time(),
+            "key": googleapikey
+            }
+    r = requests.get("https://maps.googleapis.com/maps/api/timezone/json", params)
+    return timezone(r.json()["timeZoneId"])
+
+def isSingleDayEvent(startTime, endTime):
+    startDatetime = parser.parse(startTime)
+    endDatetime = parser.parse(endTime)
+    return startDatetime.date() == endDatetime.date()
 
 def getNameAndAddress(rawLocation):
     output = rawLocation.lower() \

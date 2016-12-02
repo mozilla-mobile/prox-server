@@ -2,6 +2,7 @@ import random
 from dateutil import parser
 import datetime
 from app.util import log
+from events import isSingleDayEvent
 
 def venueRecord(biz, **details):
     # biz is the response object from the Yelp Search API
@@ -170,13 +171,19 @@ def _yelpHoursRecord(hours):
     return record
 
 def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
+    # backward-compatible usage of local*Time
     try :
         isoStartTime = parser.parse(startTime)
     except TypeError:
         # No start time
         return None
 
+    if not isSingleDayEvent(startTime, endTime):
+        # Don't show ongoing events that span more than a day
+        return None
+
     isoEndTime = parser.parse(endTime) if endTime else isoStartTime + datetime.timedelta(hours=1)
+
     r = {
             "id": title[:30].replace(" ", "-") + startTime,
             "placeId": yelpId,
@@ -186,6 +193,8 @@ def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
             "description": title,
             "localStartTime": isoStartTime.replace(tzinfo=None, second=1).isoformat(),
             "localEndTime": isoEndTime.replace(tzinfo=None, second=1).isoformat(),
+            "utcStartTime": startTime,
+            "utcEndTime": endTime,
             "url": url
     }
     return r

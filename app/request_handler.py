@@ -224,11 +224,16 @@ def writeEventRecord(eventObj):
     )
 
 def getEventfulEventObj(event):
-    locLat = event['latitude']
-    locLng = event['longitude']
+    locLat = float(event['latitude'])
+    locLng = float(event['longitude'])
+
     yelpId = _guessYelpId(event['venue_name'], locLat, locLng)
+
+    # Set local timezone
+    startTime, endTime = events.getTimesWithTZ(event["start_time"], event["stop_time"], locLat, locLng)
+
     if yelpId:
-        eventObj = representation.eventRecord(yelpId, locLat, locLng, event['title'], event['start_time'], event['stop_time'], event['url'])
+        eventObj = representation.eventRecord(yelpId, locLat, locLng, event['title'], str(startTime), str(endTime), event['url'])
         return eventObj
 
 def pruneEvents():

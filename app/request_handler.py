@@ -257,24 +257,11 @@ def deleteEvent(key):
         "locations/" + key: None
     })
 
-# Fetching events from Google Calendar
-def startGcalThread():
-    scheduler.enter(10, 1, updateFromGcals, ())
-    t = threading.Thread(target=scheduler.run)
-    t.setDaemon(True)
-    t.start()
-
 def updateFromGcals():
-    try:
-        loadCalendarEvents(datetime.timedelta(days=1))
-        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals, ())
+    loadCalendarEvents(datetime.timedelta(days=1))
 
-        # Prune old events
-        pruneEvents()
-    except Exception as err:
-        from app.util import log
-        log.exception("Error running scheduled calendar fetch")
-        scheduler.enter(calendarInfo["calRefreshSec"], 1, updateFromGcals, ())
+    # Prune old events
+    pruneEvents()
 
 def loadCalendarEvents(timeDuration):
     for calId in calendarInfo["calendarIds"]:

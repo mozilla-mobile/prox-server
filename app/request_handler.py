@@ -184,11 +184,7 @@ def _guessYelpId(placeName, lat, lon):
         return cachedId
 
     opts = {
-      'term': placeName,
       'limit': 20,
-      'radius_filter': 100,
-      #'radius_filter': 100,
-      #'sort_by': 'distance',
       'sort': 1,
     }
     r = yelpClient.search_by_coordinates(lat, lon, **opts)

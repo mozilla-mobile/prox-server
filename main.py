@@ -1,7 +1,6 @@
 from flask import Flask, abort
 
 from app.queue.enqueue import searchLocation
-from app.request_handler import startGcalThread
 
 app = Flask(__name__)
 
@@ -27,5 +26,4 @@ def placeUser(latitude, longitude):
     
 
 if __name__ == '__main__':
-    startGcalThread()
     app.run(debug=True)

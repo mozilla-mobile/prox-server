@@ -184,31 +184,35 @@ def _guessYelpId(placeName, lat, lon):
         return cachedId
 
     opts = {
-      # 'term': placeName,
+      'term': placeName,
       'limit': 20,
-      'radius_filter': 1000,
+      'radius_filter': 100,
       #'radius_filter': 100,
       #'sort_by': 'distance',
       'sort': 1,
     }
     r = yelpClient.search_by_coordinates(lat, lon, **opts)
-    if len(r.businesses) > 0:
-        location = (lat, lon)
-        biz = min(r.businesses, key=lambda b: 
-            geo.distance(location, 
-                         (b.location.coordinate.latitude, b.location.coordinate.longitude))
-        )
-        log.debug("%s --> %s" % (placeName, biz.name))
-        researchVenue(biz)
+    try:
+        if len(r.businesses) > 0:
+            location = (lat, lon)
+            biz = min(r.businesses, key=lambda b:
+                geo.distance(location,
+                             (b.location.coordinate.latitude, b.location.coordinate.longitude))
+            )
+            log.debug("%s --> %s" % (placeName, biz.name))
+            researchVenue(biz)
 
-        # Add bizId to cache
-        record = { "cache/" +  safePlaceName : str(biz.id) }
-        db.child(eventsTable).update(record)
+            # Add bizId to cache
+            record = { "cache/" +  safePlaceName : str(biz.id) }
+            db.child(eventsTable).update(record)
 
-        return biz.id
-    else:
-        log.info("Can't find %s" % placeName)
-        return None
+            return biz.id
+        else:
+            log.info("Can't find %s" % placeName)
+            return None
+    except:
+        log.error("Error parsing yelp businesses for " + placeName)
+
 
 
 def writeEventRecord(eventObj):

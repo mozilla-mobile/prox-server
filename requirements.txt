@@ -4,6 +4,7 @@ foursquare
 gunicorn
 pyrebase
 pytest
+pytz
 pygeohash
 python-dateutil
 redis

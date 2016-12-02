@@ -67,8 +67,10 @@ Event: {
         lng: #
     },
     description: "", # Used for badging
-    localStartTime: "", # ISO without timezone, e.g., "2016-11-10T18:00:00",
+    localStartTime: "", # Backwards-compatibility (ISO without timezone, e.g., "2016-11-10T18:00:00")
     localEndTime: "",
+    utcStartTime: "", # ISO with the timezone, of the format "2016-12-02T13:00:00-08:00"
+    utcEndTime: "",
     id: "", # Low-effort-uniqueness identifier made from event name and time
     placeId: "<yelp-id>", # Best effort Yelp id
     url: "" # Optional: url to open when clicking on more information

@@ -170,6 +170,7 @@ def _yelpHoursRecord(hours):
     return record
 
 def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
+    # backward-compatible usage of local*Time
     try :
         isoStartTime = parser.parse(startTime)
     except TypeError:
@@ -177,6 +178,7 @@ def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
         return None
 
     isoEndTime = parser.parse(endTime) if endTime else isoStartTime + datetime.timedelta(hours=1)
+
     r = {
             "id": title[:30].replace(" ", "-") + startTime,
             "placeId": yelpId,
@@ -186,6 +188,8 @@ def eventRecord(yelpId, lat, lon, title, startTime, endTime, url):
             "description": title,
             "localStartTime": isoStartTime.replace(tzinfo=None, second=1).isoformat(),
             "localEndTime": isoEndTime.replace(tzinfo=None, second=1).isoformat(),
+            "utcStartTime": startTime,
+            "utcEndTime": endTime,
             "url": url
     }
     return r

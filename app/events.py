@@ -74,6 +74,11 @@ def getTZForLocation(lat, lng):
     r = requests.get("https://maps.googleapis.com/maps/api/timezone/json", params)
     return timezone(r.json()["timeZoneId"])
 
+def isSingleDayEvent(startTime, endTime):
+    startDatetime = parser.parse(startTime)
+    endDatetime = parser.parse(endTime)
+    return startDatetime.date() == endDatetime.date()
+
 def getNameAndAddress(rawLocation):
     output = rawLocation.lower() \
              .strip('()') \

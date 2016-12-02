@@ -1,6 +1,7 @@
 from app.util import log
 import datetime
 from dateutil import parser
+import hashlib
 import json
 from multiprocessing.dummy import Pool as ThreadPool 
 
@@ -177,8 +178,8 @@ def searchLocation(lat, lng, radius, maxNum):
     log.info("Found %d: %s" % (len(res), json.dumps(res)))
 
 def _guessYelpId(placeName, lat, lon):
-    safePlaceName = placeName.replace(".", "_")
-    cachedId = db.child(eventsTable).child("cache/" + safePlaceName).get().val()
+    safePlaceId = hashlib.md5(placeName).hexdigest()
+    cachedId = db.child(eventsTable).child("cache/" + safePlaceId).get().val()
     if cachedId:
         return cachedId
 
@@ -204,7 +205,7 @@ def _guessYelpId(placeName, lat, lon):
         researchVenue(biz)
 
         # Add bizId to cache
-        record = { "cache/" +  safePlaceName : str(biz.id) }
+        record = { "cache/" +  safePlaceId: str(biz.id) }
         db.child(eventsTable).update(record)
 
         return biz.id
@@ -254,7 +255,7 @@ def pruneEvents():
 def deleteEvent(key):
     db.child(eventsTable).update({
         "details/" + key: None,
-        "cache/" + key: None,
+    #    "cache/" + key: None, # For Kona, do not delete the cache because we hard-code the moz-specific locations
         "locations/" + key: None
     })
 

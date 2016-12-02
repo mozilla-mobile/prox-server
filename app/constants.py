@@ -12,7 +12,7 @@ def _findTablePrefix():
             # production
             return "production/" 
     # development
-    return username + "/"
+    return username + "-test/"
 
 _tablePrefix = _findTablePrefix()
 _venues = "venues"

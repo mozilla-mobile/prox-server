@@ -183,18 +183,21 @@ def _guessYelpId(placeName, lat, lon):
         return cachedId
 
     opts = {
-      # 'term': placeName,
+      # 'term': placeName, # Yelp does a bad job with term searching
       'limit': 20,
-      'radius_filter': 1000,
-      #'radius_filter': 100,
+      #'radius_filter': 1000,
       #'sort_by': 'distance',
       'sort': 1,
     }
     r = yelpClient.search_by_coordinates(lat, lon, **opts)
     if len(r.businesses) > 0:
         location = (lat, lon)
-        biz = min(r.businesses, key=lambda b: 
-            geo.distance(location, 
+        businessesWithCoords = filter(
+            lambda b:
+                (b.location is not None) and (b.location.coordinate is not None),
+            r.businesses)
+        biz = min(businessesWithCoords, key=lambda b:
+            geo.distance(location,
                          (b.location.coordinate.latitude, b.location.coordinate.longitude))
         )
         log.debug("%s --> %s" % (placeName, biz.name))
@@ -208,7 +211,6 @@ def _guessYelpId(placeName, lat, lon):
     else:
         log.info("Can't find %s" % placeName)
         return None
-
 
 def writeEventRecord(eventObj):
     key   = representation.createEventKey(eventObj)

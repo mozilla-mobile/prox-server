@@ -1,10 +1,11 @@
 from app.clients import foursquareClient
+from app.util import slug
 
 MAX_PHOTOS = 5
 PHOTO_SIZE = "cap500"
 
 def resolve(idObj):
-    fsId = idObj["namespace_id"]
+    fsId = slug(idObj["url"])
     fsObj = foursquareClient.venues(fsId)["venue"]
     photoGroups = fsObj["photos"]["groups"]
     if len(photoGroups) > 0:

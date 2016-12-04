@@ -259,7 +259,7 @@ def deleteEvent(key):
     })
 
 def updateFromGcals():
-    loadCalendarEvents(datetime.timedelta(days=1))
+    loadCalendarEvents(datetime.timedelta(weeks=1))
 
     # Prune old events
     pruneEvents()

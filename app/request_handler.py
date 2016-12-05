@@ -226,17 +226,25 @@ def writeEventRecord(eventObj):
     )
 
 def getEventfulEventObj(event):
-    locLat = float(event['latitude'])
-    locLng = float(event['longitude'])
+    mappingLat, mappingLng = getEventfulMapping(event)
+    if (mappingLat != None and mappingLng != None):
+        yelpId = _guessYelpId(event['venue_name'], mappingLat, mappingLng)
+        # Set local timezone
+        startTime, endTime = events.getTimesWithTZ(event["start_time"], event["stop_time"], mappingLat, mappingLng)
 
-    yelpId = _guessYelpId(event['venue_name'], locLat, locLng)
+        if yelpId:
+            eventObj = representation.eventRecord(yelpId, mappingLat, mappingLng, event['title'], str(startTime), str(endTime), event['url'])
+            return eventObj
 
-    # Set local timezone
-    startTime, endTime = events.getTimesWithTZ(event["start_time"], event["stop_time"], locLat, locLng)
+def getEventfulMapping(event):
+    venueAddress = event["venue_address"]
+    venueName = event["venue_name"]
+    mapping = search._getAddressIdentifiers(venueAddress) if venueAddress else search._findPlaceInRange(venueName, event["latitude"], event["longitude"])
+    if mapping:
+        return (float(mapping["location"]["lat"]), float(mapping["location"]["lng"]))
+    else:
+        print("no mapping")
 
-    if yelpId:
-        eventObj = representation.eventRecord(yelpId, locLat, locLng, event['title'], str(startTime), str(endTime), event['url'])
-        return eventObj
 
 def pruneEvents():
     eventDetails = db.child(eventsTable).child("details").get().each()

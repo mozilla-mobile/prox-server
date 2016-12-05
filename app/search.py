@@ -129,8 +129,8 @@ def _getAddressIdentifiers(address):
         return mapping
     return None
 
-def _findPlaceInRange(query, location, radius):
-    latlongString = str(location['lat']) + ',' + str(location['lng'])
+def _findPlaceInRange(query, lat, lng):
+    latlongString = lat + ',' + lng
     params = { 'query': query,
                'key': googleapikey,
                'location': latlongString, }

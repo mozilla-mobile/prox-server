@@ -1,12 +1,14 @@
 factual-api
 flask
 foursquare
+fuzzywuzzy
 gunicorn
 pyrebase
 pytest
 pytz
 pygeohash
 python-dateutil
+python-levenshtein
 redis
 rq
 sanction

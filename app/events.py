@@ -1,5 +1,6 @@
 import datetime
 from dateutil import parser
+from fuzzywuzzy import fuzz
 from pytz import timezone
 import re
 import requests
@@ -58,6 +59,12 @@ def fetchEventsFromLocation(lat, lng, maxResults=20, radius=10, dateRange="Today
         eventList = r.json()['events']['event']
         return eventList
     else: return []
+
+def guessBizByName(placeName, businesses):
+    items = sorted(map(lambda b: (b, fuzz.token_sort_ratio(b.name, placeName)), businesses), key=lambda x: x[1], reverse=True)
+    maxItem = items[0]
+    if maxItem[1] > 60:
+        return maxItem[0]
 
 def getTimesWithTZ(startTime, endTime, lat, lng):
     localTZ = getTZForLocation(lat, lng)

@@ -184,23 +184,15 @@ def _guessYelpId(placeName, lat, lon):
         return cachedId
 
     opts = {
-      # 'term': placeName, # Yelp does a bad job with term searching
-      'limit': 20,
-      #'radius_filter': 1000,
-      #'sort_by': 'distance',
+      'term': placeName, # Yelp does a bad job with term searching
+      'radius_filter': 2000,
       'sort': 1,
     }
     r = yelpClient.search_by_coordinates(lat, lon, **opts)
     if len(r.businesses) > 0:
-        location = (lat, lon)
-        businessesWithCoords = filter(
-            lambda b:
-                (b.location is not None) and (b.location.coordinate is not None),
-            r.businesses)
-        biz = min(businessesWithCoords, key=lambda b:
-            geo.distance(location,
-                         (b.location.coordinate.latitude, b.location.coordinate.longitude))
-        )
+        biz = events.guessBizByName(placeName, r.businesses)
+        if (biz == None):
+            return None
         log.debug("%s --> %s" % (placeName, biz.name))
         researchVenue(biz)
 
@@ -210,7 +202,7 @@ def _guessYelpId(placeName, lat, lon):
 
         return biz.id
     else:
-        log.info("Can't find %s" % placeName)
+        log.info("No results from Yelp for %s" % placeName)
         return None
 
 def writeEventRecord(eventObj):
@@ -244,6 +236,7 @@ def getEventfulMapping(event):
         return (float(mapping["location"]["lat"]), float(mapping["location"]["lng"]))
     else:
         print("no mapping")
+        return (None, None)
 
 
 def pruneEvents():

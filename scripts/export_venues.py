@@ -1,8 +1,21 @@
+"""Logs debug information about a specific location from Firebase.
+
+For sample output (1/18/17) and a brief explanation, see:
+https://gist.github.com/mcomella/15b5a9fc9140e9d6c9070e0380d700b9
+
+To visualize the returned GPS coordinates, hampster map is recommended.
+
+To log results from the production database, see readme.
+
+"""
 from config import FIREBASE_CONFIG
 import pyrebase
 import app.geo as geo
 
+# --- START MODIFIABLE PARAMETERS --- #
+# The location around which you'd like to log.
 focus = (19.915403, -155.8961577)
+# --- END MODIFIABLE PARAMETERS --- #
 
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 db = firebase.database()

@@ -5,6 +5,9 @@ To cache the results in the production database, see readme.
 
 """
 from app.util import log
+from math import sqrt
+
+import app.geo as geo
 
 # If this is False, then we actually perform the crawl.
 dryRun = True
@@ -27,7 +30,6 @@ focus = (19.915403, -155.8961577)
 
 # Calculate search radius or grid size if not specified.
 geo_fudge = 1.0
-from math import sqrt
 if search_radius is None and grid_size_m is not None:
     search_radius = geo_fudge * sqrt(2) / 2 * grid_size_m
 
@@ -36,8 +38,6 @@ if grid_size_m is None and search_radius is not None:
 
 if grid_size_m is None and search_radius is None:
     raise Exception("Need to set one of grid_size_m or search_radius")
-
-import app.geo as geo
 
 # Calculate the grid.
 # Note for smaller grid square sizes, there may be more squares nearer the equator 

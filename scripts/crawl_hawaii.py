@@ -1,6 +1,10 @@
+"""Creates a grid of locations from a geo-bounded
+box and caches the locations in Firebase.
+
+To cache the results in the production database, see readme.
+
+"""
 from app.util import log
-# This script creates a grid out of a geo bounded box
-# that covers the Big Island of Hawaii.
 
 # If this is False, then we actually perform the crawl.
 dryRun = True

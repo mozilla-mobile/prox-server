@@ -9,14 +9,17 @@ grid_size_m = None
 # search yelp.
 # There is a hard maximum of 40 venues per geo-circle (Yelp v2),
 # so the smaller the radius, the more venues will be crawled.
-search_radius = 20000
-maxVenuesPerSearch = 400
+search_radius = 7000
+maxVenuesPerSearch = 200
 
 # Defined the bounded box of around the island.
-north_lat, west_lng = 20.260499, -156.030462
-south_lat, east_lng = 18.978270, -154.812693
+# see http://www.darrinward.com/lat-long/?id=2545992 for bounds.
+# compare with bounds of Nashville: https://goo.gl/maps/a6QA47adMux
+north_lat, west_lng = 36.412098, -87.062680
+south_lat, east_lng = 35.964324, -86.509244
 
-focus = (19.915403, -155.8961577)
+# Downtown, according to Google: https://goo.gl/maps/hmKXRmBDPuK2
+focus = (36.162963, -86.780758)
 
 # If this is False, then we actually perform the crawl.
 dryRun = False
@@ -89,5 +92,5 @@ def crawlPoints(grid, search_radius, max_venue_per_search):
     log.info("Maximum number of venues: %d" % (count * maxVenuesPerSearch))
 
 crawlPoints(grid, search_radius, maxVenuesPerSearch)
-crawlPoints(office_locations, 20000, 800)
+#crawlPoints(office_locations, 20000, 800)
 

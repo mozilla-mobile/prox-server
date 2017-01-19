@@ -2,7 +2,7 @@ from config import FIREBASE_CONFIG
 import pyrebase
 import app.geo as geo
 
-focus = (19.915403, -155.8961577)
+focus = (36.162963, -86.780758)
 
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 db = firebase.database()

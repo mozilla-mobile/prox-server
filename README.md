@@ -17,14 +17,14 @@ Add the path to the Firebase credentials json file to `config.py`, and then run
 
 You can view real-time changes to the database on the console.
 
-## Testing
+# Testing
 Testing is done via [pytest](pytest.org):
 
     pytest
 
 All tests should pass before landing on `master`.
 
-## Running
+# Running
 
 The project is a `flask` server which puts jobs on a `rq` task queue.
 

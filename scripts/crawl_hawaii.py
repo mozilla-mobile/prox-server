@@ -2,6 +2,9 @@ from app.util import log
 # This script creates a grid out of a geo bounded box
 # that covers the Big Island of Hawaii.
 
+# If this is False, then we actually perform the crawl.
+dryRun = True
+
 # The grid size is in m, and is the interval between the searches
 grid_size_m = None
 
@@ -17,9 +20,6 @@ north_lat, west_lng = 20.260499, -156.030462
 south_lat, east_lng = 18.978270, -154.812693
 
 focus = (19.915403, -155.8961577)
-
-# If this is False, then we actually perform the crawl.
-dryRun = False
 
 # Calculate search radius or grid size if not specified.
 geo_fudge = 1.0

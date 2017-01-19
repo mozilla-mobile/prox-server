@@ -10,8 +10,13 @@ Set up a virtualenv (assuming you already installed virtualenv with pip) and ins
 
 and `deactivate` to leave the virtualenv.
 
+## Services keys
+You need a copy of `./firebase.local.json` and `./keys.local.json`. You can
+copy the templates and add your own keys or get the keys from Mozilla's
+engineering gdrive. If you don't have access, please contact a team member.
+
 ## Firebase
-Add the path to the Firebase credentials json file to `config.py`, and then run
+With the keys ready, run:
 
     python -m samples.firebase-test
 

@@ -9,27 +9,47 @@ from math import sqrt
 
 import app.geo as geo
 
+# --- START MODIFIABLE PARAMETERS --- #
+
+# The parameters in this file default to the Big Island of Hawaii.
+# For an example of changes you may want to make, see this commit from the
+# crawl-nashville branch:
+# https://github.com/mozilla-mobile/prox-server/commit/127fb28724f002d23266215c5eef1bd2d7ee5878
+
 # If this is False, then we actually perform the crawl.
 dryRun = True
 
-# The grid size is in m, and is the interval between the searches
-grid_size_m = None
-
-# The search radius is in m and is the radius of the geo-circle used to 
-# search yelp.
-# There is a hard maximum of 40 venues per geo-circle (Yelp v2),
-# so the smaller the radius, the more venues will be crawled.
-search_radius = 20000
-maxVenuesPerSearch = 400
-
-# Defined the bounded box of around the island.
+# The bounding box.
 north_lat, west_lng = 20.260499, -156.030462
 south_lat, east_lng = 18.978270, -154.812693
 
+# START: only ONE of the following values should be `not None`.
+# The interval between searches, in meters.
+grid_size_m = None
+
+# The radius of the geo-circle used for each search on Yelp, in meters.
+# There is a hard maximum of venues returned per search, so the smaller the
+# radius, the more venues can be crawled.
+search_radius = 20000
+# END: only ONE of the following values should be `not None`.
+
+# The location you want t the most places from. An extra search will be added
+# at this location and all searches closest to focus will be completed first
+# so if we hit our API limits, the places closest to focus will be found.
 focus = (19.915403, -155.8961577)
 
-# Calculate search radius or grid size if not specified.
+# (mcomella) I'm not sure what changing this would do.
 geo_fudge = 1.0
+
+# (mcomella) For logging *only*: used to calculate the maximum number of places
+# we can get with this search. In Yelp v2, the value used to be 40 (which is
+# what we used for Hawaii but jhugman thinks the value is 1000 now).
+maxVenuesPerSearch = 1000
+
+# --- END MODIFIABLE PARAMETERS --- #
+
+
+# Calculate search radius or grid size if not specified.
 if search_radius is None and grid_size_m is not None:
     search_radius = geo_fudge * sqrt(2) / 2 * grid_size_m
 

@@ -46,3 +46,8 @@ Then run the flask web app:
 Then run the workers which will consume the tasks coming from the web server.
 
     rq worker -c rq_settings
+
+# Pre-caching a location?
+Follow the comments in [scripts/crawl_hawaii.py][crawl.py].
+
+[crawl.py]: https://github.com/mozilla-mobile/prox-server/blob/master/scripts/crawl_hawaii.py

@@ -22,6 +22,13 @@ With the keys ready, run:
 
 You can view real-time changes to the database on the console.
 
+## Point to production DB in local builds
+Useful when you're running pre-caching or logging scripts.
+
+In [app/constants.py][const-tableprefix], change to:
+
+    _tablePrefix = "production/"
+
 # Testing
 Testing is done via [pytest](pytest.org):
 
@@ -50,4 +57,5 @@ Then run the workers which will consume the tasks coming from the web server.
 # Pre-caching a location?
 Follow the comments in [scripts/crawl_hawaii.py][crawl.py].
 
+[const-tableprefix]: https://github.com/mozilla-mobile/prox-server/blob/22f2af4759e13612de62619ef0b37a2360a875bc/app/constants.py#L17
 [crawl.py]: https://github.com/mozilla-mobile/prox-server/blob/master/scripts/crawl_hawaii.py

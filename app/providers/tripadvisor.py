@@ -1,6 +1,9 @@
+# coding=utf-8
+
 import re
 import requests
 
+from app import util
 from app.clients import tripadvisorkey
 
 idPattern = re.compile("-d([0-9]*)-")
@@ -19,7 +22,9 @@ def resolve(idObj):
 
 
 TRIP_ADVISOR_LOC_MAPPER_API = 'http://api.tripadvisor.com/api/partner/2.0/location_mapper/{}'
-LOC_MAPPER_DEFAULT_PARAMS = { 'key': tripadvisorkey + '-mapper' }
+
+
+def _get_loc_mapper_default_params(): return { 'key': tripadvisorkey + '-mapper' }
 
 
 def search(coord, query):
@@ -41,6 +46,34 @@ def search(coord, query):
     coord_str = ','.join([str(x) for x in coord])
     url = TRIP_ADVISOR_LOC_MAPPER_API.format(coord_str)
 
-    params = dict(LOC_MAPPER_DEFAULT_PARAMS)
+    params = _get_loc_mapper_default_params()
     params['q'] = query
+    res = requests.get(url, params).json()
+    if not _search_query_has_results(res) and util.str_contains_accents(query):
+        res = _search_without_accents(query, url)
+
+    # TODO: Further improve results by querying TA without a query_str and doing our own
+    # name matching on the results. For example, "Mariposa Baking" (from Yelp) finds no matches
+    # despite "Mariposa" being on TA. For a full list of relevant places, see `docs/yelp_ta_name_mismatches.yml`.
+    #
+    # Implementation notes:
+    #   - TA will return at most 10 results
+    #   - A place won't necessarily exist in TA (or at that location, e.g. Señor Sisig is a food truck).
+    #   - Custom fuzzy matching may introduce more error, making a trade-off between some error & missing data.
+    #   - Could also compare address (not just name!)
+    return res
+
+
+def _search_without_accents(query, url):
+    """Searches TA location_mapper API, removing the query string's accents.
+
+    Why would you want to? Yelp place names are frequently listed with accents - TA are not, potentially causing
+    name mismatches. I've found removing accents corrects some places (e.g. La Mar Cebichería Peruana).
+    """
+    accent_stripped_str = util.strip_accents(unicode(query))
+    params = _get_loc_mapper_default_params()
+    params['q'] = accent_stripped_str
     return requests.get(url, params).json()
+
+
+def _search_query_has_results(res): return len(res['data']) > 0

@@ -1,0 +1,74 @@
+---
+# A list of places that exist on TripAdvisor but are not found when putting a
+# Yelp place name directly into the TA location_mapper/ API. See
+# `app.providers.tripadvisor.search` for motivations for this list.
+#
+# Yelp place names come first (even indices), followed by the associated
+# TripAdvisor name (odd indices).
+#
+# Consider using this file for unit testing. :) Not that some names may not be
+# correctable.
+
+sf:
+    - Frog Hollow Farm Market & Cafe
+    - Frog Hollow Farm
+    - Mariposa Baking
+    - Mariposa
+    - Mourad Restaurant
+    - Mourad
+    - DragonEats
+    - dragonEats
+    - Blue Bottle Coffee Stand
+    - Blue Bottle Coffee Ferry Building
+
+yvr:
+    - Guu with Otokomae
+    - Otokomae at Kitanoya Guu
+    - Canra Srilankan Cuisine
+    - Canra Sri Lankan Plus
+    - Nuba Gastown
+    - Nuba Restaurant
+    - The Sardine Can
+    - Sardine Can
+    - Jam Cafe on Beatty
+    - Jam Cafe YVR
+    - Brioche Urban Baking & Catering
+    - Brioche
+    - Finch's Tea & Coffee House
+    - Finch’s Teahouse
+    - La Taqueria Pinche Taco Shop
+    - La Taqueria
+
+chicago:
+    - Fremont Chicago
+    - Fremont
+    - Osaka Sushi Express & Fresh Fruit Smoothies
+    - Osaka Sushi Express
+    - MingHin Cuisine
+    - Ming Hin Cuisine
+    - Eddie Vs Prime Seafood and Steak
+    - Eddie V’s Prime Seafood
+    - Peach And Green
+    - Peach & Green
+    - Volare Ristorante Italiano
+    - Volare
+    - Cherry Circle Room
+    - Cherry Circle
+    - Brightwok Kitchen
+    - Brightwok
+    - Doc Bs Fresh Kitchen - River North
+    - Doc B’s Fresh Kitchen
+
+nashville:
+    - Crazy Town Nashville
+    - Crazy Town
+    - The Standard At The Smith House
+    - The Standard
+    - Cafe Le Crumbs
+    - La Crumbs Cafe
+    - Rodizio Grill The Brazilian Steakhouse
+    - Rodizio Grill - Nashville
+    - Tin Roof Broadway
+    - Tin Roof
+    - Rae's Gourmet Catering & Sandwich Shoppe
+    - Rae’s Gourmet Sandwich Shoppe

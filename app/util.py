@@ -1,8 +1,11 @@
+# coding=utf-8
+
 import logging
 import re
 import requests
 import sched
 import time
+import unicodedata
 
 from app.clients import factualClient, tripadvisorkey, yelpClient
 from app.constants import statusTable
@@ -67,3 +70,20 @@ def recordAPIStatus(apiName):
     # https://console.firebase.google.com/project/prox-server-cf63e/database/data/api_availability
     db.child(statusTable).update({apiName: response})
     return req
+
+
+def strip_accents(unicode_str):
+    """Changes accents into similar looking non-accented letters.
+    Characters known to not change: æ œ ø
+
+    via http://stackoverflow.com/a/518232/2219998
+    Comments seem to indicate this isn't a perfect solution because of the non-printing representation.
+    I did not thoroughly investigate.
+    """
+    assert isinstance(unicode_str, unicode)
+    return ''.join(char for char in unicodedata.normalize('NFD', unicode_str)
+                   if unicodedata.category(char) != 'Mn')
+
+
+def str_contains_accents(s):
+    return s != strip_accents(unicode(s))  # unicode_str == byte_str if text is the same.

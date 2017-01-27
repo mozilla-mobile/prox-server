@@ -33,6 +33,8 @@ venuesTable = _tablePrefix + _venues
 eventsTable = _tablePrefix + _events
 searchesTable = _tablePrefix + _searches
 
+statusTable = "api_availability"
+
 # Events
 konaLatLng = { "lat": 19.622345, "lng": -155.665041 }
 

@@ -30,7 +30,8 @@ def findFactualIDs(yelpBusinesses):
     crosswalkObjects = factualClient.crosswalk().filters(totalFilter).data()
     return [biz["factual_id"] for biz in crosswalkObjects]    
 
-#factualIDs = findFactualIDs(businesses)
+factualIDs = findFactualIDs(["kittea-cat-cafe-san-francisco-4"])
+print(factualIDs)
 
 def fetchCrosswalk(factualIDs):
     namespaces = ["tripadvisor", "wikipedia", "facebook"]

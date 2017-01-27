@@ -59,6 +59,11 @@ def recordAPIStatus(apiName):
         log.exception("Unknown error while checking for cap limits: %s" % e)
 
     db = pyrebase.initialize_app(FIREBASE_CONFIG).database()
-    db.child(statusTable).update({apiName: req})
 
+    # Timestamped response
+    response = "{} {} {}".format(req, time.strftime("%a %x %X", time.localtime()), time.tzname[0])
+
+    # Status updated at:
+    # https://console.firebase.google.com/project/prox-server-cf63e/database/data/api_availability
+    db.child(statusTable).update({apiName: response})
     return req

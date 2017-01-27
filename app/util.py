@@ -72,6 +72,18 @@ def recordAPIStatus(apiName):
     return req
 
 
+def strip_url_params(url):
+    """Strips params from the url (e.g. "?blah=thing&...") if they exist, else returns the string.
+    Assumes the input is a url and results are undefined for non-urls.
+
+    TODO: validate urls so we only strip content from urls. Regex? urllib.parse?
+    """
+    param_start_index = url.find('?')
+    if param_start_index < 0:
+        return url
+    return url[:param_start_index]
+
+
 def strip_accents(unicode_str):
     """Changes accents into similar looking non-accented letters.
     Characters known to not change: æ œ ø

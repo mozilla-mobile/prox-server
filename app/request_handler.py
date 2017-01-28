@@ -10,7 +10,7 @@ import pyrebase
 from config import FIREBASE_CONFIG
 from app.constants import \
     venuesTable, venueSearchRadius, venueSearchNumber, \
-    eventsTable, \
+    eventsTable, cacheTable, \
     searchesTable, searchCacheExpiry, searchCacheRadius, \
     konaLatLng, calendarInfo
 
@@ -88,6 +88,27 @@ def readCachedVenueDetails(key):
         return cache
     except Exception:
         log.error("Error fetching cached venue details for " + key)
+
+def readCachedVenueIterableDetails(place_ids):
+    """Retrieves the cache objects matching the given place IDs.
+
+    This method retrieves the whole cache/ child when making a call so call sparingly.
+    We do this because it's slow to make network requests for each child individually.
+    To pull down less data, you can use `readCacheVenueDetails`.
+
+    :param place_ids: Iterable of place_ids
+    :return: a list of cache objects. If a place_id is not in the cache, it will be dropped from the results.
+    """
+    out = []
+    try:
+        cache = db.child(cacheTable).get().val()
+        for place_id in place_ids:
+            if place_id not in cache: continue
+            out.append(cache[place_id])
+    except Exception:
+        log.error("Error fetching cached venue details for " + place_id)
+
+    return out
 
 def readCachedVenueIdentifiers(cache):
     if cache is not None:

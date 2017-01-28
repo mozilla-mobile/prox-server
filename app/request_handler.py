@@ -19,7 +19,7 @@ import app.crosswalk as crosswalk
 import app.representation as representation
 import app.search as search
 import app.events as events
-import app.geo as geo
+import app.geofire as geo
 from app.util import log
 
 import sys
@@ -62,7 +62,7 @@ def writeSearchRecord(lat, lng, key=None):
     db.child(searchesTable).update({ record["g"]: record })
 
 def findSearchRecord(center, radius=1000):
-    import app.geo as geo
+    import app.geofire as geo
     import time
     queries = geo.geohashQueries(center, radius)
     now = time.time()

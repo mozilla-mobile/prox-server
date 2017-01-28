@@ -7,7 +7,7 @@ To cache the results in the production database, see readme.
 from app.util import log
 from math import sqrt
 
-import app.geo as geo
+import app.geofire as geo
 
 # --- START MODIFIABLE PARAMETERS --- #
 

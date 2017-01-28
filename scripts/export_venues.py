@@ -10,7 +10,7 @@ To log results from the production database, see readme.
 """
 from config import FIREBASE_CONFIG
 import pyrebase
-import app.geo as geo
+import app.geofire as geo
 
 # --- START MODIFIABLE PARAMETERS --- #
 # The location around which you'd like to log.

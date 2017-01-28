@@ -1,4 +1,4 @@
-import app.geo as geo
+import app.geofire as geo
 
 jsData = [
   {

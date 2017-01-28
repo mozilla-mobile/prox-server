@@ -18,6 +18,7 @@ _tablePrefix = _findTablePrefix()
 _venues = "venues"
 _events = "events"
 _searches = "searches"
+_locations = "locations"
 
 # number of seconds after a search in a given area that it should be cached.
 searchCacheExpiry = 60 * 60 * 20 # s
@@ -32,6 +33,7 @@ venueSearchNumber = 200
 venuesTable = _tablePrefix + _venues
 eventsTable = _tablePrefix + _events
 searchesTable = _tablePrefix + _searches
+locationsTable = _tablePrefix + _venues + '/' + _locations
 
 statusTable = "api_availability"
 

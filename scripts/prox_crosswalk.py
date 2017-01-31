@@ -18,11 +18,12 @@ TODO:
 """
 from __future__ import print_function
 
-from app import util
+from app import geo, util
 from app.constants import _tablePrefix
 from app.providers import tripadvisor as ta
 from app.providers import yelp
 from config import FIREBASE_CONFIG
+from scripts import places_missing_provider_data as missing_data
 import pyrebase
 
 _CROSSWALK_PATH = _tablePrefix + 'crosswalk/'
@@ -177,3 +178,19 @@ def verify_yelp_ids_to_tripadvisor_ids(yelp_ids):
 
     return {'not_missing_ta': not_missing_out,
             'missing_ta': missing_out}
+
+
+def write_places_missing_ta(center, radius_km):
+    # TODO: code clean up. log missing places? is this needed?
+    # TODO: atomic write?
+    place_id_missing_ta = missing_data.get_places_missing_provider_data(center, radius_km,
+                                                                        check_missing_ta=True, check_missing_wiki=False, check_missing_web=False)
+    yelp_ta_map = yelp_ids_to_tripadvisor_ids(place_id_missing_ta)
+    write_to_db(yelp_to_ta=yelp_ta_map)
+
+
+def write_all_places_ta(center, radius_km):
+    # TODO: code clean up. Is this needed?
+    place_ids = geo.get_place_ids_in_radius(center, radius_km)
+    yelp_ta_map = yelp_ids_to_tripadvisor_ids(place_ids)
+    write_to_db(yelp_to_ta=yelp_ta_map)

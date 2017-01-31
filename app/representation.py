@@ -1,26 +1,41 @@
-import random
-from dateutil import parser
 import datetime
-from app.util import log
-from events import isSingleDayEvent
 import hashlib
+import random
 
-def venueRecord(biz, **details):
+from app.util import log
+from collections import OrderedDict
+from dateutil import parser
+from events import isSingleDayEvent
+
+def baseRecord(biz):
     # biz is the response object from the Yelp Search API
 
-    from collections import OrderedDict
-    # h is derived from the providers, but for the main body of the record.
-    # h is for header.
-    h = {
-      "url"        : None,
-      "description": [],
-      "categories" : OrderedDict(),
-      "images"     : [],
-      "hours"      : [],
+    coord = {
+      "lat": biz.location.coordinate.latitude,
+      "lng": biz.location.coordinate.longitude
     }
+
+    return {
+      "providers": {
+        "yelp": {
+          "id"              : biz.id,
+          "address"         : biz.location.display_address,
+          "coordinates"     : coord,
+          "description"     : biz.snippet_text,
+          "name"            : biz.name,
+          "phone"           : biz.display_phone,
+          "rating"          : biz.rating,
+          "ratingMax"       : 5,
+          "totalReviewCount": biz.review_count,
+          "url"             : biz.url,
+        }
+      }
+    }
+
+def updateRecord(yelpID, **details):
     providers = {}
-    
-    # Yelp.
+
+    # Yelp v3.
     if "yelp" in details:
       info = details["yelp"]
       providers["yelp"] = {
@@ -214,4 +229,18 @@ def _geoRecord(lat, lon):
     return {
        "g": pgh.encode(lat, lon, precision=8),
        "l": [lat, lon]
+    }
+
+# This maps a provider name to a number (where 1 means fetched, 0 means that
+# place doesn't exist in that provider, and null means we haven't attempted to
+# fetch the place from that provider yet). This will allow us to incrementally
+# add multiple sources to the base Yelp results.
+def baseStatus(biz):
+    return {
+      "yelp": 1,
+      "identifiers": {
+        "name": biz.name,
+        "lat": biz.location.coordinate.latitude,
+        "lng": biz.location.coordinate.longitude
+      }
     }

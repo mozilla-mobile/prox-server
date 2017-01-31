@@ -29,12 +29,27 @@ sys.setdefaultencoding('utf8')
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 db = firebase.database()
 
+# Writes the set of base records. Note that this performs a single batch update
+# operation, so any existing venues will be replaced.
+def writeYelpRecords(yelpVenues):
+    record = {}
+
+    for biz in yelpVenues:
+        key = representation.createKey(biz)
+        venue = representation.baseRecord(biz)
+        geo = representation.geoRecord(biz)
+        status = representation.baseStatus(biz)
+        record["details/" + key] = venue
+        record["locations/" + key] = geo
+        record["status/" + key] = status
+
+    db.child(venuesTable).update(record)
+
 def writeVenueRecord(biz, details, idObj = None):
-    key   = representation.createKey(biz)
-    key   = key.encode('utf-8').strip()
+    key = representation.createKey(biz)
     try:
         venue = representation.venueRecord(biz, **details)
-        geo   = representation.geoRecord(biz)
+        geo = representation.geoRecord(biz)
         record = {
           "details/" + key: venue,
           "locations/" + key: geo 
@@ -61,27 +76,6 @@ def writeSearchRecord(lat, lng, key=None):
     record["time"] = time.time()
     db.child(searchesTable).update({ record["g"]: record })
 
-def findSearchRecord(center, radius=1000):
-    import app.geofire as geo
-    import time
-    queries = geo.geohashQueries(center, radius)
-    now = time.time()
-
-    for query in queries:
-        results = db.child(searchesTable).order_by_key().start_at(query[0]).end_at(query[1]).get()
-        for result in results.each():
-            record = result.val()
-            if record.get("time", 0) + searchCacheExpiry < now:
-                db.child(searchesTable).child(result.key()).remove()
-                continue
-            # double check that we're within distance
-            circleDistance = geo.distance(center, record["l"]) * 1000
-            # 1000 m in 1 km (geo.distance is in km, searchCacheRadius is in m)
-            if circleDistance < searchCacheRadius:
-                return record
-            log.info("Circle distance is " + str(circleDistance))
-
-
 def readCachedVenueDetails(key):
     try:
         cache = db.child(venuesTable).child("cache/" + key).get().val()
@@ -97,7 +91,6 @@ def readCachedVenueIdentifiers(cache):
 def researchVenue(biz):
     try:
         yelpID = representation.createKey(biz)
-        yelpID = yelpID.encode('utf-8').strip()
         cache = readCachedVenueDetails(yelpID)
         venueIdentifiers = readCachedVenueIdentifiers(cache)
         # This gets the identifiers from Factual. It's two HTTP requests 
@@ -108,7 +101,7 @@ def researchVenue(biz):
 
         # This then uses the identifiers to look up (resolve) details.
         # We'll fan out these as much as possible.
-        venueDetails = search._getVenueDetails(venueIdentifiers, cache)
+        venueDetails = search.getVenueDetails(venueIdentifiers, cache)
     
         # Once we've got the details, we should stash it in 
         # Firebase.
@@ -138,44 +131,27 @@ def researchEvent(eventfulObj):
         return False
 
 # This is the main entry point for the flask app.
-def searchLocationWithErrorRecovery(lat, lng, radius=None, maxNum=None):
+def searchLocationWithErrorRecovery(lat, lng, radius=None):
     try:
         if radius is None:
             # If the radius is unset, then we should set sensible 
             # defaults
             radius = venueSearchRadius
-        if maxNum is None:
-            maxNum = venueSearchNumber
-        searchLocation(lat, lng, radius, maxNum)
+        searchLocation(lat, lng, radius)
     except KeyboardInterrupt:
         log.exception("GOODBYE")
         sys.exit(1)
     except Exception:
         log.exception("Unknown exception")
 
-def searchLocation(lat, lng, radius, maxNum):
-    # Fetch locations
-    searchRecord = findSearchRecord((lat, lng), searchCacheRadius)
-    if searchRecord is not None:
-        log.debug("searchRecord: %s" % searchRecord)
-        return
-    else:
-        writeSearchRecord(lat, lng)
+def searchLocation(lat, lng, radius):
+    yelpVenues = search.getVenuesFromIndex(lat, lng, radius)
 
-    yelpVenues = search.getVenuesFromIndex(lat, lng, radius, maxNum)
-    pool = ThreadPool(5)
+    log.debug("Writing venues...")
 
-    res = pool.map(researchVenue, yelpVenues)
+    writeYelpRecords(yelpVenues)
 
-    # Fetch events from Eventful
-    eventListings = events.fetchEventsFromLocation(lat, lng)
-    eRes = pool.map(researchEvent, eventListings)
-
-    pool.close()
-    pool.join()
-
-    import json
-    log.info("Found %d: %s" % (len(res), json.dumps(res)))
+    log.info("Wrote %d venues" % len(yelpVenues))
 
 def _guessYelpId(placeName, lat, lon):
     safePlaceId = hashlib.md5(placeName).hexdigest()

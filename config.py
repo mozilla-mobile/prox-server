@@ -15,7 +15,6 @@ FIREBASE_CONFIG = {
 
 yelpSearchCategories = ["active",
                         "arts",
-                        "eventservices",
                         "food",
                         "hotelstravel",
                         "localflavor",

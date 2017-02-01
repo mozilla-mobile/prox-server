@@ -1,6 +1,7 @@
 factual-api
 flask
 foursquare
+fuzzywuzzy
 gunicorn
 pyrebase
 pytest

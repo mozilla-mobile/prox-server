@@ -55,15 +55,7 @@ def search(place_name, coord):
 def _match_place_name_to_wiki_page(place_name, wiki_page_titles):
     """Work horse of `geosearch`: separated for easier testing & debugging.
 
-    Here are some place -> wikipedia page we still don't get (scores are via full_process & ratio):
-    - Ferry Building Marketplace -> San Francisco Ferry Building: 52
-    - InterContinental Mark Hopkins -> Mark Hopkins Hotel: 51
-    - Tonga Room & Hurricane Bar -> Tonga Room
-    - The Scarlet Huntington -> Huntington Hotel (San Francisco)
-
-    Don't forget to add them to the tests! :) I've found the best way to find more non-matching examples is to
-    use get geotagged Wikipedia pages (either through Android app "Nearby" or API geosearch) and search for pages
-    that you'd expect to be on Yelp.
+    For example places we can't yet match, see `test_wp._CHALLENGE_PLACE_NAME_TO_WIKI`.
 
     Potential improvements:
     - Change existing dials (for each pass?): local vars (e.g. _THRESHOLD), radius/limit kwarg to Wikipedia API

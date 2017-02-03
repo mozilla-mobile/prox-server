@@ -1,6 +1,8 @@
 # coding=utf-8
 
+from __future__ import print_function
 from app.providers import wp, yelp
+import atexit
 import wikipedia
 
 
@@ -30,6 +32,7 @@ def test_match_place_name_to_wiki_page():
     - It might be cleaner to load the input data from a file.
     - Make it easier to get test data (e.g. place names)
     - Test can be faster: we iterate n places over n+ wiki pages = n^2. In practice, it's 10n, n pages over 10 wiki pages.
+    - Add deliberate unicode tests!
     """
     for (place_names, wiki_pages, place_name_to_wiki_page) in _PLACE_NAMES_AND_WIKI_PAGES:
         _verify_match_place_input(place_names, wiki_pages, place_name_to_wiki_page)
@@ -49,6 +52,40 @@ def _verify_match_place_input(place_names, wiki_pages, place_name_to_wiki_page):
     for wiki_page in place_name_to_wiki_page.values():
         if wiki_page not in wiki_pages:
             raise ValueError("Wiki page %s not in wiki page iterable." % wiki_page)
+
+
+def test_match_place_name_to_wiki_page_challenges():
+    """There are some place -> wiki we can't match. Here we check these challenges for a match and
+    alert the dev if there's a match.
+
+    Use case: we're modifying the algorithm and we want to know if we improve the algorithm such that one of these
+    challenges starts to work.
+
+    If one of these is successful, consider adding them to the permanent assertions in
+    `test_match_place_name_to_wiki_page`.
+    """
+    def alert(place_name, wiki_page):
+        print('COMPLETED CHALLENGE place -> wiki: %s -> %s. Consider adding to permanent assertions.' % (place_name, wiki_page))
+    for (place_name, wiki_page) in _CHALLENGE_PLACE_NAME_TO_WIKI.iteritems():
+        output = wp._match_place_name_to_wiki_page(place_name, [wiki_page])
+        if output:
+            # pytest eats our logs so we have to run after it's done. via: http://stackoverflow.com/a/38806934/2219998
+            atexit.register(alert, place_name, wiki_page)
+
+
+# I've found the best way to find more non-matching examples is to use get geotagged Wikipedia pages (either
+# through Android app "Nearby" or API geosearch) and search for pages that you'd expect to be on Yelp.
+_CHALLENGE_PLACE_NAME_TO_WIKI = {
+    # San Francisco places.
+    'Ferry Building Marketplace': 'San Francisco Ferry Building',
+    'InterContinental Mark Hopkins': 'Mark Hopkins Hotel',
+    'Tonga Room & Hurricane Bar': 'Tonga Room',
+    'The Scarlet Huntington': 'Huntington Hotel (San Francisco)',
+    'bound together anarchist collective bookstore': 'Bound Together Bookstore Collective',
+    'Alamo Square': 'Alamo Square, San Francisco',
+    'Lower Haight': 'Lower Haight, San Francisco',
+    'USF - Fromm Institute': 'Fromm Institute for Lifelong Learning',
+}
 
 
 # See `test_match_place_name_to_wiki_page` for details.

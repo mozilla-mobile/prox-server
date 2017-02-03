@@ -4,6 +4,7 @@ yelp IDs to place IDs from other providers in our database.
 Intended to be used from a REPL. Primary functions are:
 - yelp_ids_to_tripadvisor_ids
   - (for debugging) verify_yelp_id_to_tripadvisor_ids
+- yelp_ids_to_wiki_pages
 - write_to_db
 
 TODO:
@@ -21,7 +22,7 @@ from __future__ import print_function
 from app import geo, util
 from app.constants import _tablePrefix
 from app.providers import tripadvisor as ta
-from app.providers import yelp
+from app.providers import wp, yelp
 from config import FIREBASE_CONFIG
 from scripts import places_missing_provider_data as missing_data
 import pyrebase
@@ -43,13 +44,19 @@ _YELP_ID_TO_PLACE_CACHE = {}
 def _get_crosswalk_db(): return _firebase.database().child(_CROSSWALK_PATH)
 
 
-def _yelp_id_to_tripadvisor(yelp_id):
+# TODO: maybe we should allow users to pass in yelp data.
+def _get_name_coord_from_yelp_id(yelp_id):
     place = _YELP_ID_TO_PLACE_CACHE.get(yelp_id, yelp.resolve_with_key(yelp_id))
     _YELP_ID_TO_PLACE_CACHE[yelp_id] = place
     name = place['name']
     coord = place['coordinates']
     coord_tuple = (coord['latitude'], coord['longitude'])
-    return ta.search(coord_tuple, name)
+    return name, coord_tuple
+
+
+def _yelp_id_to_tripadvisor(yelp_id):
+    name, coord = _get_name_coord_from_yelp_id(yelp_id)
+    return ta.search(coord, name)
 
 
 def _yelp_ids_to_raw_tripadvisor(yelp_ids):
@@ -106,6 +113,23 @@ def yelp_ids_to_tripadvisor_ids(yelp_ids):
     """
     raw_ta = _yelp_ids_to_raw_tripadvisor(yelp_ids)
     return _get_yelp_to_ta_map_from_raw_ta(raw_ta)
+
+
+def yelp_ids_to_wiki_pages(yelp_ids):
+    """Primary public wikipedia function.
+
+    :param yelp_ids: an iterable of yelp ids.
+    :return: {<yelp_id>: <wiki_page_title>, ...}; if no match, <wiki_page_title> is None.
+    """
+    yelp_ids_to_wiki_titles = {}
+    for yelp_id in yelp_ids:
+        yelp_ids_to_wiki_titles[yelp_id] = _yelp_id_to_wiki_page(yelp_id)
+    return yelp_ids_to_wiki_titles
+
+
+def _yelp_id_to_wiki_page(yelp_id):
+    name, coord = _get_name_coord_from_yelp_id(yelp_id)
+    return wp.search(name, coord)
 
 
 def _write_crosswalk_to_db(yelp_id, provider_map):

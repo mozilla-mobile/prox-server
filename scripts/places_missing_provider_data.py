@@ -46,7 +46,7 @@ def _get_place_caches_missing_provider_data(center, radius_km,
     required_keys = set()
     if check_missing_ta: required_keys.add(_KEY_TA)
     if check_missing_wiki: required_keys.add(_KEY_WIKI)
-    if check_missing_web: required_keys.add(_KEY_WEBSITE)
+    if check_missing_web: required_keys.add(_KEY_FACTUAL)
 
     location_table = _firebase.database().child(locationsTable).get().val()
     place_ids_in_range = geo.get_place_ids_in_radius(center, radius_km, location_table)

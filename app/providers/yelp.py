@@ -7,7 +7,6 @@ idPattern = re.compile("/([^/\?]*)(\?.*)?$")
 
 
 def resolve_with_key(key):
-    key = key.encode('utf-8').strip()
     return yelp3Client.request("/businesses/{0}".format(key))
 
 

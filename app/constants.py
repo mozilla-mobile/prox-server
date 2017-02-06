@@ -19,6 +19,7 @@ _venues = "venues"
 _events = "events"
 _searches = "searches"
 _locations = "locations"
+_proxwalk = "proxwalk"
 _cache = "cache"
 
 # number of seconds after a search in a given area that it should be cached.
@@ -36,6 +37,7 @@ eventsTable = _tablePrefix + _events
 searchesTable = _tablePrefix + _searches
 locationsTable = _tablePrefix + _venues + '/' + _locations
 cacheTable = _tablePrefix + _venues + '/' + _cache
+proxwalkTable = venuesTable + "/" + _proxwalk
 
 statusTable = "api_availability"
 

@@ -35,10 +35,10 @@ def expandPlaces(config, center, radius_km):
     for placeID in placeIDs:
         placeStatus = statusCache.val()[placeID]
         # Get a list of (src, version) pairs that could be updated 
-        newSources = [(src, config[src]) for src in config if src not in placeStatus or config[src] > placeStatus[src]]
+        newSources = [src for src in config if src not in placeStatus or config[src] > placeStatus[src]]
         if not newSources:
             continue
-#        researchVenue(keyID, venue.val()["identifiers"], newSources)
+        request_handler.researchPlace(placeID, newSources, placeStatus["identifiers"])
         print("done: %s" % placeID)
         exit(0)
 

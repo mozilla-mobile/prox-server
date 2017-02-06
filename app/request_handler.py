@@ -16,6 +16,7 @@ from app.constants import \
 
 from app.clients import yelpClient
 import app.crosswalk as crosswalk
+import scripts.prox_crosswalk as proxwalk
 import app.representation as representation
 import app.search as search
 import app.events as events
@@ -91,6 +92,14 @@ def readCachedVenueIdentifiers(cache):
     if cache is not None:
         return cache.get("identifiers", None)
     return None
+
+def researchPlace(keyID, sourcesList, identifiers):
+    # Overall: Iterate through sources and write them to disk
+    # Get source ID
+    # Check or update Proxwalk
+    # Fetch from source using id and write to firebase
+    # TODO: Check more than just Proxwalk
+    placeSourceIDs = proxwalk.getSourceIDs(keyID, sourcesList, identifiers)
 
 def researchVenue(yelpID):
     try:

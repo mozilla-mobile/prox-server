@@ -20,14 +20,12 @@ TODO:
 from __future__ import print_function
 
 from app import geo, util
-from app.constants import _tablePrefix
+from app.constants import proxwalkTable
 from app.providers import tripadvisor as ta
 from app.providers import wp, yelp
 from config import FIREBASE_CONFIG
-from scripts import places_missing_provider_data as missing_data
+# from scripts import places_missing_provider_data as missing_data
 import pyrebase
-
-_CROSSWALK_PATH = _tablePrefix + 'crosswalk/'
 
 _firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 
@@ -40,9 +38,36 @@ CROSSWALK_KEYS = {
 # HACK: used to avoid duplicating Yelp place requests.
 _YELP_ID_TO_PLACE_CACHE = {}
 
+def getSourceIDs(keyID, sourcesList, identifiers):
+    foundSources = _getCachedIDsForPlace(keyID, sourcesList)
+    toFetch = [source for source in sourcesList if source not in foundSources]
+    foundSources.update(fetchAndCacheSources(keyID, toFetch, identifiers))
+    # TODO: fetch from each source, and error if there is a problem
+    # TODO: return list of UPDATED sources?
 
-def _get_crosswalk_db(): return _firebase.database().child(_CROSSWALK_PATH)
+def fetchAndCacheSources(keyID, sourcesList, identifiers):
+    newSources = {}
+    coordinates = (identifiers["lat"], identifiers["lng"])
+    name = identifiers["name"]
+    for source in sourcesList:
+        if source == "tripadvisor":
+            res = ta.search(coordinates, name)
+            if res:
+                taID = res["data"][0]["location_id"]
+                newSources.update({source: taID})
+        # TODO: Add other sources
+    _write_crosswalk_to_db(keyID, newSources)
+    return newSources
 
+def _getCachedIDsForPlace(keyID, sourcesList):
+    ret = {}
+    cached = _get_proxwalk_db().child(keyID).get().val()
+    if not cached:
+        return {}
+    map(lambda s: ret.update({s: cached[s]}) if s in sourcesList else None, cached.keys())
+    return ret
+
+def _get_proxwalk_db(): return _firebase.database().child(proxwalkTable)
 
 # TODO: maybe we should allow users to pass in yelp data.
 def _get_name_coord_from_yelp_id(yelp_id):
@@ -134,15 +159,17 @@ def _yelp_id_to_wiki_page(yelp_id):
 
 def _write_crosswalk_to_db(yelp_id, provider_map):
     """Ensure the given crosswalk object is valid and writes it to the DB.
-    Data existing at the given keys will be overwritten.
+    Data existing at the given keys will be not be overwritten.
 
     :param yelp_id: for the place
     :param provider_map: is {'tripadvisor': <id-str>, ...}
     """
     # Assert 1) no typos, 2) we haven't added keys that this code may not know how to handle.
     for key in provider_map: assert key in CROSSWALK_KEYS
-    _get_crosswalk_db().child(yelp_id).update(provider_map)
-
+    existing = _get_proxwalk_db().child(yelp_id).get().val()
+    if existing:
+        provider_map.update(existing)
+    _get_proxwalk_db().child(yelp_id).update(provider_map)
 
 def write_to_db(yelp_to_ta=None, yelp_to_wiki=None, yelp_to_website=None):
     """Takes yelp_id to other provider ID dicts and writes those values into the crosswalk DB.
@@ -211,7 +238,6 @@ def write_places_missing_ta(center, radius_km):
                                                                         check_missing_ta=True, check_missing_wiki=False, check_missing_web=False)
     yelp_ta_map = yelp_ids_to_tripadvisor_ids(place_id_missing_ta)
     write_to_db(yelp_to_ta=yelp_ta_map)
-
 
 def write_all_places_ta(center, radius_km):
     # TODO: code clean up. Is this needed?

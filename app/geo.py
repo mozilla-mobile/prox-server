@@ -25,14 +25,13 @@ def get_place_ids_in_radius(center, radius_km, cached_locations_table=None):
     else:
         location_table = cached_locations_table
 
-    out = set()
+    place_ids_in_radius = set()
     for place_id, vals in location_table.iteritems():
         lat, lng = vals['l']
         coord = (lat, lng)
-        if geofire.distance(center, coord) > radius_km:
-            continue
-        out.add(place_id)
-    return out
+        if geofire.distance(center, coord) <= radius_km:
+            place_ids_in_radius.add(place_id)
+    return place_ids_in_radius
 
 
 def _get_locations_table():

@@ -22,7 +22,7 @@ from __future__ import print_function
 from app import geo, util
 from app.constants import proxwalkTable
 from app.providers import tripadvisor as ta
-from app.providers import wp, yelp
+from app.providers import gplaces, wp, yelp
 from config import FIREBASE_CONFIG
 import pyrebase
 
@@ -237,3 +237,16 @@ def write_all_places_ta(center, radius_km):
     place_ids = geo.get_place_ids_in_radius(center, radius_km)
     yelp_ta_map = yelp_ids_to_tripadvisor_ids(place_ids)
     write_to_db(yelp_to_ta=yelp_ta_map)
+
+
+def _yelp_id_to_website(yelp_id):
+    name, coord = _get_name_coord_from_yelp_id(yelp_id)
+    gplace = gplaces.search(name, coord)
+    if gplace is None:
+        return None
+    gplace.get_details()
+    return gplace.website
+
+
+def _yelp_ids_to_websites(yelp_ids):
+    return list(map(_yelp_id_to_website, yelp_ids))

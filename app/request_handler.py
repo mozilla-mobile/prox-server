@@ -45,26 +45,9 @@ def writeYelpRecords(yelpVenues):
 
     db.child(venuesTable).update(record)
 
-def writeVenueRecord(biz, details, idObj = None):
-    key = representation.createKey(biz)
-    try:
-        venue = representation.venueRecord(biz, **details)
-        geo = representation.geoRecord(biz)
-        record = {
-          "details/" + key: venue,
-          "locations/" + key: geo 
-        }
-    except Exception as err:
-        log.exception("Exception preparing to write to firebase for key " + key)
-        record = {}
-
-    record["cache/" + key] = details
-    if idObj is not None:
-        # we're now going to cache the details, as well as the crosswalk 
-        # identifiers that we used to look them up.
-        details["identifiers"] = idObj
-
-    db.child(venuesTable).update(record)
+def writeVenueRecord(yelpID, details, idObj = None):
+    venue = representation.updateRecord(yelpID, **details)
+    db.child(venuesTable).child("details").child(yelpID).update(venue)
 
 def writeSearchRecord(lat, lng, key=None):
     record = representation._geoRecord(lat, lng)
@@ -109,9 +92,8 @@ def readCachedVenueIdentifiers(cache):
         return cache.get("identifiers", None)
     return None
 
-def researchVenue(biz):
+def researchVenue(yelpID):
     try:
-        yelpID = representation.createKey(biz)
         cache = readCachedVenueDetails(yelpID)
         venueIdentifiers = readCachedVenueIdentifiers(cache)
         # This gets the identifiers from Factual. It's two HTTP requests 
@@ -128,9 +110,9 @@ def researchVenue(biz):
         # Firebase.
         shouldCacheCrosswalk = (not crosswalkedFoundInCached) or crosswalkAvailable
         if shouldCacheCrosswalk:
-            writeVenueRecord(biz, venueDetails, venueIdentifiers)
+            writeVenueRecord(yelpID, venueDetails, venueIdentifiers)
         else:
-            writeVenueRecord(biz, venueDetails)
+            writeVenueRecord(yelpID, venueDetails)
 
         return yelpID
     except KeyboardInterrupt:

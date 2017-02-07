@@ -38,33 +38,27 @@ def updateRecord(yelpID, **details):
     # Yelp v3.
     if "yelp" in details:
       info = details["yelp"]
-      providers["yelp"] = {
-        "rating"          : biz.rating,
-        "totalReviewCount": biz.review_count,
-        "ratingMax"       : 5,
-        "description"     : biz.snippet_text,
-        "url"             : biz.url
-      }
-      h["description"].append(_descriptionRecord("yelp", biz.snippet_text))
+      categories = None
       if "categories" in info:
-          h["categories"].update([
-            (c["title"], _categoryRecord(c["alias"], c["title"])) 
-            for c in info["categories"] 
-            if "title" in c
-          ])
-      h["images"]     += _imageRecords("yelp", info.get("photos", []), biz.url)
-      h["hours"]       = _yelpHoursRecord(info.get("hours", None))
-
+        categories = [
+          (c["title"], _categoryRecord(c["alias"], c["title"]))
+          for c in info["categories"]
+          if "title" in c
+        ]
+      providers["yelpv3"] = {
+        "images"    : _imageRecords(info.get("photos", []), info["url"]),
+        "hours"     : _yelpHoursRecord(info.get("hours", None)),
+        "categories": categories,
+      }
 
     # Wikipedia.
     if "wikipedia" in details:
       info = details["wikipedia"]
       providers["wikipedia"] = {
         "url"        : info["url"],
-        "description": info["summary"]
+        "description": info["summary"],
+        "images"     : _imageRecords(info["images"], info["url"])
       }
-      h["description"].append(_descriptionRecord("wikipedia", info["summary"]))
-      h["images"]     += _imageRecords("wikipedia", info["images"], info["url"])
 
     # TripAdvisor
     if "tripadvisor" in details:
@@ -73,55 +67,30 @@ def updateRecord(yelpID, **details):
       firstReview = ""
       if len(reviews) > 0:
           firstReview = reviews[0]["text"]
-          h["description"].append(_descriptionRecord("tripadvisor", firstReview))
 
-      try:
-          providers["tripAdvisor"] = {
-            "rating"          : float(info["rating"]), # This is the aggregate rating
-            "totalReviewCount": int(info["num_reviews"]),
-            "description"     : firstReview, # The rating of this review is not included
-            "url"             : info["web_url"]
-          }
-      except KeyError:
-          log.debug("TripAdvisor weird for " + biz.id)
-
+      providers["tripAdvisor"] = {
+        "rating"          : float(info["rating"]), # This is the aggregate rating
+        "totalReviewCount": int(info["num_reviews"]),
+        "description"     : firstReview, # The rating of this review is not included
+        "url"             : info["web_url"]
+      }
 
     # Foursquare
     if "foursquare" in details:
-        info = details["foursquare"]
-        h["images"] += _imageRecords("foursquare", info["images"], info["url"])
+      info = details["foursquare"]
+      providers["foursquare"] = {
+        "images": _imageRecords(info["images"], info["url"])
+      }
 
     # Factual Places
     if "factual" in details:
-        info = details["factual"]
-        h["url"] = info.get("website", None)
+      info = details["factual"]
+      providers["factual"] = {
+        "url": info.get("website", None)
+      }
 
-    images = h["images"]
-    h["images"] = random.sample(images, len(images))
-    coord = None
-    if biz.location is not None and biz.location.coordinate is not None:
-        coord = {
-          "lat": biz.location.coordinate.latitude,
-          "lng": biz.location.coordinate.longitude
-        }
     return {
-      "version"    : 1,
-      "id"         : biz.id,
-      
-      "name"       : biz.name,
-      "description": h["description"],
-      
-      "url"        : h["url"],
-      "phone"      : biz.display_phone,
-      
-      "address"    : biz.location.display_address,
-      "coordinates": coord,
-
-      "categories" : list(h["categories"].values()),
-      "providers"  : providers,
-      
-      "images"     : h["images"],
-      "hours"      : h["hours"],
+      "providers": providers
     }
 
 def _categoryRecord(id, text):
@@ -130,19 +99,12 @@ def _categoryRecord(id, text):
       "text": text,
     }
 
-def _descriptionRecord(provider, text, url = None):
-    return {
-      "text"    : text,
-      "provider": provider,
-    }
-
-def _imageRecords(provider, imageURLs, onClick):
+def _imageRecords(imageURLs, onClick):
     # First iteration, such that there is only one page
     # to go to if the user taps on the page.
     return [
       {
         "src"        : url,
-        "provider"   : provider,
         "providerURL": onClick,
       }
       for url in imageURLs

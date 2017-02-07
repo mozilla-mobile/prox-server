@@ -69,7 +69,7 @@ def updateRecord(yelpID, **details):
           firstReview = reviews[0]["text"]
 
       providers["tripAdvisor"] = {
-        "rating"          : float(info["rating"]), # This is the aggregate rating
+        "rating"          : float(info["rating"]) if info["rating"] else None, # This is the aggregate rating
         "totalReviewCount": int(info["num_reviews"]),
         "description"     : firstReview, # The rating of this review is not included
         "url"             : info["web_url"]

@@ -46,6 +46,14 @@ def writeYelpRecords(yelpVenues):
 
     db.child(venuesTable).update(record)
 
+def writeVenueProviderRecord(yelpID, details, idObj = None):
+    try:
+        venue = representation.updateRecord(yelpID, **details)
+        for provider, data in venue["providers"].items():
+            db.child(venuesTable).child("details").child(yelpID).child("providers").update({provider: data})
+    except Exception as e:
+        log.error("Error writing record: {}\n{}".format(details, e))
+
 def writeVenueRecord(yelpID, details, idObj = None):
     venue = representation.updateRecord(yelpID, **details)
     db.child(venuesTable).child("details").child(yelpID).update(venue)
@@ -94,12 +102,11 @@ def readCachedVenueIdentifiers(cache):
     return None
 
 def researchPlace(keyID, sourcesList, identifiers):
-    # Overall: Iterate through sources and write them to disk
-    # Get source ID
-    # Check or update Proxwalk
-    # Fetch from source using id and write to firebase
     # TODO: Check more than just Proxwalk
     placeSourceIDs = proxwalk.getSourceIDs(keyID, sourcesList, identifiers)
+    venueDetails = search.getVenueDetails(placeSourceIDs)
+    writeVenueProviderRecord(keyID, venueDetails)
+    return [key.encode('utf-8') for key in venueDetails.keys()]
 
 def researchVenue(yelpID):
     try:

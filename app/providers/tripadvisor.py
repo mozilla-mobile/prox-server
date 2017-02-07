@@ -15,11 +15,14 @@ TRIP_ADVISOR_API = "https://api.tripadvisor.com/api/partner/2.0/location/{}"
 params = { "key": tripadvisorkey }
 
 def resolve(idObj):
-    url = idObj["url"]
-    taId = getNumId(url)
-    apiUrl = TRIP_ADVISOR_API.format(taId)
+    apiUrl = TRIP_ADVISOR_API.format(idObj)
     return requests.get(apiUrl, params).json()
 
+# Extract id object from Factual Crosswalk id object
+def getIdFromIdObj(idObj):
+    url = idObj["url"]
+    taId = getNumId(url)
+    return taId
 
 TRIP_ADVISOR_LOC_MAPPER_API = 'http://api.tripadvisor.com/api/partner/2.0/location_mapper/{}'
 

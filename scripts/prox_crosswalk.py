@@ -42,8 +42,7 @@ def getSourceIDs(keyID, sourcesList, identifiers):
     foundSources = _getCachedIDsForPlace(keyID, sourcesList)
     toFetch = [source for source in sourcesList if source not in foundSources]
     foundSources.update(fetchAndCacheSources(keyID, toFetch, identifiers))
-    # TODO: fetch from each source, and error if there is a problem
-    # TODO: return list of UPDATED sources?
+    return foundSources
 
 def fetchAndCacheSources(keyID, sourcesList, identifiers):
     newSources = {}
@@ -51,9 +50,9 @@ def fetchAndCacheSources(keyID, sourcesList, identifiers):
     name = identifiers["name"]
     for source in sourcesList:
         if source == "tripadvisor":
-            res = ta.search(coordinates, name)
+            res = ta.search(coordinates, name)["data"]
             if res:
-                taID = res["data"][0]["location_id"]
+                taID = res[0]["location_id"]
                 newSources.update({source: taID})
         # TODO: Add other sources
     _write_crosswalk_to_db(keyID, newSources)

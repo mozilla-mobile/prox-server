@@ -139,6 +139,7 @@ def getVenueDetailsFromProvider(namespace, idObj, cached):
         
     resolve = resolvers[namespace]
     try:
+        # NB: This is updated to handle ids directly, rather than parsing from an object
       info = resolve(idObj)
       if info is not None:
           venueDetails[namespace] = info

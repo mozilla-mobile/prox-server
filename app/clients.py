@@ -3,7 +3,7 @@ import json
 
 from factual import Factual
 from foursquare import Foursquare
-
+from googleplaces import GooglePlaces
 from yelp.client import Client
 from yelp.oauth1_authenticator import Oauth1Authenticator
 
@@ -22,6 +22,8 @@ with io.open('keys.local.json') as cred:
     foursquareClient = Foursquare(_foursquareCreds["client_id"], _foursquareCreds["client_secret"])
 
     googleapikey = creds["googleapikey"]
+    gplacesClient = GooglePlaces(googleapikey)
+
     eventfulkey = creds["eventfulkey"]
     tripadvisorkey = creds["tripadvisorkey"]
 

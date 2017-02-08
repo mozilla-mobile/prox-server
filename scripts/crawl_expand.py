@@ -35,8 +35,8 @@ def expandPlaces(config, center, radius_km):
 
     for placeID in placeIDs:
         placeStatus = statusTable.val()[placeID]
-        # Get a list of (src, version) pairs that could be updated 
-        newSources = [src for src in config if src not in placeStatus or config[src] > placeStatus[src]]
+        # Get a list of (src, version) pairs that could be updated, skip searched places
+        newSources = [src for src in config if src not in placeStatus or (config[src] > placeStatus[src] and config[src] != 0)]
         if not newSources:
             log.info("No new sources for {}".format(placeID))
             continue

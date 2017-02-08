@@ -31,18 +31,26 @@ def expandPlaces(config, center, radius_km):
     # Fetch placeIDs to expand 
     location_table = db.child(locationsTable).get().val()
     placeIDs = geo.get_place_ids_in_radius(center, radius_km, location_table)
+    foundCount = 0
 
     for placeID in placeIDs:
         placeStatus = statusTable.val()[placeID]
         # Get a list of (src, version) pairs that could be updated 
         newSources = [src for src in config if src not in placeStatus or config[src] > placeStatus[src]]
         if not newSources:
+            log.info("No new sources for {}".format(placeID))
             continue
         updatedSources = request_handler.researchPlace(placeID, newSources, placeStatus["identifiers"])
         # Write updated sources to /status
         placeStatus = db.child(venuesTable).child("status").child(placeID)
         for source in newSources:
             placeStatus.update({source: config[source] if source in updatedSources else 0})
+        if newSources:
+            foundCount += 1
+        log.info("{} done: {}".format(placeID, str(updatedSources)))
+
+    log.info("Finished crawling other sources: {} places matched".format(foundCount))
+
 
 testConfig = { "yelp": 1,
                "tripadvisor": 1 }

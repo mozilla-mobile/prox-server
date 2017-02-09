@@ -36,8 +36,8 @@ def updateRecord(yelpID, **details):
     providers = {}
 
     # Yelp v3.
-    if "yelp" in details:
-      info = details["yelp"]
+    if "yelp3" in details:
+      info = details["yelp3"]
       categories = None
       if "categories" in info:
         categories = [
@@ -45,7 +45,7 @@ def updateRecord(yelpID, **details):
           for c in info["categories"]
           if "title" in c
         ]
-      providers["yelpv3"] = {
+      providers["yelp3"] = {
         "images"    : _imageRecords(info.get("photos", []), info["url"]),
         "hours"     : _yelpHoursRecord(info.get("hours", None)),
         "categories": categories,

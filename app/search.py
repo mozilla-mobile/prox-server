@@ -9,7 +9,7 @@ from math import sqrt
 from app.clients import yelpClient, factualClient, googleapikey
 
 from app.providers.fs import resolve as resolveFoursquare
-from app.providers.yelp import resolve as resolveYelp
+from app.providers.yelp import resolve_with_key as resolveYelp
 from app.providers.wp import resolve as resolveWikipedia
 from app.providers.tripadvisor import resolve_with_key as resolveTripAdvisor
 from app.providers.factual_places import resolve as resolveFactualPlace
@@ -54,7 +54,7 @@ DEFAULT_COUNTRY_GOOGLEAPI = 'country:US'
 
 resolvers = {
     "foursquare": resolveFoursquare,
-    "yelp": resolveYelp,
+    "yelp3": resolveYelp,
     "wikipedia": resolveWikipedia,
     "tripadvisor": resolveTripAdvisor,
     "factual": resolveFactualPlace,

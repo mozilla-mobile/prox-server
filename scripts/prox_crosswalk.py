@@ -59,9 +59,11 @@ def fetchAndCacheProviders(keyID, providersList, identifiers):
 
 def _getCachedIDsForPlace(keyID, providersList):
     ret = {}
+    if "yelp3" in sourcesList:
+        ret["yelp3"] = keyID
     cached = _get_proxwalk_db().child(keyID).get().val()
     if not cached:
-        return {}
+        return ret
     for s in cached.keys():
         if s in providersList:
             ret.update({s: cached[s]})

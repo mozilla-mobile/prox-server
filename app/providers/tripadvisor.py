@@ -75,7 +75,7 @@ def _search_without_accents(query, url):
     Why would you want to? Yelp place names are frequently listed with accents - TA are not, potentially causing
     name mismatches. I've found removing accents corrects some places (e.g. La Mar Cebichería Peruana).
     """
-    accent_stripped_str = util.strip_accents(unicode(query))
+    accent_stripped_str = util.strip_accents(query)
     params = _get_loc_mapper_default_params()
     params['q'] = accent_stripped_str
     return requests.get(url, params).json()

@@ -1,18 +1,18 @@
+import getpass
 
 # Change these names to change what the tables in firebase are called.
 def _findTablePrefix():
-    import os, getpass
-    os_name, hostname = os.uname()[0:2]
     username = getpass.getuser()
-    if os_name == "Linux":
-        if hostname == "prox-dev.moo.mx":
-            # staging
-            return ""
-        if hostname.startswith("ip-") and username == "prox":
-            # production
-            return "production/" 
-    # development
-    return username + "/"
+    #os_name, hostname = os.uname()[0:2]
+    #if os_name == "Linux":
+    #    if hostname == "prox-dev.moo.mx":
+    #        # staging
+    #        return ""
+    #    if hostname.startswith("ip-") and username == "prox":
+    #        # production
+    #        return "production/"
+    return "users/" + username + "/"  # Development
+    #return "branches/" + <key> + "/"  # Production
 
 _tablePrefix = _findTablePrefix()
 _venues = "venues"

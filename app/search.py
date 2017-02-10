@@ -16,6 +16,7 @@ from app.providers.factual_places import resolve as resolveFactualPlace
 from app.util import log
 from app.constants import venueSearchRadius
 import app.geo as geo
+import app.geofire as geofire
 
 from config  import yelpSearchCategories
 
@@ -79,8 +80,8 @@ def _getVenuesFromIndex(lat, lon, radius, sortOrder):
         # defined by the location/radius. Each sub-circle is the smallest
         # circle that contains each quadrant of this square.
         dst = radius / sqrt(8)
-        deltaLat = dst / geo.g_METERS_PER_DEGREE_LATITUDE
-        deltaLong = geo.metersToLongitudeDegrees(dst, lat)
+        deltaLat = dst / geofire.g_METERS_PER_DEGREE_LATITUDE
+        deltaLong = geofire.metersToLongitudeDegrees(dst, lat)
 
         def processQuadrant(quad):
             try:

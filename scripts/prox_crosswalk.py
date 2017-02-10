@@ -17,7 +17,6 @@ TODO:
 - Keeps throwing 504: Gateway Time-out from Yelp3Client (rate limit?).
 
 """
-from __future__ import print_function
 
 from app import geo, util
 from app.constants import proxwalkTable
@@ -118,7 +117,7 @@ def _get_yelp_to_ta_map_from_raw_ta(raw_ta):
     :return: {<yelp_id>: <ta_id>}; only the first TA location is used.
     """
     out = {}
-    for yelp_id, ta_res in raw_ta.iteritems():
+    for yelp_id, ta_res in raw_ta.items():
         if len(ta_res) < 1:
             out[yelp_id] = None
         else:
@@ -183,7 +182,7 @@ def write_to_db(yelp_to_ta=None, yelp_to_wiki=None, yelp_to_website=None):
 
     def add_ids_to_dict(provider_key, yelp_to_other_id):
         if not yelp_to_other_id: return
-        for yelp_id, other_id in yelp_to_other_id.iteritems():
+        for yelp_id, other_id in yelp_to_other_id.items():
             val = crosswalk.get(yelp_id, {})
             val[provider_key] = other_id
             crosswalk[yelp_id] = val
@@ -192,7 +191,7 @@ def write_to_db(yelp_to_ta=None, yelp_to_wiki=None, yelp_to_website=None):
     add_ids_to_dict('wikipedia', yelp_to_wiki)
     add_ids_to_dict('website', yelp_to_website)
 
-    for yelp_id, provider_map in crosswalk.iteritems():
+    for yelp_id, provider_map in crosswalk.items():
         _write_crosswalk_to_db(yelp_id, provider_map)
 
 
@@ -210,7 +209,7 @@ def verify_yelp_ids_to_tripadvisor_ids(yelp_ids):
     tas = _yelp_ids_to_raw_tripadvisor(yelp_ids)
     missing_out = []
     not_missing_out = []
-    for yelp_id, ta in tas.iteritems():
+    for yelp_id, ta in tas.items():
         yplace = _YELP_ID_TO_PLACE_CACHE.get(yelp_id, yelp.resolve_with_key(yelp_id))  # These should all be cached.
         yout = {'name': yplace['name'],
                 'url': util.strip_url_params(yplace['url']),

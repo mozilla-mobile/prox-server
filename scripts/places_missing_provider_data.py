@@ -8,7 +8,6 @@ TODO:
 - Move this from scripts/.
 - Website & Wiki are untested.
 """
-from __future__ import print_function
 
 from app import geo
 from app.constants import locationsTable, venuesTable
@@ -35,7 +34,7 @@ def get_places_missing_provider_data(center, radius_km,
     :return: a list of place_ids.
     """
     place_caches = _get_place_caches_missing_provider_data(center, radius_km, check_missing_ta, check_missing_wiki, check_missing_web)
-    return map(lambda p: p['identifiers']['id'], place_caches)
+    return [p['identifiers']['id'] for p in place_caches]
 
 
 def _get_place_caches_missing_provider_data(center, radius_km,
@@ -55,7 +54,7 @@ def _get_place_caches_missing_provider_data(center, radius_km,
 
 
 def _filter_caches_by_required_keys(required_keys, caches_for_place_ids):
-    return filter(lambda c: _is_cache_missing_required_keys(required_keys, c), caches_for_place_ids)
+    return [c for c in caches_for_place_ids if _is_cache_missing_required_keys(required_keys, c)]
 
 
 def _is_cache_missing_required_keys(required_keys, cache_for_place_id):

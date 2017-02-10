@@ -1,9 +1,10 @@
 # coding=utf-8
 
-from __future__ import print_function
+
 from app.providers import wp, yelp
 import atexit
 import wikipedia
+from functools import reduce
 
 
 def test_match_place_name_to_wiki_page():
@@ -66,7 +67,7 @@ def test_match_place_name_to_wiki_page_challenges():
     """
     def alert(place_name, wiki_page):
         print('COMPLETED CHALLENGE place -> wiki: %s -> %s. Consider adding to permanent assertions.' % (place_name, wiki_page))
-    for (place_name, wiki_page) in _CHALLENGE_PLACE_NAME_TO_WIKI.iteritems():
+    for (place_name, wiki_page) in _CHALLENGE_PLACE_NAME_TO_WIKI.items():
         output = wp._match_place_name_to_wiki_page(place_name, [wiki_page])
         if output:
             # pytest eats our logs so we have to run after it's done. via: http://stackoverflow.com/a/38806934/2219998

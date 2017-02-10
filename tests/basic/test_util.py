@@ -10,7 +10,7 @@ def test_strip_url_params_with_params():
         'https://www.yelp.com/biz/oasis-grill-san-francisco?adjust_creative=4Eouq5qgGdZWxF_f4qUZdg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup':
             'https://www.yelp.com/biz/oasis-grill-san-francisco',
     }
-    for input, expected in input_to_expected.iteritems():
+    for input, expected in input_to_expected.items():
         assert util.strip_url_params(input) == expected
 
 
@@ -31,22 +31,22 @@ def test_strip_accents():
     I found them by holding down letter keys on macOS, which exposes an accent menu.
     """
     expected_to_input = {
-        'a': u'àáâäãåā',
-        'e': u'èéêëēėę',
-        'i': u'îïíīįì',
-        'o': u'ôöòóōõ',
-        'u': u'ûüùúū',
-        'c': u'çćč',
-        'n': u'ñń',
+        'a': 'àáâäãåā',
+        'e': 'èéêëēėę',
+        'i': 'îïíīįì',
+        'o': 'ôöòóōõ',
+        'u': 'ûüùúū',
+        'c': 'çćč',
+        'n': 'ñń',
     }
-    for expected, input in expected_to_input.iteritems():
+    for expected, input in expected_to_input.items():
         assert util.strip_accents(input) == expected * len(input)
 
 
 def test_str_contains_accents_true():
     inputs = [
-        u'à',
-        u'get to da chōppa!'
+        'à',
+        'get to da chōppa!'
     ]
     for input in inputs:
         assert util.str_contains_accents(input)
@@ -55,8 +55,8 @@ def test_str_contains_accents_true():
 def test_str_contains_accents_false():
     inputs = [
         'aoeu',
-        u'aoeu',
-        u'!',
+        'aoeu',
+        '!',
     ]
     for input in inputs:
         assert not util.str_contains_accents(input)

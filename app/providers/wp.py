@@ -34,7 +34,7 @@ _PLACE_NAME_TO_WIKI_PAGE_PROCESSORS = [
 # --- END SEARCH PARAMETERS --- #
 
 
-def search(place_name, coord):
+def search(coord, place_name):
     """Finds the Wikipedia page corresponding to the given place.
 
     The current implementation requires Wikipedia geotags, meaning it'll miss:

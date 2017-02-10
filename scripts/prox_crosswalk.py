@@ -24,7 +24,6 @@ from app.constants import proxwalkTable
 from app.providers import tripadvisor as ta
 from app.providers import wp, yelp
 from config import FIREBASE_CONFIG
-# from scripts import places_missing_provider_data as missing_data
 import pyrebase
 
 _firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
@@ -38,32 +37,34 @@ CROSSWALK_KEYS = {
 # HACK: used to avoid duplicating Yelp place requests.
 _YELP_ID_TO_PLACE_CACHE = {}
 
-def getSourceIDs(keyID, sourcesList, identifiers):
-    foundSources = _getCachedIDsForPlace(keyID, sourcesList)
-    toFetch = [source for source in sourcesList if source not in foundSources]
-    foundSources.update(fetchAndCacheSources(keyID, toFetch, identifiers))
-    return foundSources
+def getAndCacheProviderIDs(keyID, providersList, identifiers):
+    providerIDs = _getCachedIDsForPlace(keyID, providersList)
+    toFetch = [p for p in providersList if p not in providerIDs]
+    providerIDs.update(fetchAndCacheProviders(keyID, toFetch, identifiers))
+    return providerIDs
 
-def fetchAndCacheSources(keyID, sourcesList, identifiers):
-    newSources = {}
+def fetchAndCacheProviders(keyID, providersList, identifiers):
+    providers = {}
     coordinates = (identifiers["lat"], identifiers["lng"])
     name = identifiers["name"]
-    for source in sourcesList:
-        if source == "tripadvisor":
+    for p in providersList:
+        if p == "tripadvisor":
             res = ta.search(coordinates, name)["data"]
             if res:
                 taID = res[0]["location_id"]
-                newSources.update({source: taID})
-        # TODO: Add other sources
-    _write_crosswalk_to_db(keyID, newSources)
-    return newSources
+                providers.update({p: taID})
+        # TODO: Add other providers
+    _write_crosswalk_to_db(keyID, providers)
+    return providers
 
-def _getCachedIDsForPlace(keyID, sourcesList):
+def _getCachedIDsForPlace(keyID, providersList):
     ret = {}
     cached = _get_proxwalk_db().child(keyID).get().val()
     if not cached:
         return {}
-    map(lambda s: ret.update({s: cached[s]}) if s in sourcesList else None, cached.keys())
+    for s in cached.keys():
+        if s in providersList:
+            ret.update({s: cached[s]})
     return ret
 
 def _get_proxwalk_db(): return _firebase.database().child(proxwalkTable)
@@ -158,7 +159,7 @@ def _yelp_id_to_wiki_page(yelp_id):
 
 def _write_crosswalk_to_db(yelp_id, provider_map):
     """Ensure the given crosswalk object is valid and writes it to the DB.
-    Data existing at the given keys will be not be overwritten.
+    Data existing at the given keys will not be overwritten.
 
     :param yelp_id: for the place
     :param provider_map: is {'tripadvisor': <id-str>, ...}

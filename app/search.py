@@ -11,7 +11,7 @@ from app.clients import yelpClient, factualClient, googleapikey
 from app.providers.fs import resolve as resolveFoursquare
 from app.providers.yelp import resolve as resolveYelp
 from app.providers.wp import resolve as resolveWikipedia
-from app.providers.tripadvisor import resolve as resolveTripAdvisor
+from app.providers.tripadvisor import resolve_with_key as resolveTripAdvisor
 from app.providers.factual_places import resolve as resolveFactualPlace
 from app.util import log
 from app.constants import venueSearchRadius
@@ -139,7 +139,7 @@ def getVenueDetailsFromProvider(namespace, idObj, cached):
         
     resolve = resolvers[namespace]
     try:
-        # NB: This is updated to handle ids directly, rather than parsing from an object
+      # TODO: Handle parsing Crosswalk id out of url in addition to Proxwalk provider id
       info = resolve(idObj)
       if info is not None:
           venueDetails[namespace] = info

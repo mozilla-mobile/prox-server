@@ -68,12 +68,15 @@ def updateRecord(yelpID, **details):
       if len(reviews) > 0:
           firstReview = reviews[0]["text"]
 
-      providers["tripAdvisor"] = {
-        "rating"          : float(info["rating"]) if info["rating"] else None, # This is the aggregate rating
-        "totalReviewCount": int(info["num_reviews"]),
-        "description"     : firstReview, # The rating of this review is not included
-        "url"             : info["web_url"]
-      }
+      try:
+          providers["tripAdvisor"] = {
+            "rating"          : float(info["rating"]) if info["rating"] else None, # This is the aggregate rating, and can be empty
+            "totalReviewCount": int(info["num_reviews"]),
+            "description"     : firstReview, # The rating of this review is not included
+            "url"             : info["web_url"]
+          }
+      except KeyError:
+          log.debug("TripAdvisor weird for " + biz.id)
 
     # Foursquare
     if "foursquare" in details:

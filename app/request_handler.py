@@ -22,10 +22,7 @@ import app.search as search
 import app.events as events
 import app.geofire as geo
 from app.util import log
-
 import sys
-reload(sys)  
-sys.setdefaultencoding('utf8')
 
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 db = firebase.database()

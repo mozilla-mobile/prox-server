@@ -14,7 +14,7 @@ def printEventObj(event):
 
 def fetchEventfulEvents():
     eventListings = events.fetchEventsFromLocation(SF_LAT, SF_LNG, radius=10)
-    map(printEventObj, eventListings)
+    list(map(printEventObj, eventListings))
 
 def printGcalObj(event):
     eventObj = request_handler.getGcalEventObj(event)
@@ -23,7 +23,7 @@ def printGcalObj(event):
 
 def fetchGcalEvents():
     eventListings = events.fetchEventsFromGcal(CAL_ID, datetime.timedelta(days=1))
-    map(printGcalObj, eventListings)
+    list(map(printGcalObj, eventListings))
 
 print("fetching eventful events")
 fetchEventfulEvents()

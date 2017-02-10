@@ -46,11 +46,11 @@ def test_match_place_name_to_wiki_page():
 
 def _verify_match_place_input(place_names, wiki_pages, place_name_to_wiki_page):
     """Verify the inputs follow the required convention. See dataset documentation below for more."""
-    for place_name in place_name_to_wiki_page.keys():
+    for place_name in list(place_name_to_wiki_page.keys()):
         if place_name not in place_names:
             raise ValueError("Place name %s not in place name iterable." % place_name)
 
-    for wiki_page in place_name_to_wiki_page.values():
+    for wiki_page in list(place_name_to_wiki_page.values()):
         if wiki_page not in wiki_pages:
             raise ValueError("Wiki page %s not in wiki page iterable." % wiki_page)
 

@@ -32,7 +32,7 @@ stats = {
   "TOTAL"      : 0,
 }
 factualStats = {}
-for venue in venueData.values():
+for venue in list(venueData.values()):
     yelpID = venue["id"]
     coord = venue["coordinates"]
     coord = (coord["lat"], coord["lng"])
@@ -46,11 +46,11 @@ for venue in venueData.values():
     except KeyError:
         identifiers = dict()
 
-    for p in identifiers.keys():
+    for p in list(identifiers.keys()):
         factualStats[p] = factualStats.get(p, 0) + 1
     
     print("%.8f, %.8f" % coord)
-    providers = venue.get("providers", {}).keys()
+    providers = list(venue.get("providers", {}).keys())
     for p in providers:
         stats[p] = stats.get(p, 0) + 1
     if "url" in venue:

@@ -63,7 +63,7 @@ def _getCachedIDsForPlace(keyID, providersList):
     cached = _get_proxwalk_db().child(keyID).get().val()
     if not cached:
         return ret
-    for s in cached.keys():
+    for s in list(cached.keys()):
         if s in providersList:
             ret.update({s: cached[s]})
     return ret

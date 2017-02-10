@@ -49,7 +49,7 @@ def writeYelpRecords(yelpVenues):
 def writeVenueProviderRecord(yelpID, details):
     try:
         venue = representation.updateRecord(yelpID, **details)
-        for provider, data in venue["providers"].items():
+        for provider, data in list(venue["providers"].items()):
             db.child(venuesTable, "details", yelpID, "providers").update({provider: data})
     except Exception as e:
         log.error("Error writing record: {}\n{}".format(details, e))
@@ -107,7 +107,7 @@ def researchPlace(keyID, providersList, identifiers):
     placeProviderIDs = proxwalk.getAndCacheProviderIDs(keyID, providersList, identifiers)
     venueDetails = search.getVenueDetails(placeProviderIDs)
     writeVenueProviderRecord(keyID, venueDetails)
-    return [key.encode('utf-8') for key in venueDetails.keys()]
+    return [key.encode('utf-8') for key in list(venueDetails.keys())]
 
 def researchVenue(yelpID):
     try:

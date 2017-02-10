@@ -150,7 +150,7 @@ def getVenueDetailsFromProvider(namespace, idObj, cached):
 def getVenueDetails(venueIdentifiers, cachedDetails = None):
     if cachedDetails is None:
         cachedDetails = {}
-    args = [(ns, idObj, cachedDetails.get(ns, None)) for ns, idObj in venueIdentifiers.items() if ns in resolvers]
+    args = [(ns, idObj, cachedDetails.get(ns, None)) for ns, idObj in list(venueIdentifiers.items()) if ns in resolvers]
     
     pool = ThreadPool(10)
     results = pool.map(_getVenueDetailsFromProvider, args)

@@ -58,7 +58,7 @@ def _filter_caches_by_required_keys(required_keys, caches_for_place_ids):
 
 
 def _is_cache_missing_required_keys(required_keys, cache_for_place_id):
-    cache_ids = cache_for_place_id.keys()
+    cache_ids = list(cache_for_place_id.keys())
     for required_id in required_keys:
         if required_id not in cache_ids:
             return True

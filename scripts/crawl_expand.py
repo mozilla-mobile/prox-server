@@ -34,11 +34,14 @@ def expandPlaces(config, center, radius_km):
     location_table = db.child(locationsTable).get().val()
     placeIDs = geo.get_place_ids_in_radius(center, radius_km, location_table)
     foundCount = 0
+    searchCount = 0
 
+    log.info("{} places found".format(len(placeIDs)))
     for placeID in placeIDs:
         placeStatus = statusTable.val()[placeID]
         # Get a list of (src, version) pairs that could be updated, skip searched places
         newSources = [src for src in config if src not in placeStatus or (config[src] > placeStatus[src] and config[src] != NOT_FOUND)]
+        searchCount += 1
         if not newSources:
             log.info("No new sources for {}".format(placeID))
             continue
@@ -55,7 +58,7 @@ def expandPlaces(config, center, radius_km):
             foundCount += 1
         log.info("{} done: {}".format(placeID, str(updatedSources)))
 
-    log.info("Finished crawling other sources: {} places matched".format(foundCount))
+    log.info("Finished crawling other sources: {} places matched and {} searched".format(foundCount, searchCount))
 
 
 TEST_CONFIG = { "yelp3": 1,

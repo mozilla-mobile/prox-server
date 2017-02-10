@@ -4,7 +4,7 @@ This is the server side component to the first NMX prototype project.
 # Setup
 Set up a virtualenv (assuming you already installed virtualenv with pip) and install dependencies.
 
-    virtualenv env
+    virtualenv --python=python3.6 env
     source env/bin/activate
     pip install -r requirements.txt
 

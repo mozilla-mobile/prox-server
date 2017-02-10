@@ -84,7 +84,7 @@ def strip_url_params(url):
     return url[:param_start_index]
 
 
-def strip_accents(unicode_str):
+def strip_accents(accented_str):
     """Changes accents into similar looking non-accented letters.
     Characters known to not change: æ œ ø
 
@@ -92,10 +92,9 @@ def strip_accents(unicode_str):
     Comments seem to indicate this isn't a perfect solution because of the non-printing representation.
     I did not thoroughly investigate.
     """
-    assert isinstance(unicode_str, unicode)
-    return ''.join(char for char in unicodedata.normalize('NFD', unicode_str)
+    return ''.join(char for char in unicodedata.normalize('NFD', accented_str)
                    if unicodedata.category(char) != 'Mn')
 
 
 def str_contains_accents(s):
-    return s != strip_accents(unicode(s))  # unicode_str == byte_str if text is the same.
+    return s != strip_accents(s)

@@ -5,7 +5,7 @@ import random
 from app.util import log
 from collections import OrderedDict
 from dateutil import parser
-from events import isSingleDayEvent
+from .events import isSingleDayEvent
 
 def baseRecord(biz):
     # biz is the response object from the Yelp Search API

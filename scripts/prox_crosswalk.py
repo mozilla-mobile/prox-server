@@ -162,7 +162,7 @@ def yelp_ids_to_wiki_pages(yelp_ids):
 
 def _yelp_id_to_wiki_page(yelp_id):
     name, coord = _get_name_coord_from_yelp_id(yelp_id)
-    return wp.search(name, coord)
+    return wp.search(coord, name)
 
 
 def _write_crosswalk_to_db(yelp_id, provider_map):

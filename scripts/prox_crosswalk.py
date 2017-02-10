@@ -59,7 +59,7 @@ def fetchAndCacheProviders(keyID, providersList, identifiers):
 
 def _getCachedIDsForPlace(keyID, providersList):
     ret = {}
-    if "yelp3" in sourcesList:
+    if "yelp3" in providersList:
         ret["yelp3"] = keyID
     cached = _get_proxwalk_db().child(keyID).get().val()
     if not cached:
@@ -231,15 +231,6 @@ def verify_yelp_ids_to_tripadvisor_ids(yelp_ids):
 
     return {'not_missing_ta': not_missing_out,
             'missing_ta': missing_out}
-
-
-def write_places_missing_ta(center, radius_km):
-    # TODO: code clean up. log missing places? is this needed?
-    # TODO: atomic write?
-    place_id_missing_ta = missing_data.get_places_missing_provider_data(center, radius_km,
-                                                                        check_missing_ta=True, check_missing_wiki=False, check_missing_web=False)
-    yelp_ta_map = yelp_ids_to_tripadvisor_ids(place_id_missing_ta)
-    write_to_db(yelp_to_ta=yelp_ta_map)
 
 def write_all_places_ta(center, radius_km):
     # TODO: code clean up. Is this needed?

@@ -33,7 +33,6 @@ def expandPlaces(config, center, radius_km):
     # Fetch placeIDs to expand 
     location_table = db.child(locationsTable).get().val()
     placeIDs = geo.get_place_ids_in_radius(center, radius_km, location_table)
-    foundCount = 0
     searchCount = 0
 
     log.info("{} places found".format(len(placeIDs)))
@@ -54,11 +53,9 @@ def expandPlaces(config, center, radius_km):
 
         db.child(venuesTable, "status", placeID).update(status)
 
-        if newSources:
-            foundCount += 1
         log.info("{} done: {}".format(placeID, str(updatedSources)))
 
-    log.info("Finished crawling other sources: {} places matched and {} searched".format(foundCount, searchCount))
+    log.info("Finished crawling other sources: {} places matched and {} searched".format(foundCount, len(placeIDs)))
 
 
 TEST_CONFIG = { "yelp3": 1,

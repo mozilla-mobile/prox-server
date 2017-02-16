@@ -102,12 +102,15 @@ def readCachedVenueIdentifiers(cache):
         return cache.get("identifiers", None)
     return None
 
-def researchPlace(keyID, providersList, identifiers):
-    # TODO: Check more than just Proxwalk
-    placeProviderIDs = proxwalk.getAndCacheProviderIDs(keyID, providersList, identifiers)
-    venueDetails = search.getVenueDetails(placeProviderIDs)
-    writeVenueProviderRecord(keyID, venueDetails)
-    return [key.encode('utf-8') for key in venueDetails.keys()]
+def researchPlace(keyID, placeProviderIDs):
+    try:
+        venueDetails = search.getVenueDetails(placeProviderIDs)
+        writeVenueProviderRecord(keyID, venueDetails)
+        return [key.encode('utf-8') for key in venueDetails.keys()]
+    except Exception as e:
+        log.exception("Error researching venue {}: {}".format(keyID, e))
+        return []
+
 
 def researchVenue(yelpID):
     try:

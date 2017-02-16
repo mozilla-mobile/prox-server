@@ -49,10 +49,16 @@ def fetchAndCacheProviders(keyID, providersList, identifiers):
     name = identifiers["name"]
     for p in providersList:
         if p == "tripadvisor":
-            res = ta.search(coordinates, name)["data"]
-            if res:
-                taID = res[0]["location_id"]
-                providers.update({p: taID})
+            try:
+                res = ta.search(coordinates, name)["data"]
+                if res:
+                    taID = res[0]["location_id"]
+                    providers.update({p: taID})
+            except Exception as e:
+                log.e("Error fetching tripadvisor mapping: {}".format(e))
+                hasAPICalls = util.recordAPIStatus("tripadvisor-mapper")
+                if not hasAPICalls:
+                    raise LookupError("No more API calls")
         # TODO: Add other providers
     _write_crosswalk_to_db(keyID, providers)
     return providers

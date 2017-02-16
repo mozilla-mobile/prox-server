@@ -7,12 +7,14 @@ import sched
 import time
 import unicodedata
 
-from app.clients import factualClient, tripadvisorkey, yelpClient
+from app.clients import factualClient, tripadvisorkey, yelpClient, yelp3Client
 from app.constants import statusTable
 from config import FIREBASE_CONFIG
+from app.providers.tripadvisor import TRIP_ADVISOR_API, TRIP_ADVISOR_LOC_MAPPER_API
 import pyrebase
 from yelp import errors
 from factual import api
+from urllib.error import HTTPError
 
 logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger('prox')
@@ -32,14 +34,22 @@ scheduler = sched.scheduler(time.time, time.sleep)
 def recordAPIStatus(apiName):
     req = True
     try:
-        if (apiName == "tripadvisor"):
-            ta_test_link = "https://api.tripadvisor.com/api/partner/2.0/location/8364980"
+        if apiName == "tripadvisor":
+            TA_TEST_ID= "8364980"
             params = { "key": tripadvisorkey }
-            r = requests.get(ta_test_link, params)
-            if (r.status_code == 429):
+            r = requests.get(TRIP_ADVISOR_API.format(TA_TEST_ID), params)
+            if r.status_code == 429:
                 e_code = r.json().get("code")
                 req = False
-        elif (apiName == "factual"):
+        elif apiName == "tripadvisor-mapper":
+            TA_TEST_LOC = "37.774125,-122.422099"
+            params = {"key": tripadvisorkey + "-mapper",
+                      "q": "kittea" }
+            r = requests.get(TRIP_ADVISOR_LOC_MAPPER_API.format(TA_TEST_LOC), params)
+            if r.status_code == 429:
+                e_code = r.json().get("code")
+                req = False
+        elif apiName == "factual":
             try:
                 cw = factualClient.crosswalk()
                 r = cw.filters({"factual_id": "1b5a13e0-d022-4a66-b7cd-9f48801f1196"
@@ -50,12 +60,19 @@ def recordAPIStatus(apiName):
                     # to string-check the message (the only place where the specific
                     # error type is listed)
                     req = False
-        elif (apiName == "yelp"):
+        elif apiName == "yelp":
             try:
                 # Check an existing location
                 yelpClient.get_business("kittea-cat-cafe-san-francisco-4")
             except errors.ExceededReqs:
                 req = False
+        elif apiName == "yelp3":
+            try:
+                yelp3Client.request("/businesses/{0}".format("kittea-cat-cafe-san-francisco-4"))
+            except HTTPError as e:
+                if e.code == 429:
+                    req = False
+
         else:
             raise ValueError("Unknown API name; see app/util.py for API values")
     except Exception as e:

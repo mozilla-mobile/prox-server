@@ -145,7 +145,7 @@ def getVenueDetailsFromProvider(namespace, idObj, cached):
       if info is not None:
           venueDetails[namespace] = info
     except Exception as err:
-        log.exception("Exeption hitting " + namespace)
+        log.exception("Exception hitting {}:{}".format(namespace, idObj))
     return venueDetails
 
 def getVenueDetails(venueIdentifiers, cachedDetails = None):

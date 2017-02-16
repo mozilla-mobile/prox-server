@@ -16,7 +16,11 @@ params = { "key": tripadvisorkey }
 
 def resolve_with_key(key):
     apiUrl = TRIP_ADVISOR_API.format(key)
-    return requests.get(apiUrl, params).json()
+    res = requests.get(apiUrl, params)
+    if res.status_code == 429:
+        return None
+    else:
+        return res.json()
 
 def resolve(idObj):
     """

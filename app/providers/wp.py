@@ -8,8 +8,8 @@ import wikipedia
 
 from app.util import slug
 
-def resolve(idObj):
-    pageID = slug(idObj["url"])
+def resolve(url):
+    pageID = slug(url)
     page = wikipedia.page(pageID, preload=True)
     return {
       "url": page.url,
@@ -35,7 +35,7 @@ _PLACE_NAME_TO_WIKI_PAGE_PROCESSORS = [
 # --- END SEARCH PARAMETERS --- #
 
 
-def search(place_name, coord):
+def search(coord, place_name):
     """Finds the Wikipedia page corresponding to the given place.
 
     The current implementation requires Wikipedia geotags, meaning it'll miss:
@@ -50,7 +50,6 @@ def search(place_name, coord):
     # does not match, so "Boulevard" will return a street rather than the restaurant (which is "Boulevard (restaurant)").
     wiki_page_titles = wikipedia.geosearch(*coord)
     return _match_place_name_to_wiki_page(place_name, wiki_page_titles)
-
 
 def _match_place_name_to_wiki_page(place_name, wiki_page_titles):
     """Work horse of `geosearch`: separated for easier testing & debugging.

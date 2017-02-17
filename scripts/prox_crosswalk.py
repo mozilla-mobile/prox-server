@@ -49,11 +49,20 @@ def fetchAndCacheProviders(keyID, providersList, identifiers):
     name = identifiers["name"]
     for p in providersList:
         if p == "tripadvisor":
-            res = ta.search(coordinates, name)["data"]
+            try:
+                res = ta.search(coordinates, name)["data"]
+                if res:
+                    taID = res[0]["location_id"]
+                    providers.update({p: taID})
+            except Exception as e:
+                log.e("Error fetching tripadvisor mapping: {}".format(e))
+                hasAPICalls = util.recordAPIStatus("tripadvisor-mapper")
+                if not hasAPICalls:
+                    raise LookupError("No more API calls")
+        elif p == "wikipedia":
+            res = wp.search(coordinates, name)
             if res:
-                taID = res[0]["location_id"]
-                providers.update({p: taID})
-        # TODO: Add other providers
+                providers.update({p: res})
     _write_crosswalk_to_db(keyID, providers)
     return providers
 
@@ -156,7 +165,7 @@ def yelp_ids_to_wiki_pages(yelp_ids):
 
 def _yelp_id_to_wiki_page(yelp_id):
     name, coord = _get_name_coord_from_yelp_id(yelp_id)
-    return wp.search(name, coord)
+    return wp.search(coord, name)
 
 
 def _write_crosswalk_to_db(yelp_id, provider_map):

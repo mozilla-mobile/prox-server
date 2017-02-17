@@ -10,10 +10,11 @@ TODO:
 """
 
 from app import geo
-from app.constants import locationsTable, venuesTable
+from app.constants import locationsTable, venuesTable, GPS_LOCATIONS, Status
 from config import FIREBASE_CONFIG
 import app.request_handler as handler
 import pyrebase
+from pprint import pprint
 
 # We assume every place has yelp.
 _KEY_FACTUAL = 'factual'
@@ -68,3 +69,39 @@ def _is_cache_missing_required_keys(required_keys, cache_for_place_id):
         factual_child = cache_for_place_id['factual']
         if _KEY_WEBSITE not in factual_child: return True
     return False
+
+def calculate_crawled_provider_stats(center, radius_km):
+    statusTable = _firebase.database().child(venuesTable, "status").get().val()
+
+    # Fetch placeIDs to check
+    location_table = _firebase.database().child(locationsTable).get().val()
+    placeIDs = geo.get_place_ids_in_radius(center, radius_km, location_table)
+
+    print("{} total places found".format(len(placeIDs)))
+
+    provider_dict = { "match": {},
+                      "no_match": {},
+                      "error": {} }
+
+    for placeID in placeIDs:
+        placeStatus = statusTable[placeID]
+        for provider in placeStatus:
+            if provider == "identifiers":
+                continue
+            status = placeStatus[provider]
+            state = ""
+            if status == Status.NOT_FOUND.value:
+                state = "no_match"
+            elif status == Status.FETCH_FAILED.value:
+                state = "error"
+            else:
+                state = "match"
+            state_dict = provider_dict[state]
+            newVal = state_dict.get(provider, 0)
+            state_dict[provider] = newVal + 1
+
+    pprint(provider_dict)
+
+if __name__ == '__main__':
+    radius = 30
+    calculate_crawled_provider_stats(GPS_LOCATIONS["CHICAGO_CENTER"], radius)

@@ -14,15 +14,12 @@ import app.request_handler as request_handler
 
 from config import FIREBASE_CONFIG
 from app import geo
-from app.constants import venuesTable, locationsTable, GPS_LOCATIONS
+from app.constants import venuesTable, locationsTable, GPS_LOCATIONS, Status
 from multiprocessing.dummy import Pool as ThreadPool
 from scripts import prox_crosswalk as proxwalk
 
 
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
-
-NOT_FOUND = 0
-FETCH_FAILED = -1
 
 def expandPlaces(config, center, radius_km):
     """
@@ -43,7 +40,7 @@ def expandPlaces(config, center, radius_km):
         placeStatus = statusTable[placeID]
         # Get a list of (src, version) pairs that could be updated, skip searched places
         # TODO: Gracefully handle if TripAdvisor-mapper runs out of API calls (25k)
-        newProviders = [src for src in config if src not in placeStatus or (config[src] > placeStatus[src] and placeStatus[src] != NOT_FOUND)]
+        newProviders = [src for src in config if src not in placeStatus or (config[src] > placeStatus[src] and placeStatus[src] != Status.NOT_FOUND.value)]
         if not newProviders:
 #            log.info("No new sources for {}".format(placeID))
            return
@@ -79,10 +76,10 @@ def makeNewStatusTable(config, updatedProviders, placeProviderIDs, newProviders)
             val = config[source]
         elif source in placeProviderIDs:
             # Couldn't fetch provider details
-            val = FETCH_FAILED
+            val = Status.FETCH_FAILED.value
         elif source in newProviders:
             # Unable to get provider id
-            val = NOT_FOUND
+            val = Status.NOT_FOUND.value
         else:
             continue
         newStatus[source] = val

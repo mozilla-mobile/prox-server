@@ -15,10 +15,11 @@ import app.request_handler as request_handler
 from config import FIREBASE_CONFIG
 from app import geo
 from app.constants import venuesTable, locationsTable
+from multiprocessing.dummy import Pool as ThreadPool
 from scripts import prox_crosswalk as proxwalk
 
+
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
-db = firebase.database()
 
 NOT_FOUND = 0
 FETCH_FAILED = -1
@@ -30,27 +31,28 @@ def expandPlaces(config, center, radius_km):
         { <provider>: <version> }
     where version is the newest version status
     """
-    statusTable = db.child(venuesTable).child("status").get().val()
+    statusTable = firebase.database().child(venuesTable).child("status").get().val()
 
     # Fetch placeIDs to expand 
-    location_table = db.child(locationsTable).get().val()
+    location_table = firebase.database().child(locationsTable).get().val()
     placeIDs = geo.get_place_ids_in_radius(center, radius_km, location_table)
 
     log.info("{} places found".format(len(placeIDs)))
-    for placeID in placeIDs:
+
+    def fetchDetails(placeID):
         placeStatus = statusTable[placeID]
         # Get a list of (src, version) pairs that could be updated, skip searched places
         # TODO: Gracefully handle if TripAdvisor-mapper runs out of API calls (25k)
         newProviders = [src for src in config if src not in placeStatus or (config[src] > placeStatus[src] and placeStatus[src] != NOT_FOUND)]
         if not newProviders:
 #            log.info("No new sources for {}".format(placeID))
-            continue
+           return
 
         try:
             placeProviderIDs = proxwalk.getAndCacheProviderIDs(placeID, newProviders, placeStatus["identifiers"])
         except Exception as e:
             log.error("Error fetching or caching provider id: {}".format(e))
-            continue
+            return
 
         updatedProviders = request_handler.researchPlace(placeID, placeProviderIDs)
 
@@ -71,12 +73,13 @@ def expandPlaces(config, center, radius_km):
             newStatus[source] = val
         try:
             placeStatus.update(newStatus)
-            db.child(venuesTable, "status", placeID).update(placeStatus)
+            firebase.database().child(venuesTable, "status", placeID).update(placeStatus)
         except Exception as e:
             log.error("Error accessing status table for {}: {}".format(placeID, e))
-            continue
 
         log.info("{} done: {}".format(placeID, str(updatedProviders)))
+    pool = ThreadPool(8)
+    pool.map(fetchDetails, placeIDs)
 
     log.info("Finished crawling other sources")
 

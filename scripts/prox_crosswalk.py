@@ -59,7 +59,10 @@ def fetchAndCacheProviders(keyID, providersList, identifiers):
                 hasAPICalls = util.recordAPIStatus("tripadvisor-mapper")
                 if not hasAPICalls:
                     raise LookupError("No more API calls")
-        # TODO: Add other providers
+        elif p == "wikipedia":
+            res = wp.search(coordinates, name)
+            if res:
+                providers.update({p: res})
     _write_crosswalk_to_db(keyID, providers)
     return providers
 

@@ -83,7 +83,8 @@ def expandPlaces(config, center, radius_km):
 
 
 TEST_CONFIG = { "yelp3": 1,
-               "tripadvisor": 1 }
+                "tripadvisor": 1,
+                "wikipedia": 1 }
 
 CHICAGO_CENTER = (41.8338725, -87.688585)
 

@@ -1,4 +1,5 @@
 import getpass
+from enum import Enum
 
 # Change these names to change what the tables in firebase are called.
 def _findTablePrefix():
@@ -59,4 +60,6 @@ GPS_LOCATIONS = {
     "METROPOLIS_COFFEE" : (41.994339, -87.657278)
 }
 
-
+class Status(Enum):
+    NOT_FOUND = 0
+    FETCH_FAILED = -1

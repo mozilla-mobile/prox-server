@@ -25,7 +25,7 @@ You can view real-time changes to the database on the console.
 # Testing
 Testing is done via [pytest](pytest.org):
 
-    pytest
+    pytest tests
 
 All tests should pass before landing on `master`.
 

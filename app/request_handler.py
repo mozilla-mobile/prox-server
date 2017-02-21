@@ -103,7 +103,7 @@ def researchPlace(keyID, placeProviderIDs):
     try:
         venueDetails = search.getVenueDetails(placeProviderIDs)
         writeVenueProviderRecord(keyID, venueDetails)
-        return [key.encode('utf-8') for key in list(venueDetails.keys())]
+        return list(venueDetails.keys())
     except Exception as e:
         log.exception("Error researching venue {}: {}".format(keyID, e))
         return []

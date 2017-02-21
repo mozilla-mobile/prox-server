@@ -14,7 +14,7 @@ import app.request_handler as request_handler
 
 from config import FIREBASE_CONFIG
 from app import geo
-from app.constants import venuesTable, locationsTable
+from app.constants import venuesTable, locationsTable, GPS_LOCATIONS
 from multiprocessing.dummy import Pool as ThreadPool
 from scripts import prox_crosswalk as proxwalk
 
@@ -57,20 +57,8 @@ def expandPlaces(config, center, radius_km):
         updatedProviders = request_handler.researchPlace(placeID, placeProviderIDs)
 
         # Write updated sources to /status
-        newStatus = {}
-        for source in config:
-            if source in updatedProviders:
-                # Fetched provider details
-                val = config[source]
-            elif source in placeProviderIDs:
-                # Couldn't fetch provider details
-                val = FETCH_FAILED
-            elif source in newProviders:
-                # Unable to get provider id
-                val = NOT_FOUND
-            else:
-                continue
-            newStatus[source] = val
+        newStatus = makeNewStatusTable(config, updatedProviders, placeProviderIDs, newProviders)
+
         try:
             placeStatus.update(newStatus)
             firebase.database().child(venuesTable, "status", placeID).update(placeStatus)
@@ -83,16 +71,25 @@ def expandPlaces(config, center, radius_km):
 
     log.info("Finished crawling other sources")
 
-
-TEST_CONFIG = { "yelp3": 3,
-               "tripadvisor": 3 }
-
-CHICAGO_CENTER = (41.8338725, -87.688585)
-
-GARFIELD_PARK = (41.886724, -87.717264)
-MUSEUM_SCIENCE_INDUSTRY = (41.790805, -87.583130)
-CULTURAL_CENTER = (41.883754, -87.624941)
-METROPOLIS_COFFEE = (41.994339, -87.657278)
+def makeNewStatusTable(config, updatedProviders, placeProviderIDs, newProviders):
+    newStatus = {}
+    for source in config:
+        if source in updatedProviders:
+            # Fetched provider details
+            val = config[source]
+        elif source in placeProviderIDs:
+            # Couldn't fetch provider details
+            val = FETCH_FAILED
+        elif source in newProviders:
+            # Unable to get provider id
+            val = NOT_FOUND
+        else:
+            continue
+        newStatus[source] = val
+    return newStatus
 
 if __name__ == '__main__':
-    expandPlaces(TEST_CONFIG, CHICAGO_CENTER, 30)
+    TEST_CONFIG = { "yelp3": 3,
+                    "tripadvisor": 3 }
+
+    expandPlaces(TEST_CONFIG, GPS_LOCATIONS["CHICAGO_CENTER"], 3)

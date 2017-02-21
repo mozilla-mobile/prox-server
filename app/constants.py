@@ -49,3 +49,14 @@ calendarInfo = {
     "calendarIds": [ "mozilla.com_avh8q3pubnr4uj419aaubpat2g@group.calendar.google.com" ],
     "eventfulUrl": "https://api.eventful.com/json/events/search"
 }
+
+# Location lat/lngs
+GPS_LOCATIONS = {
+    "CHICAGO_CENTER" : (41.8338725, -87.688585),
+    "GARFIELD_PARK" : (41.886724, -87.717264),
+    "MUSEUM_SCIENCE_INDUSTRY" : (41.790805, -87.583130),
+    "CULTURAL_CENTER" : (41.883754, -87.624941),
+    "METROPOLIS_COFFEE" : (41.994339, -87.657278)
+}
+
+

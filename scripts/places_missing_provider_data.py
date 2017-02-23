@@ -83,6 +83,19 @@ def calculate_crawled_provider_stats(center, radius_km):
                       "no_match": {},
                       "error": {} }
 
+    proxwalkTable = _firebase.database().child(venuesTable, "proxwalk").get().val()
+    prox_dict = {}
+    prox_dict["total"] = len(proxwalkTable)
+
+    for placeID in proxwalkTable:
+        children = proxwalkTable[placeID]
+        for child in children:
+            if child not in prox_dict:
+                prox_dict[child] = 0
+            prox_dict[child] += 1
+
+    provider_dict["proxwalk"] = prox_dict
+
     for placeID in placeIDs:
         placeStatus = statusTable[placeID]
         for provider in placeStatus:

@@ -40,7 +40,7 @@ locationsTable = _tablePrefix + _venues + '/' + _locations
 cacheTable = _tablePrefix + _venues + '/' + _cache
 proxwalkTable = venuesTable + "/" + _proxwalk
 
-statusTable = "api_availability"
+apiAvailabilityTable = "api_availability"
 
 # Events
 konaLatLng = { "lat": 19.622345, "lng": -155.665041 }

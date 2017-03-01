@@ -173,17 +173,18 @@ def _yelp_id_to_wiki_page(yelp_id):
 
 def _write_crosswalk_to_db(yelp_id, provider_map):
     """Ensure the given crosswalk object is valid and writes it to the DB.
-    Data existing at the given keys will not be overwritten.
+    Data existing at the given keys will be overwritten.
 
     :param yelp_id: for the place
     :param provider_map: is {'tripadvisor': <id-str>, ...}
     """
     # Assert 1) no typos, 2) we haven't added keys that this code may not know how to handle.
     for key in provider_map: assert key in CROSSWALK_KEYS
-    existing = _get_proxwalk_db().child(yelp_id).get().val()
-    if existing:
-        provider_map.update(existing)
-    _get_proxwalk_db().child(yelp_id).update(provider_map)
+    providers = _get_proxwalk_db().child(yelp_id).get().val()
+    if not providers:
+        providers = {}
+    providers.update(provider_map)
+    _get_proxwalk_db().child(yelp_id).update(providers)
 
 def write_to_db(yelp_to_ta=None, yelp_to_wiki=None, yelp_to_website=None):
     """Takes yelp_id to other provider ID dicts and writes those values into the crosswalk DB.

@@ -95,6 +95,7 @@ def _getPlaceDataFromCSVRow(row):
     _appendWikiDataFromRow(row, place)
     _appendYelpDataFromRow(row, place)
     _appendTADataFromRow(row, place)
+    _appendCustomProviderDataFromRow(row, place)
     return place
 
 
@@ -169,6 +170,17 @@ def _appendTADataFromRow(row, place):
     if ta_provider: place['providers']['tripadvisor'] = ta_provider
 
 
+def _appendCustomProviderDataFromRow(row, place):
+    # Technically, all of this custom data should be in the custom provider, but I already wrote the
+    # script so it's in Yelp instead. We use the custom provider because the new description field in
+    # will have its own section and that could conflict with a Yelp description (top review).
+    custom_provider = {
+        'description': row[_FieldIndex.CUSTOM_DESCRIPTION],
+    }
+    custom_provider = {k: v for k, v in custom_provider.items() if v}
+    if custom_provider: place['providers']['custom'] = custom_provider
+
+
 class _FieldIndex(IntEnum):
     """Fields that don't get inserted into cards are prefixed by X_"""
     X_TIMESTAMP = 0
@@ -182,24 +194,25 @@ class _FieldIndex(IntEnum):
     WIKI_DESCRIPTION = 7
 
     WIKI_URL = 8
-    YELP_CLICKED_URL = 9
-    YELP_RATING = 10
-    YELP_REVIEW_COUNT = 11
+    CUSTOM_DESCRIPTION = 9
+    YELP_CLICKED_URL = 10
+    YELP_RATING = 11
 
-    YELP_REVIEW_TEXT = 12
-    TA_CLICKED_URL = 13
-    TA_RATING = 14
-    TA_REVIEW_COUNT = 15
+    YELP_REVIEW_COUNT = 12
+    YELP_REVIEW_TEXT = 13
+    TA_CLICKED_URL = 14
+    TA_RATING = 15
 
-    TA_REVIEW_TEXT = 16
-    X_OPEN_HOURS_BRANCH = 17
-    OPEN_HOURS_MON = 18
-    OPEN_HOURS_TUES = 19
+    TA_REVIEW_COUNT = 16
+    TA_REVIEW_TEXT = 17
+    X_OPEN_HOURS_BRANCH = 18
+    OPEN_HOURS_MON = 19
 
-    OPEN_HOURS_WED = 20
-    OPEN_HOURS_THURS = 21
-    OPEN_HOURS_FRI = 22
-    OPEN_HOURS_SAT = 23
+    OPEN_HOURS_TUES = 20
+    OPEN_HOURS_WED = 21
+    OPEN_HOURS_THURS = 22
+    OPEN_HOURS_FRI = 23
 
-    OPEN_HOURS_SUN = 24
-    YELP_WHOLE_PLACE_FROM_URL = 25
+    OPEN_HOURS_SAT = 24
+    OPEN_HOURS_SUN = 25
+    YELP_WHOLE_PLACE_FROM_URL = 26

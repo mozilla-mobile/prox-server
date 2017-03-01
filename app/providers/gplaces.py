@@ -3,6 +3,16 @@ from app.clients import gplacesClient
 
 _SEARCH_RADIUS_M = 500  # set arbitrarily
 
+def resolve_with_key(key):
+    gPlace = gplacesClient.get_place(place_id=key)
+    if gPlace:
+        gPlace.get_details()
+        website = gPlace.website
+        if website:
+            return { "website": website }
+        else:
+            # Just because a place doesn't have a website does not mean we should error out
+            return {}
 
 def search(place_name, coord):
     """Returns the Google place that most closely matches the given place name & coordinates.

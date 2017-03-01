@@ -8,6 +8,7 @@ from math import sqrt
 
 from app.clients import yelpClient, factualClient, googleapikey
 
+from app.providers.gplaces import resolve_with_key as resolveGoogle
 from app.providers.fs import resolve as resolveFoursquare
 from app.providers.yelp import resolve_with_key as resolveYelp
 from app.providers.wp import resolve as resolveWikipedia
@@ -54,6 +55,7 @@ CATEGORIES = ",".join(yelpSearchCategories)
 DEFAULT_COUNTRY_GOOGLEAPI = 'country:US'
 
 resolvers = {
+    "google": resolveGoogle,
     "foursquare": resolveFoursquare,
     "yelp3": resolveYelp,
     "wikipedia": resolveWikipedia,

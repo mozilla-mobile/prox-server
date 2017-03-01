@@ -84,6 +84,11 @@ def updateRecord(yelpID, **details):
         "images": _imageRecords(info["images"], info["url"])
       }
 
+    if "google" in details:
+      info = details["google"]
+      # No error, just no relevant website info
+      providers["google"] = { "website": info.get("website", None) }
+
     # Factual Places
     if "factual" in details:
       info = details["factual"]

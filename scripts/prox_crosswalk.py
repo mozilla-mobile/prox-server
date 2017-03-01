@@ -26,7 +26,7 @@ from app.providers import gplaces, wp, yelp
 
 CROSSWALK_KEYS = {
     'tripadvisor',
-    'website',
+    'google',
     'wikipedia',
 }
 
@@ -59,6 +59,13 @@ def fetchAndCacheProviders(keyID, providersList, identifiers):
             res = wp.search(coordinates, name)
             if res:
                 providers.update({p: res})
+
+        elif p == "google":
+            gplace = gplaces.search(name, coordinates)
+            if gplace:
+                gplace.get_details()
+                providers.update({p: gplace.place_id})
+
     _write_crosswalk_to_db(keyID, providers)
     return providers
 

@@ -17,7 +17,6 @@ from app.firebase import db
 from multiprocessing.dummy import Pool as ThreadPool
 from scripts import prox_crosswalk as proxwalk
 
-
 def expandPlaces(config, center, radius_km):
     """
     Expands cached venue details by fetching additional sources
@@ -84,6 +83,7 @@ def makeNewStatusTable(config, updatedProviders, placeProviderIDs, newProviders)
 
 if __name__ == '__main__':
     TEST_CONFIG = { "yelp3": 3,
-                    "tripadvisor": 3 }
+                    "tripadvisor": 3,
+                    "google": 3 }
 
-    expandPlaces(TEST_CONFIG, GPS_LOCATIONS["CHICAGO_CENTER"], 3)
+    expandPlaces(TEST_CONFIG, GPS_LOCATIONS["CHICAGO_CENTER"], 30)

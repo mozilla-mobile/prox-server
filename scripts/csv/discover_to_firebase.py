@@ -74,24 +74,6 @@ def getPlaceDataFromCSVFile(path):
 
 
 def _getPlaceDataFromCSVRow(row):
-    if _isLoadedFromYelpURL(row):
-        _placeDataFromYelpURL(row[_FieldIndex.YELP_WHOLE_PLACE_FROM_URL])
-    return _csvRowWithCustomDataToPlaceData(row)
-
-
-def _isLoadedFromYelpURL(row): return row[_FieldIndex.YELP_WHOLE_PLACE_FROM_URL]
-
-
-def _placeDataFromYelpURL(url):
-    """todo:
-    - extract id from url
-    - get yelp place (yelp.resolve)?
-    - get xwalk (researchPlace?)
-    - format correctly.
-    """
-
-
-def _csvRowWithCustomDataToPlaceData(row):
     """:return {'providers': {'yelp': ...}}"""
     name = row[_FieldIndex.NAME]
     lat, lng = [float(v) for v in row[_FieldIndex.COORD].split(',')]

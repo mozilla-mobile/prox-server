@@ -141,14 +141,20 @@ def _appendWikiDataFromRow(row, place):
     if wiki_provider: place['providers']['wikipedia'] = wiki_provider
 
 
+# If we had more time, it'd be great to merge appendYelp & appendTA.
 def _appendYelpDataFromRow(row, place):
     yelp_provider = {
-        'rating': float(row[_FieldIndex.YELP_RATING]),
-        'ratingMax': 5,
-        'totalReviewCount': int(row[_FieldIndex.YELP_REVIEW_COUNT]),
         'description': row[_FieldIndex.YELP_REVIEW_TEXT],
         'url': row[_FieldIndex.YELP_CLICKED_URL],
     }
+
+    rating = row[_FieldIndex.YELP_RATING]
+    totalReviewCount = row[_FieldIndex.YELP_REVIEW_COUNT]
+    if rating:
+        yelp_provider['rating'] = float(rating),
+        yelp_provider['ratingMax'] = 5
+    if totalReviewCount: yelp_provider['totalReviewCount'] = int(totalReviewCount)
+
     yelp_provider = {k: v for k, v in yelp_provider.items() if v}  # rm empty keys.
     place['providers']['yelp'].update(yelp_provider)
 

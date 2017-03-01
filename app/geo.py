@@ -6,12 +6,9 @@ TODO:
 
 """
 from app.constants import locationsTable
-from config import FIREBASE_CONFIG
+from app.firebase import db
 
 import app.geofire as geofire
-import pyrebase
-
-_firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 
 
 def get_place_ids_in_radius(center, radius_km, cached_locations_table=None):
@@ -35,4 +32,4 @@ def get_place_ids_in_radius(center, radius_km, cached_locations_table=None):
 
 
 def _get_locations_table():
-    return _firebase.database().child(locationsTable).get().val()
+    return db().child(locationsTable).get().val()

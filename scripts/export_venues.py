@@ -8,8 +8,7 @@ To visualize the returned GPS coordinates, hampster map is recommended.
 To log results from the production database, see readme.
 
 """
-from config import FIREBASE_CONFIG
-import pyrebase
+from app.firebase import db
 import app.geofire as geo
 
 # --- START MODIFIABLE PARAMETERS --- #
@@ -17,12 +16,9 @@ import app.geofire as geo
 focus = (19.915403, -155.8961577)
 # --- END MODIFIABLE PARAMETERS --- #
 
-firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
-db = firebase.database()
-
 from app.constants import venuesTable
 
-venueTableComplete = db.child(venuesTable).get().val()
+venueTableComplete = db().child(venuesTable).get().val()
 venueData = venueTableComplete["details"]
 cacheData = venueTableComplete["cache"]
 

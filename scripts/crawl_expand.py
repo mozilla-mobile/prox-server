@@ -9,17 +9,14 @@ To cache the results in the production database, see readme.
 """
 from app.util import log
 
-import pyrebase
 import app.request_handler as request_handler
 
-from config import FIREBASE_CONFIG
 from app import geo
 from app.constants import venuesTable, locationsTable, GPS_LOCATIONS, Status
+from app.firebase import db
 from multiprocessing.dummy import Pool as ThreadPool
 from scripts import prox_crosswalk as proxwalk
 
-
-firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 
 def expandPlaces(config, center, radius_km):
     """
@@ -28,10 +25,10 @@ def expandPlaces(config, center, radius_km):
         { <provider>: <version> }
     where version is the newest version status
     """
-    statusTable = firebase.database().child(venuesTable).child("status").get().val()
+    statusTable = db().child(venuesTable).child("status").get().val()
 
     # Fetch placeIDs to expand 
-    location_table = firebase.database().child(locationsTable).get().val()
+    location_table = db().child(locationsTable).get().val()
     placeIDs = geo.get_place_ids_in_radius(center, radius_km, location_table)
 
     log.info("{} places found".format(len(placeIDs)))
@@ -58,7 +55,7 @@ def expandPlaces(config, center, radius_km):
 
         try:
             placeStatus.update(newStatus)
-            firebase.database().child(venuesTable, "status", placeID).update(placeStatus)
+            db().child(venuesTable, "status", placeID).update(placeStatus)
         except Exception as e:
             log.error("Error accessing status table for {}: {}".format(placeID, e))
 

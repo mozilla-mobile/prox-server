@@ -19,7 +19,9 @@ _tablePrefix = _findTablePrefix()
 _venues = "venues"
 _events = "events"
 _searches = "searches"
+_details = "details"
 _locations = "locations"
+_status = "status"
 _proxwalk = "proxwalk"
 _cache = "cache"
 
@@ -36,7 +38,9 @@ venueSearchNumber = 200
 venuesTable = _tablePrefix + _venues
 eventsTable = _tablePrefix + _events
 searchesTable = _tablePrefix + _searches
+detailsTable = _tablePrefix + _venues + '/' + _details
 locationsTable = _tablePrefix + _venues + '/' + _locations
+statusTable = _tablePrefix + _venues + '/' + _status
 cacheTable = _tablePrefix + _venues + '/' + _cache
 proxwalkTable = venuesTable + "/" + _proxwalk
 

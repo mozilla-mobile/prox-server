@@ -82,7 +82,6 @@ def _getPlaceDataFromCSVRow(row):
         'id': _getIDFromPlaceName(name),
         'name': name,
         'categories': [s.strip() for s in row[_FieldIndex.CATEGORIES].split(',')],
-        'website': row[_FieldIndex.WEBSITE],  # todo: how to preserve over yelp url?
         'coordinates': {'lat': lat, 'lng': lng},
 
         'images': [{'src': url} for url in row[_FieldIndex.PHOTO_URLS].split('\n')],  # todo: validate?
@@ -182,6 +181,7 @@ def _appendCustomProviderDataFromRow(row, place):
     # will have its own section and that could conflict with a Yelp description (top review).
     custom_provider = {
         'description': row[_FieldIndex.CUSTOM_DESCRIPTION],
+        'url': row[_FieldIndex.WEBSITE],
     }
     custom_provider = {k: v for k, v in custom_provider.items() if v}
     if custom_provider: place['providers']['custom'] = custom_provider

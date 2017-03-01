@@ -52,7 +52,7 @@ def writeVenueRecord(yelpID, details, idObj = None):
     db().child(venuesTable, "details", yelpID).update(venue)
 
 def writeSearchRecord(lat, lng, key=None):
-    record = representation._geoRecord(lat, lng)
+    record = representation.geoRecordFromCoord(lat, lng)
     from datetime import datetime
     import time
     now = datetime.utcnow()
@@ -203,7 +203,7 @@ def _guessYelpId(placeName, lat, lon):
 def writeEventRecord(eventObj):
     key   = representation.createEventKey(eventObj)
     event = eventObj;
-    geo   = representation._geoRecord(float(eventObj["coordinates"]["lat"]), float(eventObj["coordinates"]["lng"]))
+    geo   = representation.geoRecordFromCoord(float(eventObj["coordinates"]["lat"]), float(eventObj["coordinates"]["lng"]))
 
     db().child(eventsTable).update(
       {

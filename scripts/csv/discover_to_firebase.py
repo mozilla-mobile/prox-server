@@ -3,14 +3,65 @@
  Form is available at https://docs.google.com/a/mozilla.com/forms/d/1iBrKNtewo62agBn0Qy21FD2jio6S4247Py4Zhx4-OuQ/edit
 
  """
+from app.constants import detailsTable, locationsTable, statusTable, Status
+from app.firebase import db
+from app.representation import geoRecordFromCoord
+from app.search import resolvers
 from enum import IntEnum
 import csv
 
 _ID_PREFIX = 'proxdiscover-'
+_STATUS_PROVIDERS_TO_FAKE = ['yelp'] + list(resolvers.keys())
 
 
 def getPlaceDataAndWriteToFirebase(path):
     place_data = getPlaceDataFromCSVFile(path)
+    _writePlaceDataToDB(place_data)
+
+
+def _writePlaceDataToDB(place_data):
+    _writePlaceDataToDetails(place_data)
+    _writePlaceDataToLocations(place_data)
+    _writePlaceDataToProxwalk(place_data)
+    _writePlaceDataToStatus(place_data)
+
+
+def _writePlaceDataToDetails(place_data):
+    db().child(detailsTable).update(place_data)
+
+
+def _writePlaceDataToLocations(place_data):
+    place_id_to_georecord = {}
+    for id, data in place_data.items():
+        coord = data['providers']['yelp']['coordinates']
+        place_id_to_georecord[id] = geoRecordFromCoord(coord['lat'], coord['lng'])
+    db().child(locationsTable).update(place_id_to_georecord)
+
+
+def _writePlaceDataToProxwalk(place_data):
+    pass  # Since we mock status, we don't actually have to do anything here.
+
+
+def _writePlaceDataToStatus(place_data):
+    place_id_to_status = {}
+    for id, data in place_data.items():
+        yelp_place = data['providers']['yelp']
+        coord = yelp_place['coordinates']
+        status = {
+            'identifiers': {
+                'lat': coord['lat'],
+                'lng': coord['lng'],
+                'name': yelp_place['name'],
+            },
+        }
+
+        for provider in _STATUS_PROVIDERS_TO_FAKE:
+            # If we set status to not found, we won't recrawl. It's more correct to set it to a positive number (data found)
+            # but since that value increments with versions, it's possible it'll get overwritten eventually.
+            status.update({provider: Status.NOT_FOUND.value})
+        place_id_to_status[id] = status
+
+    db().child(statusTable).update(place_id_to_status)
 
 
 def getPlaceDataFromCSVFile(path):

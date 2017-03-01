@@ -5,9 +5,6 @@ import hashlib
 import json
 from multiprocessing.dummy import Pool as ThreadPool 
 
-import pyrebase
-
-from config import FIREBASE_CONFIG
 from app.constants import \
     venuesTable, venueSearchRadius, venueSearchNumber, \
     eventsTable, cacheTable, \
@@ -15,6 +12,7 @@ from app.constants import \
     konaLatLng, calendarInfo
 
 from app.clients import yelpClient
+from app.firebase import db
 import app.crosswalk as crosswalk
 import scripts.prox_crosswalk as proxwalk
 import app.representation as representation
@@ -23,9 +21,6 @@ import app.events as events
 import app.geofire as geo
 from app.util import log
 import sys
-
-firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
-db = firebase.database()
 
 # Writes the set of base records. Note that this performs a single batch update
 # operation, so any existing venues will be replaced.
@@ -41,20 +36,20 @@ def writeYelpRecords(yelpVenues):
         record["locations/" + key] = geo
         record["status/" + key] = status
 
-    db.child(venuesTable).update(record)
+    db().child(venuesTable).update(record)
 
 def writeVenueProviderRecord(yelpID, details):
     try:
         venue = representation.updateRecord(yelpID, **details)
         for provider, data in list(venue["providers"].items()):
-            db.child(venuesTable, "details", yelpID, "providers").update({provider: data})
+            db().child(venuesTable, "details", yelpID, "providers").update({provider: data})
     except Exception as e:
         log.error("Error writing record: {}\n{}".format(details, e))
 
 def writeVenueRecord(yelpID, details, idObj = None):
     # idObj is remnant of live-search client calls.
     venue = representation.updateRecord(yelpID, **details)
-    db.child(venuesTable, "details", yelpID).update(venue)
+    db().child(venuesTable, "details", yelpID).update(venue)
 
 def writeSearchRecord(lat, lng, key=None):
     record = representation._geoRecord(lat, lng)
@@ -64,11 +59,11 @@ def writeSearchRecord(lat, lng, key=None):
 
     record["timestamp"] = now.isoformat()
     record["time"] = time.time()
-    db.child(searchesTable).update({ record["g"]: record })
+    db().child(searchesTable).update({ record["g"]: record })
 
 def readCachedVenueDetails(key):
     try:
-        cache = db.child(venuesTable).child("cache/" + key).get().val()
+        cache = db().child(venuesTable).child("cache/" + key).get().val()
         return cache
     except Exception:
         log.error("Error fetching cached venue details for " + key)
@@ -85,7 +80,7 @@ def readCachedVenueIterableDetails(place_ids):
     """
     out = []
     try:
-        cache = db.child(cacheTable).get().val()
+        cache = db().child(cacheTable).get().val()
         for place_id in place_ids:
             if place_id not in cache: continue
             out.append(cache[place_id])
@@ -174,7 +169,7 @@ def searchLocation(lat, lng, radius):
 
 def _guessYelpId(placeName, lat, lon):
     safePlaceId = hashlib.md5(placeName).hexdigest()
-    cachedId = db.child(eventsTable).child("cache/" + safePlaceId).get().val()
+    cachedId = db().child(eventsTable).child("cache/" + safePlaceId).get().val()
     if cachedId:
         return cachedId
 
@@ -198,7 +193,7 @@ def _guessYelpId(placeName, lat, lon):
 
         # Add bizId to cache
         record = { "cache/" +  safePlaceId: str(biz.id) }
-        db.child(eventsTable).update(record)
+        db().child(eventsTable).update(record)
 
         return biz.id
     else:
@@ -210,7 +205,7 @@ def writeEventRecord(eventObj):
     event = eventObj;
     geo   = representation._geoRecord(float(eventObj["coordinates"]["lat"]), float(eventObj["coordinates"]["lng"]))
 
-    db.child(eventsTable).update(
+    db().child(eventsTable).update(
       {
         "details/" + key: event,
         "locations/" + key: geo
@@ -239,7 +234,7 @@ def getEventfulMapping(event):
 
 
 def pruneEvents():
-    eventDetails = db.child(eventsTable).child("details").get().each()
+    eventDetails = db().child(eventsTable).child("details").get().each()
     cutoff = datetime.datetime.today() - datetime.timedelta(days=1, hours=1)
 
     for event in eventDetails:
@@ -253,7 +248,7 @@ def pruneEvents():
             deleteEvent(key)
 
 def deleteEvent(key):
-    db.child(eventsTable).update({
+    db().child(eventsTable).update({
         "details/" + key: None,
     #    "cache/" + key: None, # For Kona, do not delete the cache because we hard-code the moz-specific locations
         "locations/" + key: None

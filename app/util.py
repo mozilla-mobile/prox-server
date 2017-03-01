@@ -9,9 +9,8 @@ import unicodedata
 
 from app.clients import factualClient, tripadvisorkey, yelpClient, yelp3Client
 from app.constants import statusTable
-from config import FIREBASE_CONFIG
+from app.firebase import db
 from app.providers.tripadvisor import TRIP_ADVISOR_API, TRIP_ADVISOR_LOC_MAPPER_API
-import pyrebase
 from yelp import errors
 from factual import api
 from urllib.error import HTTPError
@@ -78,14 +77,12 @@ def recordAPIStatus(apiName):
     except Exception as e:
         log.exception("Unknown error while checking for cap limits: %s" % e)
 
-    db = pyrebase.initialize_app(FIREBASE_CONFIG).database()
-
     # Timestamped response
     response = "{} {} {}".format(req, time.strftime("%a %x %X", time.localtime()), time.tzname[0])
 
     # Status updated at:
     # https://console.firebase.google.com/project/prox-server-cf63e/database/data/api_availability
-    db.child(statusTable).update({apiName: response})
+    db().child(statusTable).update({apiName: response})
     return req
 
 

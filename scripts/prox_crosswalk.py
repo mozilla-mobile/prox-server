@@ -20,12 +20,9 @@ TODO:
 
 from app import geo, util
 from app.constants import proxwalkTable
+from app.firebase import db
 from app.providers import tripadvisor as ta
 from app.providers import gplaces, wp, yelp
-from config import FIREBASE_CONFIG
-import pyrebase
-
-_firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 
 CROSSWALK_KEYS = {
     'tripadvisor',
@@ -77,7 +74,7 @@ def _getCachedIDsForPlace(keyID, providersList):
             ret.update({s: cached[s]})
     return ret
 
-def _get_proxwalk_db(): return _firebase.database().child(proxwalkTable)
+def _get_proxwalk_db(): return db().child(proxwalkTable)
 
 # TODO: maybe we should allow users to pass in yelp data.
 def _get_name_coord_from_yelp_id(yelp_id):

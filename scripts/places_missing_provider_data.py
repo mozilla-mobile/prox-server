@@ -11,9 +11,8 @@ TODO:
 
 from app import geo
 from app.constants import locationsTable, venuesTable, GPS_LOCATIONS, Status
-from config import FIREBASE_CONFIG
+from app.firebase import db
 import app.request_handler as handler
-import pyrebase
 from pprint import pprint
 
 # We assume every place has yelp.
@@ -22,8 +21,6 @@ _KEY_TA = 'tripadvisor'
 _KEY_WIKI = 'wikipedia'
 
 _KEY_WEBSITE = 'website'  # In factual child.
-
-_firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 
 
 def get_places_missing_provider_data(center, radius_km,
@@ -48,7 +45,7 @@ def _get_place_caches_missing_provider_data(center, radius_km,
     if check_missing_wiki: required_keys.add(_KEY_WIKI)
     if check_missing_web: required_keys.add(_KEY_FACTUAL)
 
-    location_table = _firebase.database().child(locationsTable).get().val()
+    location_table = db().child(locationsTable).get().val()
     place_ids_in_range = geo.get_place_ids_in_radius(center, radius_km, location_table)
     caches_for_place_ids = handler.readCachedVenueIterableDetails(place_ids_in_range)
     return _filter_caches_by_required_keys(required_keys, caches_for_place_ids)
@@ -71,10 +68,10 @@ def _is_cache_missing_required_keys(required_keys, cache_for_place_id):
     return False
 
 def calculate_crawled_provider_stats(center, radius_km):
-    statusTable = _firebase.database().child(venuesTable, "status").get().val()
+    statusTable = db().child(venuesTable, "status").get().val()
 
     # Fetch placeIDs to check
-    location_table = _firebase.database().child(locationsTable).get().val()
+    location_table = db().child(locationsTable).get().val()
     placeIDs = geo.get_place_ids_in_radius(center, radius_km, location_table)
 
     print("{} total places found".format(len(placeIDs)))
@@ -83,7 +80,7 @@ def calculate_crawled_provider_stats(center, radius_km):
                       "no_match": {},
                       "error": {} }
 
-    proxwalkTable = _firebase.database().child(venuesTable, "proxwalk").get().val()
+    proxwalkTable = db().child(venuesTable, "proxwalk").get().val()
     prox_dict = {}
     prox_dict["total"] = len(proxwalkTable)
 

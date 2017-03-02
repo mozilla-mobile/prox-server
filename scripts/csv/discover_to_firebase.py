@@ -150,7 +150,7 @@ def _appendYelpDataFromRow(row, place):
     rating = row[_FieldIndex.YELP_RATING]
     totalReviewCount = row[_FieldIndex.YELP_REVIEW_COUNT]
     if rating:
-        yelp_provider['rating'] = float(rating),
+        yelp_provider['rating'] = float(rating)
         yelp_provider['ratingMax'] = 5
     if totalReviewCount: yelp_provider['totalReviewCount'] = int(totalReviewCount)
 

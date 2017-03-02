@@ -169,7 +169,7 @@ def _appendTADataFromRow(row, place):
     if rating:
         ta_provider['rating'] = float(rating)
         ta_provider['ratingMax'] = 5
-    if totalReviewCount: ta_provider['totalReviewCount'] = int(rating)
+    if totalReviewCount: ta_provider['totalReviewCount'] = int(totalReviewCount)
 
     ta_provider = {k: v for k, v in ta_provider.items() if v}  # rm empty keys.
     if ta_provider: place['providers']['tripadvisor'] = ta_provider

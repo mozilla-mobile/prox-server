@@ -75,7 +75,7 @@ def getPlaceDataFromCSVFile(path):
 
 def _getPlaceDataFromCSVRow(row):
     """:return {'providers': {'yelp': ...}}"""
-    name = row[_FieldIndex.NAME]
+    name = row[_FieldIndex.NAME].strip()
     lat, lng = [float(v) for v in row[_FieldIndex.COORD].split(',')]
 
     general_place_data = {

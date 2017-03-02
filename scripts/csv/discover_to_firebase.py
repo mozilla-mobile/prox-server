@@ -155,7 +155,7 @@ def _appendYelpDataFromRow(row, place):
     if totalReviewCount: yelp_provider['totalReviewCount'] = int(totalReviewCount)
 
     yelp_provider = {k: v for k, v in yelp_provider.items() if v}  # rm empty keys.
-    place['providers']['yelp'].update(yelp_provider)
+    if yelp_provider: place['providers']['yelp'].update(yelp_provider)
 
 
 def _appendTADataFromRow(row, place):

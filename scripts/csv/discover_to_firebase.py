@@ -181,7 +181,7 @@ def _appendCustomProviderDataFromRow(row, place):
     # will have its own section and that could conflict with a Yelp description (top review).
     custom_provider = {
         'description': row[_FieldIndex.CUSTOM_DESCRIPTION],
-        'url': row[_FieldIndex.WEBSITE],
+        'website': row[_FieldIndex.WEBSITE],
     }
     custom_provider = {k: v for k, v in custom_provider.items() if v}
     if custom_provider: place['providers']['custom'] = custom_provider

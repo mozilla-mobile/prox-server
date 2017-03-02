@@ -180,9 +180,9 @@ def createKey(biz):
     return biz.id
 
 def geoRecord(biz):
-    return _geoRecord(biz.location.coordinate.latitude, biz.location.coordinate.longitude)
+    return geoRecordFromCoord(biz.location.coordinate.latitude, biz.location.coordinate.longitude)
 
-def _geoRecord(lat, lon):
+def geoRecordFromCoord(lat, lon):
     import pygeohash as pgh
     return {
        "g": pgh.encode(lat, lon, precision=8),

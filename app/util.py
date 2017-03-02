@@ -8,7 +8,7 @@ import time
 import unicodedata
 
 from app.clients import factualClient, tripadvisorkey, yelpClient, yelp3Client
-from app.constants import statusTable
+from app.constants import apiAvailabilityTable
 from app.firebase import db
 from app.providers.tripadvisor import TRIP_ADVISOR_API, TRIP_ADVISOR_LOC_MAPPER_API
 from yelp import errors
@@ -82,7 +82,7 @@ def recordAPIStatus(apiName):
 
     # Status updated at:
     # https://console.firebase.google.com/project/prox-server-cf63e/database/data/api_availability
-    db().child(statusTable).update({apiName: response})
+    db().child(apiAvailabilityTable).update({apiName: response})
     return req
 
 

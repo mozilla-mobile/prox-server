@@ -13,9 +13,13 @@ import csv
 _ID_PREFIX = 'proxdiscover-'
 _STATUS_PROVIDERS_TO_FAKE = ['yelp'] + list(resolvers.keys())
 
+# The amount we offset two markers when their location is the same.
+_LOCATION_OVERLAP_LONGITUDE_OFFSET = 0.0001  # Set by trial-and-error with antlam approval.
+
 
 def getPlaceDataAndWriteToFirebase(path):
     place_data = getPlaceDataFromCSVFile(path)
+    _adjustPlaceDataLocations(place_data)
     _writePlaceDataToDB(place_data)
 
 
@@ -62,6 +66,29 @@ def _writePlaceDataToStatus(place_data):
         place_id_to_status[id] = status
 
     db().child(statusTable).update(place_id_to_status)
+
+
+def _adjustPlaceDataLocations(place_data):
+    """Ensures no two pins will overlap on the map view by adjusting their coordinates.
+
+    I chose not to do this in client code because:
+    - It's more complicated with real places where moving an overlapped place could overlap another.
+    - Implementation was challenging (CLLocationCoordinate2D was not Hashable so could not be put in Set).
+    - Perf could be an issue.
+    - It may not be a real problem in client code - might as well keep that code simpler.
+    """
+    seen_locations = set()
+    for _, place in place_data.items():
+        coord = place['providers']['yelp']['coordinates']
+        lat = coord['lat']
+        lng = coord['lng']
+        coord_tuple = (lat, lng)
+
+        while coord_tuple in seen_locations:
+            coord_tuple = (coord_tuple[0], coord_tuple[1] + _LOCATION_OVERLAP_LONGITUDE_OFFSET)
+        seen_locations.add(coord_tuple)
+
+        place['providers']['yelp']['coordinates']['lng'] = coord_tuple[1]
 
 
 def getPlaceDataFromCSVFile(path):

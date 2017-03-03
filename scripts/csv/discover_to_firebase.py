@@ -200,7 +200,7 @@ def _appendTADataFromRow(row, place):
     if totalReviewCount: ta_provider['totalReviewCount'] = int(totalReviewCount)
 
     ta_provider = {k: v for k, v in ta_provider.items() if v}  # rm empty keys.
-    if ta_provider: place['providers']['tripadvisor'] = ta_provider
+    if ta_provider: place['providers']['tripAdvisor'] = ta_provider
 
 
 def _appendCustomProviderDataFromRow(row, place):

@@ -135,7 +135,7 @@ def _correctName(name):
 
 def _getIDFromPlaceName(place_name):
     # todo: How does Firebase handle ünicode key names? We'll probably crash if it can't so do nothing until it's a problem.
-    formatted_name = place_name.lower().replace(' ', '-')
+    formatted_name = place_name.lower().replace(' ', '-').replace('.', '')
     return _ID_PREFIX + formatted_name
 
 

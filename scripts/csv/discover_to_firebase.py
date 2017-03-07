@@ -104,11 +104,12 @@ def _getPlaceDataFromCSVRow(row):
     """:return {'providers': {'yelp': ...}}"""
     name = row[_FieldIndex.NAME]
     stripped_name = name.strip()
+    corrected_stripped_name = _correctName(stripped_name)
     lat, lng = [float(v) for v in row[_FieldIndex.COORD].split(',')]
 
     general_place_data = {
         'id': _getIDFromPlaceName(name),  # We first ran the script without strip() so to preserve IDs, we continue to use the non-stripped name.
-        'name': stripped_name,
+        'name': corrected_stripped_name,
         'categories': [s.strip() for s in row[_FieldIndex.CATEGORIES].split(',')],
         'coordinates': {'lat': lat, 'lng': lng},
 
@@ -124,6 +125,12 @@ def _getPlaceDataFromCSVRow(row):
     _appendTADataFromRow(row, place)
     _appendCustomProviderDataFromRow(row, place)
     return place
+
+
+def _correctName(name):
+    if name == 'Millenium Park':
+        return 'Millennium Park'
+    return name
 
 
 def _getIDFromPlaceName(place_name):

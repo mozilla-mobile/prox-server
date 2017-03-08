@@ -124,6 +124,7 @@ def _getPlaceDataFromCSVRow(row):
     _appendYelpDataFromRow(row, place)
     _appendTADataFromRow(row, place)
     _appendCustomProviderDataFromRow(row, place)
+    _overrideDataFromRow(row, place)
     return place
 
 
@@ -249,6 +250,33 @@ def _appendCustomProviderDataFromRow(row, place):
     }
     custom_provider = {k: v for k, v in custom_provider.items() if v}
     if custom_provider: place['providers']['custom'] = custom_provider
+
+
+def _overrideDataFromRow(row, place):
+    # We also do overrides in `_getHoursOverrideFromRow` - sorry, it was faster to separate it this way.
+    name = row[_FieldIndex.NAME]
+    if name == 'Historic Skyscrapers':
+        replacementPhoto = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Leiter_II_Building%2C_South_State_%26_East_Congress_Streets%2C_Chicago%2C_Cook_County%2C_IL.jpg/1280px-Leiter_II_Building%2C_South_State_%26_East_Congress_Streets%2C_Chicago%2C_Cook_County%2C_IL.jpg'
+        place['providers']['yelp']['images'][1] = {'src': replacementPhoto}
+        place['providers']['custom']['website'] = 'https://www.architecture.org/experience-caf/tours/detail/historic-skyscrapers/'
+
+    elif name == 'The Magic Parlour':
+        place['providers']['yelp']['hours'] = {
+            'friday': [['19:30', '21:00'], ['21:30', '23:00']],
+        }
+
+    elif name == 'Jazz Nights at the Lockwood Bar':
+        place['providers']['yelp']['hours'] = {
+            'thursday': [['17:00', '19:30']],
+            'friday': [['17:00', '19:30']],
+        }
+
+    elif name == 'Little Shop of Horrors':
+        place['providers']['yelp']['hours'] = {
+            'wednesday': [['18:30', '20:30']],
+            'thursday': [['19:30', '21:30']],
+            'friday': [['19:30', '21:30']],
+        }
 
 
 class _FieldIndex(IntEnum):

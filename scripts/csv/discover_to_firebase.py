@@ -141,6 +141,9 @@ def _getIDFromPlaceName(place_name):
 
 def _getHoursFromRow(row):
     """:return empty dictionary when no hours, as per client."""
+    hoursOverride = _getHoursOverrideFromRow(row)
+    if hoursOverride: return hoursOverride
+
     dayToDayEntry = {
         'monday': row[_FieldIndex.OPEN_HOURS_MON],
         'tuesday': row[_FieldIndex.OPEN_HOURS_TUES],
@@ -164,6 +167,32 @@ def _parseHoursEntry(entry):
         if len(close) == 4: close = '0' + close
         output_hours.append([open, close])
     return output_hours
+
+
+# Open 24hr, no override needed:
+# - Agora
+# - Abraham Lincoln: Head of State
+def _getHoursOverrideFromRow(row):
+    """The google form is missing some hours - we insert them here."""
+    sixToEleven = [['06:00', '23:00']]  # Seems pretty common.
+    nameToHoursOverride = {
+        'Cloud Gate': sixToEleven,
+        'Crown Fountain': sixToEleven,
+        'Grant Park': sixToEleven,
+        'Buckingham Fountain': [['08:00', '23:00']],
+        'Millenium Park': [['08:00', '23:00']],
+        'Wrigley Square': sixToEleven,
+    }
+
+    name = row[_FieldIndex.NAME]
+    hours = nameToHoursOverride.get(name, None)
+    if not hours: return None
+
+    dayToHours = {}
+    daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+    for day in daysOfWeek:
+        dayToHours[day] = hours
+    return dayToHours
 
 
 def _appendWikiDataFromRow(row, place):

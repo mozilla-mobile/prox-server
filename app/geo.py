@@ -24,6 +24,8 @@ def get_place_ids_in_radius(center, radius_km, cached_locations_table=None):
 
     place_ids_in_radius = set()
     for place_id, vals in location_table.items():
+        if (place_id.startswith("proxdiscover-")):
+            continue
         lat, lng = vals['l']
         coord = (lat, lng)
         if geofire.distance(center, coord) <= radius_km:

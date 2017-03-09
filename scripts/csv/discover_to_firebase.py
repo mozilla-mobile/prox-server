@@ -278,6 +278,17 @@ def _overrideDataFromRow(row, place):
             'friday': [['19:30', '21:30']],
         }
 
+    elif name == 'Foy School of Traditional Irish Dance':
+        replacementPhoto = 'http://foyirishdancers.weebly.com/uploads/4/9/6/3/49632565/6311984_orig.jpg'
+        place['providers']['yelp']['images'] = [{'src': replacementPhoto}]
+
+    elif name == 'Trinity Irish Dancers':
+        replacementPhotos = [
+            'http://www.gannett-cdn.com/media/FondduLac/2015/03/05/B9316460954Z.1_20150305161240_000_G7LA47M72.1-0.jpg',
+            'http://www.chicagonow.com/show-me-chicago/files/2012/03/Trinity-Irish-Dancers.jpg',
+        ]
+        place['providers']['yelp']['images'] = [{'src': photo} for photo in replacementPhotos]
+
 
 class _FieldIndex(IntEnum):
     """Fields that don't get inserted into cards are prefixed by X_"""
